@@ -5,14 +5,15 @@
 This is the official repository for Aleph Finance Smart Contracts using Truffle Framework
 
 ## Table of Contents
-- Pre-requisites
+- [Pre-requisites](#pre-requisites)
   - Node.js
   - NPM/Yarn
   - Truffle CLI
   - Moralis Admin Account
-- Getting Started
-- Deployment
-- Testing
+- [Getting Started](#getting-started)
+- [Deployment](#deployment)
+- [Testing](#testing)
+- [License](#license)
 
 ### Pre-requisites
 
@@ -33,4 +34,4 @@ $ yarn test
 ```
 
 ### License
-GNU General Public License v3.0
+[GNU General Public License v3.0](https://github.com/Aleph-Finance/aleph-smart-contracts/blob/main/LICENSE)
