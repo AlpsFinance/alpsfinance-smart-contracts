@@ -1,6 +1,8 @@
 const HDWalletProvider = require("@truffle/hdwallet-provider");
 const fs = require("fs");
-const mnemonic = fs.readFileSync(".secret").toString().trim();
+const mnemonic = fs.existsSync(".secret")
+  ? fs.readFileSync(".secret").toString().trim()
+  : "";
 require("dotenv").config();
 
 module.exports = {
