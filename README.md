@@ -13,17 +13,20 @@ Built with 💚 from Aleph Finance Developers.
   - Truffle CLI
   - Moralis Admin Account
 - [👨‍💻 Getting Started](#getting-started)
+  - Install Dependencies
+  - Environment Variables
+  - Compile the Smart Contracts
 - [🚀 Deployment](#deployment)
-- [Testing](#testing)
+- [⚗️ Testing](#testing)
 - [📜 License](#license)
 
 ### 🛠️ Pre-requisites
 
-1. Node.js
+#### 1. Node.js
 
 To install the latest version of Node.js, click [here](https://nodejs.org/en/) and follow the steps.
 
-2. NPM/Yarn
+#### 2. NPM/Yarn
 
 If you plan to use NPM as your package manager, then you can skip this step because NPM comes with `Node.js`. Otherwise, if you would like to use yarn, then run the following command to install yarn:
 
@@ -31,7 +34,7 @@ If you plan to use NPM as your package manager, then you can skip this step beca
 npm i -g yarn
 ```
 
-3. Truffle
+#### 3. Truffle
 
 To install truffle, run the following command:
 
@@ -43,15 +46,70 @@ npm i -g truffle
 yarn global add truffle
 ```
 
-4. Moralis Admin Account
+#### 4. Moralis Admin Account
 
 To get your free Moralis Admin Account, click [here](https://admin.moralis.io/register) to register.
 
 ### 👨‍💻 Getting Started
 
+#### 1. Install Dependencies
+
+```sh
+# NPM
+npm i
+
+# Yarn
+yarn
+```
+
+#### 2. Environment Variables
+
+Copy `.env.example` file and rename it to `.env` and fill in the environment variables.
+
+```
+ETHERSCAN_API_KEY=xxx
+POLYGONSCAN_API_KEY=xxx
+BSCSCAN_API_KEY=xxx
+FTMSCAN_API_KEY=xxx
+SNOWTRACE_API_KEY=xxx
+MORALIS_SPEEDY_NODES_KEY=xxx
+ARCHIVE=false
+```
+
+#### 3. Compile the Smart Contracts
+
+```sh
+# NPM
+npm run compile
+
+# Yarn
+yarn compile
+```
+
 ### 🚀 Deployment
 
-### Testing
+In order to deploy the smart contracts, run the following command.
+
+```sh
+# NPM
+npm run migrate --network <network-name>
+
+# Yarn
+yarn migrate --network <network-name>
+```
+
+where `network-name` is based on `truffle-config.js`. Once the smart contracts are successfully deployed on-chain, then optionally verify the smart contracts with the following command.
+
+```sh
+# NPM
+npm run verify <smart-contract-name> --network <network-name>
+
+# Yarn
+yarn verify <smart-contract-name> --network <network-name>
+```
+
+where `smart-contract-name` is the name of the smart contract from Solidity that you would like to verify and `network-name` is similar to above.
+### ⚗️ Testing
 
 All the testing scripts are under the `test` folder. To run the test run the following commands:
 
