@@ -1,13 +1,13 @@
 # Alps Smart Contracts 💚
 
-[![Truffle CI](https://github.com/AlpsFinance/alpsfinance-smart-contracts/actions/workflows/node.js.yml/badge.svg?branch=main)](https://github.com/AlpsFinance/alpsfinance-smart-contracts/actions/workflows/node.js.yml)
+[![Truffle CI](https://github.com/AlpsFinance/alpsfinance-smart-contracts/actions/workflows/node.js.yml/badge.svg)](https://github.com/AlpsFinance/alpsfinance-smart-contracts/actions/workflows/node.js.yml)
 
 This is the official repository for Alps Finance Smart Contracts using Truffle Framework.
 
 Built with 💚 from Alps Finance Developers.
 
 ## Table of Contents
-- [🛠️ Pre-requisites](#pre-requisites)
+- [🛠️ Pre-requisites](#%EF%B8%8F-pre-requisites)
   - [Node.js](#1-nodejs)
   - [NPM/Yarn](#2-npmyarn)
   - [Truffle CLI](#3-truffle)
@@ -15,9 +15,9 @@ Built with 💚 from Alps Finance Developers.
 - [👨‍💻 Getting Started](#-getting-started)
   - [Install Dependencies](#1-install-dependencies)
   - [Environment Variables](#2-environment-variables)
-  - [Compile the Smart Contracts](3-compile-the-smart-contracts)
+  - [Compile the Smart Contracts](#3-compile-the-smart-contracts)
 - [🚀 Deployment](#-deployment)
-- [⚗️ Testing](#-testing)
+- [⚗️ Testing](#%EF%B8%8F-testing)
 - [📜 License](#-license)
 
 ### 🛠️ Pre-requisites
