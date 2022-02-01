@@ -1,7 +1,11 @@
 {
+  "name": "alpsfinance-smart-contracts",
   "dependencies": {
     "@chainlink/contracts": "^0.3.0",
-    "@openzeppelin/contracts": "^4.4.1"
+    "@openzeppelin/contracts": "^4.4.1",
+    "ethers": "^5.5.4",
+    "keccak256": "^1.0.6",
+    "merkletreejs": "^0.2.27"
   },
   "devDependencies": {
     "@truffle/hdwallet-provider": "^2.0.0",
@@ -14,6 +18,7 @@
     "migrate": "truffle migrate",
     "console": "truffle console",
     "develop": "truffle develop",
-    "test": "truffle test"
+    "test": "truffle test",
+    "airdrop": "node airdrop/app.js"
   }
 }
