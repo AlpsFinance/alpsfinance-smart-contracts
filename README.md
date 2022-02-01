@@ -8,17 +8,17 @@ Built with 💚 from Aleph Finance Developers.
 
 ## Table of Contents
 - [🛠️ Pre-requisites](#pre-requisites)
-  - Node.js
-  - NPM/Yarn
-  - Truffle CLI
-  - Moralis Admin Account
-- [👨‍💻 Getting Started](#getting-started)
-  - Install Dependencies
-  - Environment Variables
-  - Compile the Smart Contracts
-- [🚀 Deployment](#deployment)
-- [⚗️ Testing](#testing)
-- [📜 License](#license)
+  - [Node.js](#1-nodejs)
+  - [NPM/Yarn](#2-npmyarn)
+  - [Truffle CLI](#3-truffle)
+  - [Moralis Admin Account](#4-moralis-admin-account)
+- [👨‍💻 Getting Started](#-getting-started)
+  - [Install Dependencies](#1-install-dependencies)
+  - [Environment Variables](#2-environment-variables)
+  - [Compile the Smart Contracts](3-compile-the-smart-contracts)
+- [🚀 Deployment](#-deployment)
+- [⚗️ Testing](#-testing)
+- [📜 License](#-license)
 
 ### 🛠️ Pre-requisites
 
