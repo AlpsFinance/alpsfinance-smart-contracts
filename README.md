@@ -1,10 +1,10 @@
-# Aleph Smart Contracts 💚
+# Alps Smart Contracts 💚
 
-[![Truffle CI](https://github.com/Aleph-Finance/aleph-smart-contracts/actions/workflows/node.js.yml/badge.svg?branch=main)](https://github.com/Aleph-Finance/aleph-smart-contracts/actions/workflows/node.js.yml)
+[![Truffle CI](https://github.com/AlpsFinance/alpsfinance-smart-contracts/actions/workflows/node.js.yml/badge.svg?branch=main)](https://github.com/AlpsFinance/alpsfinance-smart-contracts/actions/workflows/node.js.yml)
 
-This is the official repository for Aleph Finance Smart Contracts using Truffle Framework.
+This is the official repository for Alps Finance Smart Contracts using Truffle Framework.
 
-Built with 💚 from Aleph Finance Developers.
+Built with 💚 from Alps Finance Developers.
 
 ## Table of Contents
 - [🛠️ Pre-requisites](#pre-requisites)
@@ -122,4 +122,4 @@ $ yarn test
 ```
 
 ### 📜 License
-[GNU General Public License v3.0](https://github.com/Aleph-Finance/aleph-smart-contracts/blob/main/LICENSE)
+[GNU Affero General Public License v3.0](https://github.com/AlpsFinance/alpsfinance-smart-contracts/blob/main/LICENSE)
