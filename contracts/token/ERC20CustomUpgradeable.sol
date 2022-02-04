@@ -56,6 +56,10 @@ contract ERC20CustomUpgradeable is Initializable, ERC20Upgradeable, ERC20Burnabl
         _unpause();
     }
 
+    function setMerkleRoot(bytes32 _newMerkleRoot) public onlyRole(DEFAULT_ADMIN_ROLE) {
+        merkleRoot = _newMerkleRoot;
+    }
+
     function mint(address to, uint256 amount) public onlyRole(MINTER_ROLE) {
         _mint(to, amount);
     }
