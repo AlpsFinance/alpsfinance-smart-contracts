@@ -4,10 +4,10 @@ pragma solidity ^0.8.11;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "../token/interfaces/IERC20Custom.sol";
 
 contract Airdrop is Ownable {
-    IERC20 public token;
+    IERC20Custom public token;
     bytes32 private merkleRoot;
     mapping(address => bool) public airdropClaimed;
 
@@ -19,7 +19,7 @@ contract Airdrop is Ownable {
     event Claim(address indexed to, uint256 amount);
 
     constructor(address _tokenAddress, bytes32 _merkleRoot) {
-        token = IERC20(_tokenAddress);
+        token = IERC20Custom(_tokenAddress);
         merkleRoot = _merkleRoot;
     }
 
@@ -48,7 +48,7 @@ contract Airdrop is Ownable {
         airdropClaimed[msg.sender] = true;
 
         // Mint tokens to address
-        token.transfer(msg.sender, amount);
+        token.mint(msg.sender, amount);
 
         // Emit claim event
         emit Claim(msg.sender, amount);
