@@ -5,13 +5,12 @@ name: Truffle CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   test:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -20,10 +19,11 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v2
-    - run: npm install -g yarn truffle
-    - run: yarn install
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-    - run: yarn compile
-    - run: yarn test
+      - uses: actions/checkout@v2
+      - run: npm install -g yarn truffle
+      - run: yarn install
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+      - run: yarn compile
+      - run: yarn airdrop
+      - run: yarn test
