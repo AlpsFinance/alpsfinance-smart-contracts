@@ -173,6 +173,12 @@ module.exports = {
       network_id: 1,
       skipDryRun: true,
     },
+    fantom_testnet: {
+      provider: () =>
+        new HDWalletProvider(mnemonic, "https://rpc.testnet.fantom.network/"),
+      network_id: 4002,
+      skipDryRun: true,
+    },
     fantom_mainnet: {
       provider: () =>
         new HDWalletProvider(

@@ -6,9 +6,10 @@ const expect = require("chai").expect;
 contract("Airdrop", (accounts) => {
   const name = "Example Token";
   const symbol = "EXMP";
+  const initialCap = "5000000000000000000000000000";
 
   beforeEach(async () => {
-    this.erc20Custom = await ERC20Custom.new(name, symbol, {
+    this.erc20Custom = await ERC20Custom.new(name, symbol, initialCap, {
       from: accounts[0],
     });
     this.airdrop = await Airdrop.new(this.erc20Custom.address, root, {
