@@ -13,6 +13,12 @@ contract("ERC20Custom", (accounts) => {
     });
   });
 
+  /**
+   * Testing basic token features:
+   * - should have the right name and symbol
+   * - should have the right initial cap
+   * - should be minting new tokens
+   */
   describe("should have basic ERC20 features", () => {
     it("should have the right name and symbol", async () => {
       expect(await this.erc20Custom.name()).to.equal(name);
@@ -198,9 +204,47 @@ contract("ERC20Custom", (accounts) => {
     });
   });
 
+  /**
+   * Testing Access Control features:
+   * - should be able to grant roles to new address
+   * - should be able to revoke roles from existing member
+   */
   describe("should be able to manage access control correctly", () => {
-    it("should be able to grant roles to new address", () => {});
+    it("should be able to grant roles to new address", async () => {
+      const mintAmount = "1000000000000000000";
 
-    it("should be able to revoke roles from existing member", () => {});
+      // Grant the address MINTER role
+      await this.erc20Custom.grantRole(
+        "0x9f2df0fed2c77648de5860a4cc508cd0818c85b8b8a1ab4ceeef8d981c8956a6",
+        accounts[1],
+        { from: accounts[0] }
+      );
+
+      await this.erc20Custom.mint(accounts[2], mintAmount, {
+        from: accounts[1],
+      });
+
+      expect(
+        parseInt(await this.erc20Custom.balanceOf(accounts[2])).toString()
+      ).to.equal(mintAmount);
+    });
+
+    it("should be able to revoke roles from existing member", async () => {
+      const mintAmount = "1000000000000000000";
+
+      // Revoke the address MINTER role
+      await this.erc20Custom.revokeRole(
+        "0x9f2df0fed2c77648de5860a4cc508cd0818c85b8b8a1ab4ceeef8d981c8956a6",
+        accounts[0],
+        { from: accounts[0] }
+      );
+
+      await truffleAssert.reverts(
+        this.erc20Custom.mint(accounts[1], mintAmount, {
+          from: accounts[0],
+        }),
+        `AccessControl: account ${accounts[0].toLowerCase()} is missing role 0x9f2df0fed2c77648de5860a4cc508cd0818c85b8b8a1ab4ceeef8d981c8956a6`
+      );
+    });
   });
 });
