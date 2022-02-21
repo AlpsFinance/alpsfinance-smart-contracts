@@ -161,7 +161,7 @@ module.exports = {
           mnemonic,
           `https://speedy-nodes-nyc.moralis.io/${process.env.MORALIS_SPEEDY_NODES_KEY}/avalanche/testnet`
         ),
-      network_id: 1,
+      network_id: 43113,
       skipDryRun: true,
     },
     avalanche_mainnet: {
