@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-3.0-or-later
+// SPDX-License-Identifier: AGPL-3.0
 
 pragma solidity ^0.8.11;
 
@@ -24,7 +24,7 @@ contract Airdrop is Ownable, ReentrancyGuard {
         merkleRoot = _merkleRoot;
     }
 
-    function setMerkleRoot(bytes32 _newMerkleRoot) onlyOwner external {
+    function setMerkleRoot(bytes32 _newMerkleRoot) external onlyOwner {
         require(
             _newMerkleRoot != 0x00 || _newMerkleRoot != merkleRoot,
             "Airdrop: Invalid new merkle root value!"
@@ -37,13 +37,16 @@ contract Airdrop is Ownable, ReentrancyGuard {
      * @param amount of tokens owed to claimee
      * @param proof merkle proof to prove address and amount are in tree
      */
-    function claim(
-      uint256 amount,
-      bytes32[] calldata proof
-    ) nonReentrant external {
+    function claim(uint256 amount, bytes32[] calldata proof)
+        external
+        nonReentrant
+    {
         require(amount > 0, "Airdrop: Amount cannot be 0!");
         // Throw if address has already claimed tokens
-        require(!airdropClaimed[msg.sender], "Airdrop: Airdrop has been claimed!");
+        require(
+            !airdropClaimed[msg.sender],
+            "Airdrop: Airdrop has been claimed!"
+        );
 
         // Verify merkle proof, or revert if not in tree
         bytes32 leaf = keccak256(abi.encodePacked(msg.sender, amount));

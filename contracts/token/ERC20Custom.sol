@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-3.0-or-later
+// SPDX-License-Identifier: AGPL-3.0
 
 pragma solidity ^0.8.11;
 
@@ -58,7 +58,10 @@ contract ERC20Custom is
     /**
      * @dev Increase the cap supply
      */
-    function increaseCap(uint256 _increaseCap) public onlyRole(DEFAULT_ADMIN_ROLE) {
+    function increaseCap(uint256 _increaseCap)
+        public
+        onlyRole(DEFAULT_ADMIN_ROLE)
+    {
         require(
             _increaseCap > 0,
             "ERC20Custom: Increase Cap value has non-valid 0 value!"
@@ -69,7 +72,10 @@ contract ERC20Custom is
     /**
      * @dev Decrease the cap supply
      */
-    function decreaseCap(uint256 _decreaseCap) public onlyRole(DEFAULT_ADMIN_ROLE) {
+    function decreaseCap(uint256 _decreaseCap)
+        public
+        onlyRole(DEFAULT_ADMIN_ROLE)
+    {
         require(
             (_decreaseCap > 0) &&
                 (_decreaseCap <= SafeMath.sub(cap(), totalSupply())),
