@@ -8,7 +8,7 @@ import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "../token/interfaces/IERC20Custom.sol";
 
 contract Airdrop is Ownable, ReentrancyGuard {
-    IERC20Custom public token;
+    address public tokenAddress;
     bytes32 private merkleRoot;
     mapping(address => bool) public airdropClaimed;
 
@@ -20,7 +20,7 @@ contract Airdrop is Ownable, ReentrancyGuard {
     event Claim(address indexed to, uint256 amount);
 
     constructor(address _tokenAddress, bytes32 _merkleRoot) {
-        token = IERC20Custom(_tokenAddress);
+        tokenAddress = _tokenAddress;
         merkleRoot = _merkleRoot;
     }
 
@@ -57,6 +57,7 @@ contract Airdrop is Ownable, ReentrancyGuard {
         airdropClaimed[msg.sender] = true;
 
         // Mint tokens to address
+        IERC20Custom token = IERC20Custom(tokenAddress);
         token.mint(msg.sender, amount);
 
         // Emit claim event
