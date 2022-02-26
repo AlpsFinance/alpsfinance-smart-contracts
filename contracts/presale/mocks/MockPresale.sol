@@ -7,11 +7,10 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
-import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
-import "../libraries/PriceConverter.sol";
-import "../token/interfaces/IERC20Custom.sol";
+import "../../libraries/PriceConverter.sol";
+import "../../token/interfaces/IERC20Custom.sol";
 
-contract Presale is Ownable, ReentrancyGuard {
+contract MockPresale is Ownable, ReentrancyGuard {
     using Counters for Counters.Counter;
     using SafeMath for uint256;
 
@@ -84,9 +83,8 @@ contract Presale is Ownable, ReentrancyGuard {
     function presaleTokens(
         address _paymentTokenAddress,
         uint256 _amount,
-        address _aggregatorTokenAddress
+        address // Aggregator Address is unused here
     ) public payable nonReentrant {
-        uint256 currentPresalePrice = getCurrentPrice();
         uint256 currentPresaleRound = getCurrentPresaleRound();
 
         // Check whether the presale round is still open
@@ -102,23 +100,7 @@ contract Presale is Ownable, ReentrancyGuard {
 
         // Convert the token with Chainlink Price Feed
         IERC20Custom token = IERC20Custom(tokenAddress);
-        AggregatorV3Interface priceFeed = AggregatorV3Interface(
-            _aggregatorTokenAddress
-        );
-        (, int256 price, , , ) = priceFeed.latestRoundData();
-        uint256 presaleAmount = SafeMath.div(
-            SafeMath.mul(
-                uint256(
-                    PriceConverter.scalePrice(
-                        price,
-                        priceFeed.decimals(),
-                        token.decimals()
-                    )
-                ),
-                _amount
-            ),
-            currentPresalePrice
-        );
+        uint256 presaleAmount = 10**18;
 
         // Receive the payment token and transfer it to another address
         if (_paymentTokenAddress == address(0)) {

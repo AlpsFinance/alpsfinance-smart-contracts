@@ -7,4 +7,6 @@ module.exports = async (deployer) => {
     "ALPS",
     web3.utils.toWei((5 * 10 ** 9).toString())
   );
+
+  // Grant role
 };

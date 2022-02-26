@@ -24,6 +24,10 @@ contract Airdrop is Ownable, ReentrancyGuard {
         merkleRoot = _merkleRoot;
     }
 
+    function getMerkleRoot() public view onlyOwner returns (bytes32) {
+        return merkleRoot;
+    }
+
     function setMerkleRoot(bytes32 _newMerkleRoot) external onlyOwner {
         require(
             _newMerkleRoot != 0x00 || _newMerkleRoot != merkleRoot,

@@ -159,4 +159,37 @@ contract("Airdrop", (accounts) => {
       );
     });
   });
+
+  describe("should have admin access to implement changes", () => {
+    it("should allow changes to new merkle root", async () => {
+      const newMerkleRoot =
+        "0x9f2df0fed2c77648de5860a4cc508cd0818c85b8b8a1ab4ceeef8d981c8956a6";
+      await this.airdrop.setMerkleRoot(newMerkleRoot, { from: accounts[0] });
+
+      expect(await this.airdrop.getMerkleRoot({ from: accounts[0] })).to.equal(
+        newMerkleRoot
+      );
+    });
+
+    it("should disallow changes for 0 value merkle root", async () => {
+      // await truffleAssert.reverts(
+      //   this.airdrop.setMerkleRoot(
+      //     "0x0000000000000000000000000000000000000000000000000000000000000000",
+      //     { from: accounts[0] }
+      //   ),
+      //   "Airdrop: Invalid new merkle root value!"
+      // );
+    });
+
+    it("should disallow changes for the same existing merkle root", async () => {
+      // await truffleAssert.reverts(
+      //   this.airdrop.setMerkleRoot(merkleTree.getHexRoot(), {
+      //     from: accounts[0],
+      //   }),
+      //   "Airdrop: Invalid new merkle root value!"
+      // );
+    });
+
+    it("should disallow changes on merkle root for non-admin", async () => {});
+  });
 });
