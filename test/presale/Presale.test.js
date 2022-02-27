@@ -45,6 +45,12 @@ contract("Presale", (accounts) => {
     );
   });
 
+  /**
+   * Testing getter methods:
+   * - Should be able to fetch current presale round (with only one round)
+   * - Should be able to fetch current presale round (with multiple rounds
+   * - should be able to fetch current presale details
+   */
   describe("should have the properly working getter methods", () => {
     it("should be able to fetch current presale round (with only one round)", async () => {
       expect(
@@ -88,6 +94,11 @@ contract("Presale", (accounts) => {
     });
   });
 
+  /**
+   * Testing presale features:
+   * - Should enable user to purchase ALPS token with native token
+   * - Should enable user to purchase ALPS token with ERC20 token
+   */
   describe("should have basic presale features", () => {
     it("should enable user to purchase ALPS token with native token", async () => {
       const nativeTokenAmount = web3.utils.toWei((100).toString());
