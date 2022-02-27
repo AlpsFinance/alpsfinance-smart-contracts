@@ -50,6 +50,7 @@ contract("Presale", (accounts) => {
    * - Should be able to fetch current presale round (with only one round)
    * - Should be able to fetch current presale round (with multiple rounds
    * - should be able to fetch current presale details
+   * - should be able to fetch the correct total number of presale rounds
    */
   describe("should have the properly working getter methods", () => {
     it("should be able to fetch current presale round (with only one round)", async () => {
@@ -92,6 +93,23 @@ contract("Presale", (accounts) => {
         maximumPresaleAmount
       );
     });
+
+    it("should be able to fetch the correct total number of presale rounds", async () => {
+      // Setting up a second round
+      await this.presale.setPresaleRound(
+        "1",
+        // make the starting time in the past for easy testing
+        (Date.now() - 100).toString(),
+        web3.utils.toWei(usdPrice.toString()),
+        web3.utils.toWei(minimumUSDPurchase.toString()),
+        web3.utils.toWei(maximumPresaleAmount.toString()),
+        { from: accounts[0] }
+      );
+
+      expect(
+        parseInt((await this.presale.getTotalPresaleRound()).toString())
+      ).to.equal(2);
+    });
   });
 
   /**
@@ -122,9 +140,24 @@ contract("Presale", (accounts) => {
         }
       );
 
+      const currentPresaleRound = (
+        await this.presale.getCurrentPresaleRound()
+      ).toString();
+
       expect(
-        (await this.erc20Custom.balanceOf(accounts[0])).toString()
-      ).to.equal(web3.utils.toWei("24000").toString()); // This is just a mock calculation 100/0.000125
+        parseInt(
+          web3.utils.fromWei(
+            (await this.erc20Custom.balanceOf(accounts[0])).toString()
+          )
+        )
+      ).to.equal(24000); // This is just a mock calculation 100/0.000125
+      expect(
+        parseInt(
+          (
+            await this.presale.getPresaleAmountByRound(currentPresaleRound)
+          ).toString()
+        )
+      ).to.equal(2.4e22);
     });
 
     it("should enable user to purchase ALPS token with ERC20 token", async () => {
@@ -159,9 +192,24 @@ contract("Presale", (accounts) => {
         }
       );
 
+      const currentPresaleRound = (
+        await this.presale.getCurrentPresaleRound()
+      ).toString();
+
       expect(
-        (await this.erc20Custom.balanceOf(accounts[0])).toString()
-      ).to.equal(web3.utils.toWei("24000").toString()); // This is just a mock calculation 100/0.000125
+        parseInt(
+          web3.utils.fromWei(
+            (await this.erc20Custom.balanceOf(accounts[0])).toString()
+          )
+        )
+      ).to.equal(24000); // This is just a mock calculation 100/0.000125
+      expect(
+        parseInt(
+          (
+            await this.presale.getPresaleAmountByRound(currentPresaleRound)
+          ).toString()
+        )
+      ).to.equal(2.4e22);
     });
   });
 });
