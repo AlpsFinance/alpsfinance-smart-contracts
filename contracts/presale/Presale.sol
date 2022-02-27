@@ -18,6 +18,8 @@ contract Presale is Ownable, ReentrancyGuard {
     struct PresaleData {
         uint256 startingTime;
         uint256 usdPrice;
+        uint256 minimumUSDPurchase;
+        uint256 maximumPresaleAmount;
     }
 
     event TokenPresold(
@@ -40,6 +42,8 @@ contract Presale is Ownable, ReentrancyGuard {
     error presaleNativeTokenPaymentNotSufficient();
     error presaleStartingTimeInvalid();
     error presaleUSDPriceInvalid();
+    error presaleMimumumUSDPurchaseInvalid();
+    error presaleMaximumPresaleAmountInvalid();
 
     constructor(address _tokenAddress, address payable _presaleReceiver) {
         tokenAddress = _tokenAddress;
@@ -67,11 +71,29 @@ contract Presale is Ownable, ReentrancyGuard {
     }
 
     /**
-     * Getting the Current Price
+     * Getting the Current Presale Details, including:
+     * - Starting Time
+     * - USD Price
+     * - Minimum USD Purchase
+     * - Maximum Presale Amount
      */
-    function getCurrentPrice() public view returns (uint256) {
+    function getCurrentPresaleDetails()
+        public
+        view
+        returns (
+            uint256,
+            uint256,
+            uint256,
+            uint256
+        )
+    {
         uint256 currentPresaleRound = getCurrentPresaleRound();
-        return presaleDetailsMapping[currentPresaleRound].usdPrice;
+        return (
+            presaleDetailsMapping[currentPresaleRound].startingTime,
+            presaleDetailsMapping[currentPresaleRound].usdPrice,
+            presaleDetailsMapping[currentPresaleRound].minimumUSDPurchase,
+            presaleDetailsMapping[currentPresaleRound].maximumPresaleAmount
+        );
     }
 
     /**
@@ -86,14 +108,15 @@ contract Presale is Ownable, ReentrancyGuard {
         uint256 _amount,
         address _aggregatorTokenAddress
     ) public payable nonReentrant {
-        uint256 currentPresalePrice = getCurrentPrice();
-        uint256 currentPresaleRound = getCurrentPresaleRound();
+        (
+            uint256 currentPresaleStartingTime,
+            uint256 currentPresalePrice,
+            ,
+
+        ) = getCurrentPresaleDetails();
 
         // Check whether the presale round is still open
-        PresaleData memory currentPresale = presaleDetailsMapping[
-            currentPresaleRound
-        ];
-        if (block.timestamp >= currentPresale.startingTime)
+        if (block.timestamp >= currentPresaleStartingTime)
             revert presaleRoundClosed();
 
         // Check whether token is valid
@@ -158,6 +181,11 @@ contract Presale is Ownable, ReentrancyGuard {
         presaleReceiver = _newPresaleReceiver;
     }
 
+    /**
+     * Set new Presale Token Address
+     *
+     * @dev _newTokenAddress - Address of token that'll be presaled
+     */
     function setPresaleTokenAddress(address _newTokenAddress) public onlyOwner {
         tokenAddress = _newTokenAddress;
     }
@@ -168,18 +196,32 @@ contract Presale is Ownable, ReentrancyGuard {
      * @dev _presaleRound - The presale round chosen
      * @dev _startingTime - The starting Presale time
      * @dev _usdPrice - The USD Price of the Token in certain Presale Round
+     * @dev _minimumUSDPurchase - The minimum USD amount to purchase the token
+     * @dev _maximumPresaleAmount - The maximum amount of token available for a presale round
      */
     function setPresaleRound(
         uint256 _presaleRound,
         uint256 _startingTime,
-        uint256 _usdPrice
+        uint256 _usdPrice,
+        uint256 _minimumUSDPurchase,
+        uint256 _maximumPresaleAmount
     ) public onlyOwner {
         uint256 presaleStartingTime = presaleDetailsMapping[_presaleRound]
             .startingTime;
         uint256 presaleUSDPrice = presaleDetailsMapping[_presaleRound].usdPrice;
+        uint256 presaleMinimumUSDPurchase = presaleDetailsMapping[_presaleRound]
+            .minimumUSDPurchase;
+        uint256 presaleMaximumPresaleAmount = presaleDetailsMapping[
+            _presaleRound
+        ].maximumPresaleAmount;
+
         // Increment the total round counter when new presale is created
-        if (presaleStartingTime == 0 && presaleUSDPrice == 0)
-            totalPresaleRound.increment();
+        if (
+            presaleStartingTime == 0 &&
+            presaleUSDPrice == 0 &&
+            presaleMinimumUSDPurchase == 0 &&
+            presaleMaximumPresaleAmount == 0
+        ) totalPresaleRound.increment();
 
         // Starting time has to be:
         // - larger than zero
@@ -191,10 +233,17 @@ contract Presale is Ownable, ReentrancyGuard {
                 presaleDetailsMapping[_presaleRound - 1].startingTime)
         ) revert presaleStartingTimeInvalid();
 
-        // USD Price given must be larger than zero
+        // These values given must be larger than zero
         if (_usdPrice == 0) revert presaleUSDPriceInvalid();
+        if (_minimumUSDPurchase == 0) revert presaleMimumumUSDPurchaseInvalid();
+        if (_maximumPresaleAmount == 0)
+            revert presaleMaximumPresaleAmountInvalid();
 
         presaleDetailsMapping[_presaleRound].startingTime = _startingTime;
         presaleDetailsMapping[_presaleRound].usdPrice = _usdPrice;
+        presaleDetailsMapping[_presaleRound]
+            .minimumUSDPurchase = _minimumUSDPurchase;
+        presaleDetailsMapping[_presaleRound]
+            .maximumPresaleAmount = _maximumPresaleAmount;
     }
 }
