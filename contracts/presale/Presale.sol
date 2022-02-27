@@ -34,8 +34,9 @@ contract Presale is Ownable, ReentrancyGuard {
     address payable public presaleReceiver;
 
     // Mapping `presaleRound` to its data details
-    mapping(uint256 => PresaleData) presaleDetailsMapping;
-    mapping(address => bool) presaleTokenAvaliblilityMapping;
+    mapping(uint256 => PresaleData) public presaleDetailsMapping;
+    mapping(uint256 => uint256) public presaleAmountByRoundMapping;
+    mapping(address => bool) public presaleTokenAvaliblilityMapping;
 
     error presaleRoundClosed();
     error presaleTokenNotAvailable();
@@ -44,6 +45,8 @@ contract Presale is Ownable, ReentrancyGuard {
     error presaleUSDPriceInvalid();
     error presaleMimumumUSDPurchaseInvalid();
     error presaleMaximumPresaleAmountInvalid();
+    error presaleUSDPurchaseNotSufficient();
+    error presaleAmountOverdemand();
 
     constructor(address _tokenAddress, address payable _presaleReceiver) {
         tokenAddress = _tokenAddress;
@@ -111,8 +114,8 @@ contract Presale is Ownable, ReentrancyGuard {
         (
             uint256 currentPresaleStartingTime,
             uint256 currentPresalePrice,
-            ,
-
+            uint256 currentPresaleMinimumUSDPurchase,
+            uint256 currentPresaleMaximumPresaleAmount
         ) = getCurrentPresaleDetails();
 
         // Check whether the presale round is still open
@@ -129,19 +132,32 @@ contract Presale is Ownable, ReentrancyGuard {
             _aggregatorTokenAddress
         );
         (, int256 price, , , ) = priceFeed.latestRoundData();
-        uint256 presaleAmount = SafeMath.div(
-            SafeMath.mul(
-                uint256(
-                    PriceConverter.scalePrice(
-                        price,
-                        priceFeed.decimals(),
-                        token.decimals()
-                    )
-                ),
-                _amount
+        uint256 presaleUSDAmount = SafeMath.mul(
+            uint256(
+                PriceConverter.scalePrice(
+                    price,
+                    priceFeed.decimals(),
+                    token.decimals()
+                )
             ),
+            _amount
+        );
+
+        if (presaleUSDAmount < currentPresaleMinimumUSDPurchase)
+            revert presaleUSDPurchaseNotSufficient();
+
+        uint256 presaleAmount = SafeMath.div(
+            presaleUSDAmount,
             currentPresalePrice
         );
+
+        if (
+            presaleAmount >
+            currentPresaleMaximumPresaleAmount -
+                presaleAmountByRoundMapping[getCurrentPresaleRound()]
+        ) revert presaleAmountOverdemand();
+
+        presaleAmountByRoundMapping[getCurrentPresaleRound()] += presaleAmount;
 
         // Receive the payment token and transfer it to another address
         if (_paymentTokenAddress == address(0)) {

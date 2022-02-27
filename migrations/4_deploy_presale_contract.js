@@ -13,5 +13,7 @@ module.exports = async (deployer) => {
     presaleInst.address
   );
 
+  await this.presale.setPresaleRound(0, 25);
+
   // Transfer Ownership of `Airdrop` contract
 };

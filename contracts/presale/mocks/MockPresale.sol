@@ -34,6 +34,7 @@ contract MockPresale is Ownable, ReentrancyGuard {
 
     // Mapping `presaleRound` to its data details
     mapping(uint256 => PresaleData) presaleDetailsMapping;
+    mapping(uint256 => uint256) public presaleAmountByRoundMapping;
     mapping(address => bool) presaleTokenAvaliblilityMapping;
 
     error presaleRoundClosed();
@@ -43,6 +44,8 @@ contract MockPresale is Ownable, ReentrancyGuard {
     error presaleUSDPriceInvalid();
     error presaleMimumumUSDPurchaseInvalid();
     error presaleMaximumPresaleAmountInvalid();
+    error presaleUSDPurchaseNotSufficient();
+    error presaleAmountOverdemand();
 
     constructor(address _tokenAddress, address payable _presaleReceiver) {
         tokenAddress = _tokenAddress;
@@ -100,14 +103,19 @@ contract MockPresale is Ownable, ReentrancyGuard {
      *
      * @dev _paymentTokenAddress - Address of the token use to pay (address 0 is for native token)
      * @dev _amount - Amount denominated in the `paymentTokenAddress` being paid
-     * @dev _aggregatorTokenAddress - Use to convert price with Chainlink
      */
-    function presaleTokens(
-        address _paymentTokenAddress,
-        uint256 _amount,
-        address // Aggregator Address is unused here
-    ) public payable nonReentrant {
-        (uint256 currentPresaleStartingTime, , , ) = getCurrentPresaleDetails();
+    function presaleTokens(address _paymentTokenAddress, uint256 _amount)
+        public
+        payable
+        nonReentrant
+    {
+        uint256 currentPresaleRound = getCurrentPresaleRound();
+        (
+            uint256 currentPresaleStartingTime,
+            uint256 currentPresalePrice,
+            uint256 currentPresaleMinimumUSDPurchase,
+            uint256 currentPresaleMaximumPresaleAmount
+        ) = getCurrentPresaleDetails();
 
         // Check whether the presale round is still open
         if (block.timestamp >= currentPresaleStartingTime)
@@ -119,7 +127,24 @@ contract MockPresale is Ownable, ReentrancyGuard {
 
         // Convert the token with Chainlink Price Feed
         IERC20Custom token = IERC20Custom(tokenAddress);
-        uint256 presaleAmount = 10**18;
+
+        uint256 presaleUSDAmount = 10**18;
+
+        if (presaleUSDAmount < currentPresaleMinimumUSDPurchase)
+            revert presaleUSDPurchaseNotSufficient();
+
+        uint256 presaleAmount = SafeMath.div(
+            presaleUSDAmount,
+            currentPresalePrice
+        );
+
+        if (
+            presaleAmount >
+            currentPresaleMaximumPresaleAmount -
+                presaleAmountByRoundMapping[currentPresaleRound]
+        ) revert presaleAmountOverdemand();
+
+        presaleAmountByRoundMapping[currentPresaleRound] += presaleAmount;
 
         // Receive the payment token and transfer it to another address
         if (_paymentTokenAddress == address(0)) {

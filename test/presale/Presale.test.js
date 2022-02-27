@@ -28,9 +28,13 @@ contract("Presale", (accounts) => {
         from: accounts[0],
       }
     );
+
+    await this.presale.setPresaleRound(0, 25, { from: accounts[0] });
   });
 
   describe("should have basic presale features", () => {
-    it("should", async () => {});
+    it("should enable user to purchase ALPS token with native token", async () => {});
+
+    it("should enable user to purchase ALPS token with ERC20 token", async () => {});
   });
 });
