@@ -160,8 +160,8 @@ contract MockPresale is Ownable, ReentrancyGuard {
         ) = getCurrentPresaleDetails();
 
         // Check whether the presale round is still open
-        // if (block.timestamp < currentPresaleStartingTime)
-        //     revert presaleRoundClosed();
+        if (block.timestamp < currentPresaleStartingTime)
+            revert presaleRoundClosed();
 
         // Check whether token is valid
         if (!presaleTokenAvailabilityMapping[_paymentTokenAddress])

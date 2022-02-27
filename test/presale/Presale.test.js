@@ -6,7 +6,7 @@
 const ERC20Custom = artifacts.require("ERC20Custom");
 const Presale = artifacts.require("MockPresale");
 const PresaleDetails = require("../../constant/presale.json");
-const truffleAssert = require("truffle-assertions");
+const timeTravel = require("../../utils/timeTravel");
 const expect = require("chai").expect;
 
 contract("Presale", (accounts) => {
@@ -46,10 +46,29 @@ contract("Presale", (accounts) => {
   });
 
   describe("should have the properly working getter methods", () => {
-    it("should be able to fetch current presale round", async () => {
+    it("should be able to fetch current presale round (with only one round)", async () => {
       expect(
         parseInt((await this.presale.getCurrentPresaleRound()).toString())
       ).to.equal(0);
+    });
+
+    it("should be able to fetch current presale round (with multiple rounds", async () => {
+      // Setting up a second round
+      await this.presale.setPresaleRound(
+        "1",
+        // make the starting time in the past for easy testing
+        (Date.now() - 100).toString(),
+        web3.utils.toWei(usdPrice.toString()),
+        web3.utils.toWei(minimumUSDPurchase.toString()),
+        web3.utils.toWei(maximumPresaleAmount.toString()),
+        { from: accounts[0] }
+      );
+
+      await timeTravel(Date.now() * 2);
+
+      expect(
+        parseInt((await this.presale.getCurrentPresaleRound()).toString())
+      ).to.equal(1);
     });
 
     it("should be able to fetch current presale details", async () => {
@@ -81,7 +100,7 @@ contract("Presale", (accounts) => {
         }
       );
 
-      console.log(startingTime, Date.now());
+      await timeTravel(Date.now() * 2);
 
       await this.presale.presaleTokens(
         "0x0000000000000000000000000000000000000000",
@@ -118,6 +137,8 @@ contract("Presale", (accounts) => {
       await this.presale.setTokenAvailability(this.erc20Custom2.address, true, {
         from: accounts[0],
       });
+
+      await timeTravel(Date.now() * 2);
 
       await this.presale.presaleTokens(
         this.erc20Custom2.address,
