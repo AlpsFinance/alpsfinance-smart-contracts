@@ -83,7 +83,7 @@ contract("Presale", (accounts) => {
 
       expect(
         (await this.erc20Custom.balanceOf(accounts[0])).toString()
-      ).to.equal(web3.utils.toWei("240000").toString()); // This is just a mock calculation 100/0.000125
+      ).to.equal(web3.utils.toWei("24000").toString()); // This is just a mock calculation 100/0.000125
     });
 
     it("should enable user to purchase ALPS token with ERC20 token", async () => {
@@ -113,7 +113,7 @@ contract("Presale", (accounts) => {
 
       expect(
         (await this.erc20Custom.balanceOf(accounts[0])).toString()
-      ).to.equal(web3.utils.toWei("240000").toString()); // This is just a mock calculation 100/0.000125
+      ).to.equal(web3.utils.toWei("24000").toString()); // This is just a mock calculation 100/0.000125
     });
   });
 });
