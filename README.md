@@ -1,6 +1,7 @@
 # Alps Smart Contracts 💚
 
 [![Truffle CI](https://github.com/AlpsFinance/alpsfinance-smart-contracts/actions/workflows/node.js.yml/badge.svg)](https://github.com/AlpsFinance/alpsfinance-smart-contracts/actions/workflows/node.js.yml)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
 This is the official repository for Alps Finance Smart Contracts using Truffle Framework.
 
