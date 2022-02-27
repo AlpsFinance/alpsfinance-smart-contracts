@@ -1,8 +1,9 @@
 const Airdrop = artifacts.require("Airdrop");
 const ERC20Custom = artifacts.require("ERC20Custom");
 const { root } = require("../merkle.json");
+const address = require("../constant/address.json");
 
-module.exports = async (deployer) => {
+module.exports = async (deployer, network) => {
   // Deploy `Airdrop` contract
   const erc20Inst = await ERC20Custom.deployed();
   await deployer.deploy(Airdrop, erc20Inst.address, root);
@@ -14,5 +15,10 @@ module.exports = async (deployer) => {
     airdropInst.address
   );
 
-  // Transfer Ownership of `Airdrop` contract
+  if (address[network]) {
+    const { multisig } = address[network];
+
+    // Transfer Ownership of `Airdrop` contract
+    await airdropInst.transferOwnership(multisig);
+  }
 };
