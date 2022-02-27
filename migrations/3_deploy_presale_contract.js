@@ -26,7 +26,8 @@ module.exports = async (deployer, network) => {
 
     await presaleInst.setPresaleRound(
       index.toString(),
-      startingTime.toString(),
+      // only deploy with real time schedule in FTM mainnet
+      network === "fantom_mainnet" ? startingTime.toString() : Date.now(),
       web3.utils.toWei(usdPrice.toString()),
       web3.utils.toWei(minimumUSDPurchase.toString()),
       web3.utils.toWei(maximumPresaleAmount.toString())

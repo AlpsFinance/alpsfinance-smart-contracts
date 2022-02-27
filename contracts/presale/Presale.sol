@@ -36,7 +36,7 @@ contract Presale is Ownable, ReentrancyGuard {
     // Mapping `presaleRound` to its data details
     mapping(uint256 => PresaleData) public presaleDetailsMapping;
     mapping(uint256 => uint256) public presaleAmountByRoundMapping;
-    mapping(address => bool) public presaleTokenAvaliblilityMapping;
+    mapping(address => bool) public presaleTokenAvailabilityMapping;
 
     error presaleRoundClosed();
     error presaleTokenNotAvailable();
@@ -47,6 +47,12 @@ contract Presale is Ownable, ReentrancyGuard {
     error presaleMaximumPresaleAmountInvalid();
     error presaleUSDPurchaseNotSufficient();
     error presaleAmountOverdemand();
+    error presaleTokenAddressInvalid();
+
+    modifier onlyValidTokens(address _tokenAddress) {
+        if (_tokenAddress == address(0)) revert presaleTokenAddressInvalid();
+        _;
+    }
 
     constructor(address _tokenAddress, address payable _presaleReceiver) {
         tokenAddress = _tokenAddress;
@@ -155,11 +161,11 @@ contract Presale is Ownable, ReentrancyGuard {
         ) = getCurrentPresaleDetails();
 
         // Check whether the presale round is still open
-        if (block.timestamp >= currentPresaleStartingTime)
+        if (block.timestamp < currentPresaleStartingTime)
             revert presaleRoundClosed();
 
         // Check whether token is valid
-        if (presaleTokenAvaliblilityMapping[_paymentTokenAddress])
+        if (!presaleTokenAvailabilityMapping[_paymentTokenAddress])
             revert presaleTokenNotAvailable();
 
         // Convert the token with Chainlink Price Feed
@@ -241,8 +247,19 @@ contract Presale is Ownable, ReentrancyGuard {
      *
      * @dev _newTokenAddress - Address of token that'll be presaled
      */
-    function setPresaleTokenAddress(address _newTokenAddress) public onlyOwner {
+    function setPresaleTokenAddress(address _newTokenAddress)
+        public
+        onlyOwner
+        onlyValidTokens(_newTokenAddress)
+    {
         tokenAddress = _newTokenAddress;
+    }
+
+    function setTokenAvailability(
+        address _tokenAddress,
+        bool _tokenAvailability
+    ) public onlyOwner {
+        presaleTokenAvailabilityMapping[_tokenAddress] = _tokenAvailability;
     }
 
     /**

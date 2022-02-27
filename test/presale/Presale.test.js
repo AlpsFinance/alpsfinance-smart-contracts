@@ -72,6 +72,17 @@ contract("Presale", (accounts) => {
   describe("should have basic presale features", () => {
     it("should enable user to purchase ALPS token with native token", async () => {
       const nativeTokenAmount = web3.utils.toWei((100).toString());
+      // Make the token available to be used to purchase ALPS token
+      await this.presale.setTokenAvailability(
+        "0x0000000000000000000000000000000000000000",
+        true,
+        {
+          from: accounts[0],
+        }
+      );
+
+      console.log(startingTime, Date.now());
+
       await this.presale.presaleTokens(
         "0x0000000000000000000000000000000000000000",
         nativeTokenAmount,
@@ -100,6 +111,11 @@ contract("Presale", (accounts) => {
 
       // Approve `Presale` contract to purchase the ALPS token
       await this.erc20Custom2.approve(this.presale.address, erc20TokenAmount, {
+        from: accounts[0],
+      });
+
+      // Make the token available to be used to purchase ALPS token
+      await this.presale.setTokenAvailability(this.erc20Custom2.address, true, {
         from: accounts[0],
       });
 
