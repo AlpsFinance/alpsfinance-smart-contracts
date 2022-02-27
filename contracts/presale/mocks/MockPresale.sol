@@ -53,6 +53,42 @@ contract MockPresale is Ownable, ReentrancyGuard {
     }
 
     /**
+     * Get total amount of presale round
+     */
+    function getTotalPresaleRound() public view returns (uint256) {
+        return totalPresaleRound.current();
+    }
+
+    /**
+     * Get presale total amount By presale round
+     *
+     * @dev _presaleRound - The presale round chosen
+     */
+    function getPresaleAmountByRound(uint256 _presaleRound)
+        public
+        view
+        returns (uint256)
+    {
+        return presaleAmountByRoundMapping[_presaleRound];
+    }
+
+    /**
+     * Get total amount of presale from all rounds
+     */
+    function getTotalPresaleAmount() public view returns (uint256) {
+        uint256 totalPresale = 0;
+        for (
+            uint256 presaleRound = 0;
+            presaleRound < totalPresaleRound.current();
+            presaleRound++
+        ) {
+            totalPresale += presaleAmountByRoundMapping[presaleRound];
+        }
+
+        return totalPresale;
+    }
+
+    /**
      * Get Current Presale Round
      */
     function getCurrentPresaleRound() public view returns (uint256) {
@@ -128,14 +164,17 @@ contract MockPresale is Ownable, ReentrancyGuard {
         // Convert the token with Chainlink Price Feed
         IERC20Custom token = IERC20Custom(tokenAddress);
 
-        uint256 presaleUSDAmount = 10**18;
+        uint256 presaleUSDAmount = SafeMath.mul(30, 10**18);
 
         if (presaleUSDAmount < currentPresaleMinimumUSDPurchase)
             revert presaleUSDPurchaseNotSufficient();
 
-        uint256 presaleAmount = SafeMath.div(
-            presaleUSDAmount,
-            currentPresalePrice
+        uint256 presaleAmount = uint256(
+            PriceConverter.scalePrice(
+                int256(SafeMath.div(presaleUSDAmount, currentPresalePrice)),
+                0,
+                18
+            )
         );
 
         if (
