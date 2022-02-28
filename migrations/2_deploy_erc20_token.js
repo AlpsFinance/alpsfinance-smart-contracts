@@ -14,7 +14,7 @@ module.exports = async (deployer, network) => {
     const { multisig } = address[network];
 
     // Pre-mint Tokens to Multisig wallet
-    await erc20Inst.mint(multisig, "1000000000000000000000000000");
+    await erc20Inst.mint(multisig, "3750000000000000000000000000");
 
     // Grant `DEFAULT ADMIN` role
     await erc20Inst.grantRole(

@@ -1,7 +1,7 @@
 const Presale = artifacts.require("Presale");
 const address = require("../constant/address.json");
 
-module.exports = async (deployer, network) => {
+module.exports = async (_, network) => {
   if (address[network]) {
     const { multisig } = address[network];
 
