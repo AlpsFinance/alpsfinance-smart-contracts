@@ -2,6 +2,7 @@ const Presale = artifacts.require("Presale");
 const ERC20Custom = artifacts.require("ERC20Custom");
 const PresaleDetails = require("../constant/presale.json");
 const address = require("../constant/address.json");
+const erc20 = require("../constant/erc20.json");
 
 module.exports = async (deployer, network) => {
   // Deploy `Presale` contract
@@ -33,6 +34,13 @@ module.exports = async (deployer, network) => {
       web3.utils.toWei(maximumPresaleAmount.toString())
     );
   });
+
+  if (erc20[network]) {
+    erc20[network].forEach(async (token) => {
+      // Set the listed token as available to be used to purchase
+      await presaleInst.setTokenAvailability(token, true);
+    });
+  }
 
   if (address[network]) {
     const { multisig } = address[network];
