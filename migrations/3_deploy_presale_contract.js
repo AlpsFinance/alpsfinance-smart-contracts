@@ -48,8 +48,5 @@ module.exports = async (deployer, network) => {
         await presaleInst.setTokenAvailability(token, true);
       });
     }
-
-    // Transfer Ownership of `Presale` contract
-    await presaleInst.transferOwnership(multisig);
   }
 };
