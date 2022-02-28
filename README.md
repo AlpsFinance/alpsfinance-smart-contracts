@@ -2,7 +2,7 @@
 
 [![Truffle CI](https://github.com/AlpsFinance/alpsfinance-smart-contracts/actions/workflows/node.js.yml/badge.svg)](https://github.com/AlpsFinance/alpsfinance-smart-contracts/actions/workflows/node.js.yml)
 [![NPM Publish CI](https://github.com/AlpsFinance/alpsfinance-smart-contracts/actions/workflows/publish.yml/badge.svg?branch=main)](https://github.com/AlpsFinance/alpsfinance-smart-contracts/actions/workflows/publish.yml)
-[![npm version](https://badge.fury.io/js/@alpsfinance%2Fcore.png)](https://badge.fury.io/js/@alpsfinance%2Fcore)
+![npm (scoped)](https://img.shields.io/npm/v/@alpsfinance/core)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
 This is the official repository for Alps Finance Smart Contracts using Truffle Framework.
