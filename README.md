@@ -1,6 +1,8 @@
 # Alps Smart Contracts 💚
 
 [![Truffle CI](https://github.com/AlpsFinance/alpsfinance-smart-contracts/actions/workflows/node.js.yml/badge.svg)](https://github.com/AlpsFinance/alpsfinance-smart-contracts/actions/workflows/node.js.yml)
+[![NPM Publish CI](https://github.com/AlpsFinance/alpsfinance-smart-contracts/actions/workflows/publish.yml/badge.svg?branch=main)](https://github.com/AlpsFinance/alpsfinance-smart-contracts/actions/workflows/publish.yml)
+[![npm version](https://badge.fury.io/js/@alpsfinance%2Fcore.png)](https://badge.fury.io/js/@alpsfinance%2Fcore)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
 This is the official repository for Alps Finance Smart Contracts using Truffle Framework.
@@ -8,6 +10,7 @@ This is the official repository for Alps Finance Smart Contracts using Truffle F
 Built with 💚 from Alps Finance Developers.
 
 ## Table of Contents
+
 - [🛠️ Pre-requisites](#%EF%B8%8F-pre-requisites)
   - [Node.js](#1-nodejs)
   - [NPM/Yarn](#2-npmyarn)
@@ -110,6 +113,7 @@ yarn verify <smart-contract-name> --network <network-name>
 ```
 
 where `smart-contract-name` is the name of the smart contract from Solidity that you would like to verify and `network-name` is similar to above.
+
 ### ⚗️ Testing
 
 All the testing scripts are under the `test` folder. To run the test run the following commands:
@@ -123,4 +127,5 @@ $ yarn test
 ```
 
 ### 📜 License
+
 [GNU Affero General Public License v3.0](https://github.com/AlpsFinance/alpsfinance-smart-contracts/blob/main/LICENSE)
