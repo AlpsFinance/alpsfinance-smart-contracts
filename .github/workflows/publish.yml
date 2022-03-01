@@ -1,6 +1,6 @@
 name: NPM Publish CI
 
-on: release
+on: push
 
 jobs:
   publish:
@@ -12,8 +12,6 @@ jobs:
           node-version: 16
           registry-url: https://registry.npmjs.org
       - name: Publish to NPM
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          access: public
-          tag: 0.0.3
-          token: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
