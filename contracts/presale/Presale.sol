@@ -21,6 +21,10 @@ contract Presale is Ownable, ReentrancyGuard {
         uint256 minimumUSDPurchase;
         uint256 maximumPresaleAmount;
     }
+    struct PresalePaymentTokenData {
+        bool available;
+        address aggregatorAddress;
+    }
 
     event TokenPresold(
         address indexed to,
@@ -28,6 +32,20 @@ contract Presale is Ownable, ReentrancyGuard {
         uint256 amount,
         uint256 paymentTokenamount
     );
+    event PresaleRoundUpdated(
+        uint256 indexed presaleRound,
+        uint256 startingTime,
+        uint256 usdPrice,
+        uint256 minimumUSDPurchase,
+        uint256 maximumPresaleAmount
+    );
+    event PresaleReceiverUpdated(address receiverAddress);
+    event PresalePaymentTokenUpdated(
+        address tokenAddress,
+        bool tokenAvailability,
+        address aggregatorAddress
+    );
+    event PresaleTokenUpdated(address tokenAddress);
 
     Counters.Counter public totalPresaleRound;
     address public tokenAddress;
@@ -36,7 +54,8 @@ contract Presale is Ownable, ReentrancyGuard {
     // Mapping `presaleRound` to its data details
     mapping(uint256 => PresaleData) public presaleDetailsMapping;
     mapping(uint256 => uint256) public presaleAmountByRoundMapping;
-    mapping(address => bool) public presaleTokenAvailabilityMapping;
+    mapping(address => PresalePaymentTokenData)
+        public presalePaymentTokenMapping;
 
     error presaleRoundClosed();
     error presaleTokenNotAvailable();
@@ -47,10 +66,10 @@ contract Presale is Ownable, ReentrancyGuard {
     error presaleMaximumPresaleAmountInvalid();
     error presaleUSDPurchaseNotSufficient();
     error presaleAmountOverdemand();
-    error presaleTokenAddressInvalid();
+    error presaleNonZeroAddressInvalid();
 
-    modifier onlyValidTokens(address _tokenAddress) {
-        if (_tokenAddress == address(0)) revert presaleTokenAddressInvalid();
+    modifier onlyNonZeroAddress(address _address) {
+        if (_address == address(0)) revert presaleNonZeroAddressInvalid();
         _;
     }
 
@@ -146,13 +165,12 @@ contract Presale is Ownable, ReentrancyGuard {
      *
      * @dev _paymentTokenAddress - Address of the token use to pay (address 0 is for native token)
      * @dev _amount - Amount denominated in the `paymentTokenAddress` being paid
-     * @dev _aggregatorTokenAddress - Use to convert price with Chainlink
      */
-    function presaleTokens(
-        address _paymentTokenAddress,
-        uint256 _amount,
-        address _aggregatorTokenAddress
-    ) public payable nonReentrant {
+    function presaleTokens(address _paymentTokenAddress, uint256 _amount)
+        public
+        payable
+        nonReentrant
+    {
         (
             uint256 currentPresaleStartingTime,
             uint256 currentPresalePrice,
@@ -161,17 +179,16 @@ contract Presale is Ownable, ReentrancyGuard {
         ) = getCurrentPresaleDetails();
 
         // Check whether the presale round is still open
-        if (block.timestamp < currentPresaleStartingTime)
-            revert presaleRoundClosed();
+        require(block.timestamp >= currentPresaleStartingTime, "Presale:");
 
         // Check whether token is valid
-        if (!presaleTokenAvailabilityMapping[_paymentTokenAddress])
+        if (!presalePaymentTokenMapping[_paymentTokenAddress].available)
             revert presaleTokenNotAvailable();
 
         // Convert the token with Chainlink Price Feed
         IERC20Custom token = IERC20Custom(tokenAddress);
         AggregatorV3Interface priceFeed = AggregatorV3Interface(
-            _aggregatorTokenAddress
+            presalePaymentTokenMapping[_paymentTokenAddress].aggregatorAddress
         );
         (, int256 price, , , ) = priceFeed.latestRoundData();
         uint256 presaleUSDAmount = SafeMath.mul(
@@ -185,15 +202,15 @@ contract Presale is Ownable, ReentrancyGuard {
             _amount
         );
 
-        if (presaleUSDAmount < currentPresaleMinimumUSDPurchase)
-            revert presaleUSDPurchaseNotSufficient();
+        if (
+            uint256(
+                PriceConverter.scalePrice(int256(presaleUSDAmount), 18, 0)
+            ) < currentPresaleMinimumUSDPurchase
+        ) revert presaleUSDPurchaseNotSufficient();
 
-        uint256 presaleAmount = uint256(
-            PriceConverter.scalePrice(
-                int256(SafeMath.div(presaleUSDAmount, currentPresalePrice)),
-                0,
-                18
-            )
+        uint256 presaleAmount = SafeMath.div(
+            presaleUSDAmount,
+            currentPresalePrice
         );
 
         if (
@@ -240,6 +257,8 @@ contract Presale is Ownable, ReentrancyGuard {
         onlyOwner
     {
         presaleReceiver = _newPresaleReceiver;
+
+        emit PresaleReceiverUpdated(_newPresaleReceiver);
     }
 
     /**
@@ -250,16 +269,35 @@ contract Presale is Ownable, ReentrancyGuard {
     function setPresaleTokenAddress(address _newTokenAddress)
         public
         onlyOwner
-        onlyValidTokens(_newTokenAddress)
+        onlyNonZeroAddress(_newTokenAddress)
     {
         tokenAddress = _newTokenAddress;
+
+        emit PresaleTokenUpdated(_newTokenAddress);
     }
 
-    function setTokenAvailability(
+    /**
+     * Set Presale Payment Token Info
+     *
+     * @dev _tokenAddress - Token Address use to purchase Presale
+     * @dev _tokenAvailability - Indication whether Token Address can be used for Presale
+     * @dev _aggregatorAddress - Chainlink's Aggregator Address to determine the USD price (for `presaleTokens`)
+     */
+    function setPresalePaymentToken(
         address _tokenAddress,
-        bool _tokenAvailability
-    ) public onlyOwner {
-        presaleTokenAvailabilityMapping[_tokenAddress] = _tokenAvailability;
+        bool _tokenAvailability,
+        address _aggregatorAddress
+    ) public onlyOwner onlyNonZeroAddress(_aggregatorAddress) {
+        presalePaymentTokenMapping[_tokenAddress]
+            .available = _tokenAvailability;
+        presalePaymentTokenMapping[_tokenAddress]
+            .aggregatorAddress = _aggregatorAddress;
+
+        emit PresalePaymentTokenUpdated(
+            _tokenAddress,
+            _tokenAvailability,
+            _aggregatorAddress
+        );
     }
 
     /**
@@ -317,5 +355,13 @@ contract Presale is Ownable, ReentrancyGuard {
             .minimumUSDPurchase = _minimumUSDPurchase;
         presaleDetailsMapping[_presaleRound]
             .maximumPresaleAmount = _maximumPresaleAmount;
+
+        emit PresaleRoundUpdated(
+            _presaleRound,
+            _startingTime,
+            _usdPrice,
+            _minimumUSDPurchase,
+            _maximumPresaleAmount
+        );
     }
 }

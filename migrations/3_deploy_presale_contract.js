@@ -35,17 +35,24 @@ module.exports = async (deployer, network) => {
       await presaleInst.setPresaleRound(
         index.toString(),
         // only deploy with real time schedule in FTM mainnet
-        network === "fantom_mainnet" ? startingTime.toString() : Date.now(),
+        startingTime.toString(),
         web3.utils.toWei(usdPrice.toString()),
-        web3.utils.toWei(minimumUSDPurchase.toString()),
+        web3.utils.toWei(
+          (network === "fantom_mainnet" ? minimumUSDPurchase : 0.01).toString()
+        ),
         web3.utils.toWei(maximumPresaleAmount.toString())
       );
     });
 
     if (erc20[network]) {
       erc20[network].forEach(async (token) => {
+        const { address, aggregatorAddress } = token;
         // Set the listed token as available to be used to purchase
-        await presaleInst.setTokenAvailability(token, true);
+        await presaleInst.setPresalePaymentToken(
+          address,
+          true,
+          aggregatorAddress
+        );
       });
     }
   }

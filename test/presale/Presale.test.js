@@ -121,9 +121,10 @@ contract("Presale", (accounts) => {
     it("should enable user to purchase ALPS token with native token", async () => {
       const nativeTokenAmount = web3.utils.toWei((100).toString());
       // Make the token available to be used to purchase ALPS token
-      await this.presale.setTokenAvailability(
+      await this.presale.setPresalePaymentToken(
         "0x0000000000000000000000000000000000000000",
         true,
+        this.erc20Custom.address, // for mock value testing
         {
           from: accounts[0],
         }
@@ -178,9 +179,16 @@ contract("Presale", (accounts) => {
       });
 
       // Make the token available to be used to purchase ALPS token
-      await this.presale.setTokenAvailability(this.erc20Custom2.address, true, {
-        from: accounts[0],
-      });
+      "0x0000000000000000000000000000000000000000",
+        await this.presale.setPresalePaymentToken(
+          this.erc20Custom2.address,
+          true,
+          this.erc20Custom.address, // for mock value testing
+
+          {
+            from: accounts[0],
+          }
+        );
 
       await timeTravel(Date.now() * 2);
 
