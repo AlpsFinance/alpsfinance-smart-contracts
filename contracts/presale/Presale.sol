@@ -46,10 +46,12 @@ contract Presale is Ownable, ReentrancyGuard {
         address aggregatorAddress
     );
     event PresaleTokenUpdated(address tokenAddress);
+    event PresaleEndingTimeUpdated(uint256 endingTime);
 
     Counters.Counter public totalPresaleRound;
     address public tokenAddress;
     address payable public presaleReceiver;
+    uint256 public endingTime;
 
     // Mapping `presaleRound` to its data details
     mapping(uint256 => PresaleData) public presaleDetailsMapping;
@@ -67,28 +69,33 @@ contract Presale is Ownable, ReentrancyGuard {
     error presaleUSDPurchaseNotSufficient();
     error presaleAmountOverdemand();
     error presaleNonZeroAddressInvalid();
+    error presaleEndingTimeInvalid();
 
     modifier onlyNonZeroAddress(address _address) {
         if (_address == address(0)) revert presaleNonZeroAddressInvalid();
         _;
     }
 
-    constructor(address _tokenAddress, address payable _presaleReceiver) {
+    constructor(
+        address _tokenAddress,
+        address payable _presaleReceiver,
+        uint256 _endingTime
+    ) {
         tokenAddress = _tokenAddress;
         presaleReceiver = _presaleReceiver;
+        endingTime = _endingTime;
     }
 
     /**
-     * Get total amount of presale round
+     * @dev Get total amount of presale round
      */
     function getTotalPresaleRound() public view returns (uint256) {
         return totalPresaleRound.current();
     }
 
     /**
-     * Get presale total amount By presale round
-     *
-     * @dev _presaleRound - The presale round chosen
+     * @dev Get presale total amount By presale round
+     * @param _presaleRound - The presale round chosen
      */
     function getPresaleAmountByRound(uint256 _presaleRound)
         public
@@ -99,7 +106,7 @@ contract Presale is Ownable, ReentrancyGuard {
     }
 
     /**
-     * Get total amount of presale from all rounds
+     * @dev Get total amount of presale from all rounds
      */
     function getTotalPresaleAmount() public view returns (uint256) {
         uint256 totalPresale = 0;
@@ -115,7 +122,7 @@ contract Presale is Ownable, ReentrancyGuard {
     }
 
     /**
-     * Get Current Presale Round
+     * @dev Get Current Presale Round
      */
     function getCurrentPresaleRound() public view returns (uint256) {
         for (
@@ -135,11 +142,11 @@ contract Presale is Ownable, ReentrancyGuard {
     }
 
     /**
-     * Getting the Current Presale Details, including:
-     * - Starting Time
-     * - USD Price
-     * - Minimum USD Purchase
-     * - Maximum Presale Amount
+     * @dev Getting the Current Presale Details, including:
+     * @return Starting Time
+     * @return USD Price
+     * @return Minimum USD Purchase
+     * @return Maximum Presale Amount
      */
     function getCurrentPresaleDetails()
         public
@@ -161,10 +168,9 @@ contract Presale is Ownable, ReentrancyGuard {
     }
 
     /**
-     * Execute the Presale of ALPS Token in exchange of other token
-     *
-     * @dev _paymentTokenAddress - Address of the token use to pay (address 0 is for native token)
-     * @dev _amount - Amount denominated in the `paymentTokenAddress` being paid
+     * @dev Execute the Presale of ALPS Token in exchange of other token
+     * @param _paymentTokenAddress - Address of the token use to pay (address 0 is for native token)
+     * @param _amount - Amount denominated in the `paymentTokenAddress` being paid
      */
     function presaleTokens(address _paymentTokenAddress, uint256 _amount)
         public
@@ -179,7 +185,10 @@ contract Presale is Ownable, ReentrancyGuard {
         ) = getCurrentPresaleDetails();
 
         // Check whether the presale round is still open
-        require(block.timestamp >= currentPresaleStartingTime, "Presale:");
+        if (
+            block.timestamp < currentPresaleStartingTime ||
+            block.timestamp >= endingTime
+        ) revert presaleRoundClosed();
 
         // Check whether token is valid
         if (!presalePaymentTokenMapping[_paymentTokenAddress].available)
@@ -248,9 +257,8 @@ contract Presale is Ownable, ReentrancyGuard {
     }
 
     /**
-     * Set new Presale Receiver Address
-     *
-     * @dev _newPresaleReceiver - Address that'll receive the presale payment token
+     * @dev Set new Presale Receiver Address
+     * @param _newPresaleReceiver - Address that'll receive the presale payment token
      */
     function setPresaleReceiver(address payable _newPresaleReceiver)
         public
@@ -262,9 +270,8 @@ contract Presale is Ownable, ReentrancyGuard {
     }
 
     /**
-     * Set new Presale Token Address
-     *
-     * @dev _newTokenAddress - Address of token that'll be presaled
+     * @dev Set new Presale Token Address
+     * @param _newTokenAddress - Address of token that'll be presaled
      */
     function setPresaleTokenAddress(address _newTokenAddress)
         public
@@ -277,11 +284,10 @@ contract Presale is Ownable, ReentrancyGuard {
     }
 
     /**
-     * Set Presale Payment Token Info
-     *
-     * @dev _tokenAddress - Token Address use to purchase Presale
-     * @dev _tokenAvailability - Indication whether Token Address can be used for Presale
-     * @dev _aggregatorAddress - Chainlink's Aggregator Address to determine the USD price (for `presaleTokens`)
+     * @dev Set Presale Payment Token Info
+     * @param _tokenAddress - Token Address use to purchase Presale
+     * @param _tokenAvailability - Indication whether Token Address can be used for Presale
+     * @param _aggregatorAddress - Chainlink's Aggregator Address to determine the USD price (for `presaleTokens`)
      */
     function setPresalePaymentToken(
         address _tokenAddress,
@@ -301,13 +307,23 @@ contract Presale is Ownable, ReentrancyGuard {
     }
 
     /**
-     * Creating/Updating a presale round information
-     *
-     * @dev _presaleRound - The presale round chosen
-     * @dev _startingTime - The starting Presale time
-     * @dev _usdPrice - The USD Price of the Token in certain Presale Round
-     * @dev _minimumUSDPurchase - The minimum USD amount to purchase the token
-     * @dev _maximumPresaleAmount - The maximum amount of token available for a presale round
+     * @dev Set new Ending time
+     * @param _newEndingTime - New Ending Timestamp
+     */
+    function setEndingTime(uint256 _newEndingTime) public onlyOwner {
+        if (_newEndingTime < block.timestamp) revert presaleEndingTimeInvalid();
+        endingTime = _newEndingTime;
+
+        emit PresaleEndingTimeUpdated(_newEndingTime);
+    }
+
+    /**
+     * @dev Creating/Updating a presale round information
+     * @param _presaleRound - The presale round chosen
+     * @param _startingTime - The starting Presale time
+     * @param _usdPrice - The USD Price of the Token in certain Presale Round
+     * @param _minimumUSDPurchase - The minimum USD amount to purchase the token
+     * @param _maximumPresaleAmount - The maximum amount of token available for a presale round
      */
     function setPresaleRound(
         uint256 _presaleRound,

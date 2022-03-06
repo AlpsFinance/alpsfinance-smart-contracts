@@ -10,7 +10,7 @@ module.exports = async (deployer, network) => {
 
     // Deploy `Presale` contract
     const erc20Inst = await ERC20Custom.deployed();
-    await deployer.deploy(Presale, erc20Inst.address, multisig);
+    await deployer.deploy(Presale, erc20Inst.address, multisig, "1647882000");
 
     // Grant `Presale` contract MINTER role
     const presaleInst = await Presale.deployed();
