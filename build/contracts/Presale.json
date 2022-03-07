@@ -239,7 +239,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -252,7 +253,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -271,7 +273,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -305,7 +308,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -329,7 +333,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -342,7 +347,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -362,7 +368,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -375,7 +382,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -401,7 +409,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -420,7 +429,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -433,7 +443,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -446,7 +457,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -474,7 +486,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -492,7 +505,8 @@
       "name": "presaleTokens",
       "outputs": [],
       "stateMutability": "payable",
-      "type": "function"
+      "type": "function",
+      "payable": true
     },
     {
       "inputs": [
@@ -26994,9 +27008,169 @@
     "name": "solc",
     "version": "0.8.11+commit.d7f03943.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "250": {
+      "events": {
+        "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "OwnershipTransferred",
+          "type": "event"
+        },
+        "0x5e50721573a3d3c427f04e866bbc258f046cad12af9fe4a334736b200773d677": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "endingTime",
+              "type": "uint256"
+            }
+          ],
+          "name": "PresaleEndingTimeUpdated",
+          "type": "event"
+        },
+        "0x0808e27b4009f59d9d966410b0eead8697b72a10434291d723d6200ab3f343e5": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "tokenAddress",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bool",
+              "name": "tokenAvailability",
+              "type": "bool"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "aggregatorAddress",
+              "type": "address"
+            }
+          ],
+          "name": "PresalePaymentTokenUpdated",
+          "type": "event"
+        },
+        "0xb3df4b02428d73d6993c686e78b4a35e95f5be7d084aaee9277115379dc4ca93": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "receiverAddress",
+              "type": "address"
+            }
+          ],
+          "name": "PresaleReceiverUpdated",
+          "type": "event"
+        },
+        "0x5460f1c76402b41ef0b7902b6b577fd351a2a6bc531d4a246d8be68dde775a2b": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "presaleRound",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "startingTime",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "usdPrice",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "minimumUSDPurchase",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "maximumPresaleAmount",
+              "type": "uint256"
+            }
+          ],
+          "name": "PresaleRoundUpdated",
+          "type": "event"
+        },
+        "0xee1a99df2103f0b252dbc99d29264423a2ff1bb9c2f60dc19903e2ce82989b8b": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "tokenAddress",
+              "type": "address"
+            }
+          ],
+          "name": "PresaleTokenUpdated",
+          "type": "event"
+        },
+        "0x69902df1d9bae4b2a08b9e9d689906299b4b15ac10fbbf560d019b5c73fd35d6": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "to",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "paymentTokenAddress",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "paymentTokenamount",
+              "type": "uint256"
+            }
+          ],
+          "name": "TokenPresold",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xB26bFB82e37A07D267A3379158D72429da45125b",
+      "transactionHash": "0x12b33be2e785df4b6e24f8a8a6993d076625310b18cde22537b4735554e7b5fc"
+    }
+  },
   "schemaVersion": "3.4.4",
-  "updatedAt": "2022-03-06T23:47:11.093Z",
+  "updatedAt": "2022-03-07T00:41:22.480Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {
