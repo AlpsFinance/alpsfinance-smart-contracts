@@ -298,6 +298,17 @@ contract VestingBase is CustomAdmin, FrequencyHelper, CustomPausable {
 
         return drawingPower;
     }
+
+    function getAllocation(address _address) external view returns(uint256 _startedOn, string memory _memberName, uint256 _releaseOn, uint256 _allocation, uint256 _closingBalance, uint256 _withdrawn, uint256 _lastWithdrawnOn, bool _deleted) {
+        _startedOn  = allocations[_address].startedOn;
+        _memberName = allocations[_address].memberName;
+        _releaseOn = allocations[_address].releaseOn;
+        _allocation = allocations[_address].allocation;
+        _closingBalance = allocations[_address].closingBalance;
+        _withdrawn = allocations[_address].withdrawn;
+        _lastWithdrawnOn = allocations[_address].lastWithdrawnOn;
+        _deleted = allocations[_address].deleted;
+    }
     
     ///@notice Signifies if the sender has enough balances to withdraw the desired amount of the vesting coin.
     ///@param _amount The amount desired to be withdrawn.

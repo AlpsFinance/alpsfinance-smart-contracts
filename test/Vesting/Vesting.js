@@ -62,8 +62,6 @@ require('chai')
             
             const withdrawnAmount = ether("20000000");
 
-           
-
             await vesting.removeFunds(withdrawnAmount,{from: accounts[0]} );
         
         });
