@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.12+commit.f00d7308"
+		"version": "0.8.11+commit.d7f03943"
 	},
 	"language": "Solidity",
 	"output": {
@@ -894,7 +894,7 @@
 					}
 				}
 			},
-			"title": "Lockup",
+			"title": "Vesting",
 			"version": 1
 		},
 		"userdoc": {
@@ -989,7 +989,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/vesting/vesting.sol": "Vest"
+			"contracts/Vesting/VestingBase.sol": "VestingBase"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -1051,7 +1051,7 @@
 				"dweb:/ipfs/QmfYuZxRfx2J2xdk4EXN7jKg4bUYEMTaYk9BAw9Bqn4o2Y"
 			]
 		},
-		"contracts/vesting/CustomAdmin.sol": {
+		"contracts/Vesting/CustomAdmin.sol": {
 			"keccak256": "0x67915c5fb4df6be47ce79b8cb694163c84801c0dd678e570bb8793aafa7a7376",
 			"license": "AGPL-3.0",
 			"urls": [
@@ -1059,7 +1059,7 @@
 				"dweb:/ipfs/QmRPNpHpGKoQR68X4SqPXABEpztj8PagrJ3Rmt3g11fNvK"
 			]
 		},
-		"contracts/vesting/CustomPausable.sol": {
+		"contracts/Vesting/CustomPausable.sol": {
 			"keccak256": "0x762f7f6014bae61e98d7c87405bbfdbef00fd9c4be3b615d5556f389293ed344",
 			"license": "AGPL-3.0",
 			"urls": [
@@ -1067,20 +1067,20 @@
 				"dweb:/ipfs/QmRN7UGtxJq8K3Dnq9nvbuQkdgq4MyPzKEZUyHuzV6mCbq"
 			]
 		},
-		"contracts/vesting/frequencyHelper.sol": {
+		"contracts/Vesting/VestingBase.sol": {
+			"keccak256": "0xe76144fbed2f0bc01f28e198b21081c9074e2083909f0e345e5951e9b3d3bacb",
+			"license": "AGPL-3.0",
+			"urls": [
+				"bzz-raw://f868c8cfea0a2b10c058637f4e349d67ac34497009087da8c5ca60fb36a10d2b",
+				"dweb:/ipfs/QmSLowuVb3Ka6gyZjNzyyRwFpu8rfoe6vV41dypVLRbVTz"
+			]
+		},
+		"contracts/Vesting/frequencyHelper.sol": {
 			"keccak256": "0x65fdadd3fad04c6e0c499642d7f42a322c874e84b2bf82b2eba38beb6c0e76fb",
 			"license": "AGPL-3.0",
 			"urls": [
 				"bzz-raw://8d4d89d50b0c80297edbb0258aca161e1639b19868f6a2bd49f7649315e6d407",
 				"dweb:/ipfs/QmNyamVo61Be63ByUc73cHautbVYmmVsomH3zjnyKgMRJB"
-			]
-		},
-		"contracts/vesting/vesting.sol": {
-			"keccak256": "0x068f162159423af32653fc2805d161b7075d3b4902dac92b0f7d51d1290bfe4e",
-			"license": "AGPL-3.0",
-			"urls": [
-				"bzz-raw://3df92aae6950d3e193286255d1307b0966dface8fdc3b83faa0ccd607f420777",
-				"dweb:/ipfs/QmYxUsBWCxazBnoafzy4fD8a5JFR1ZTpgVa7C5UmCzmxN7"
 			]
 		}
 	},

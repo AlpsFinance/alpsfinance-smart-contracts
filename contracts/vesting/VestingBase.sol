@@ -16,7 +16,7 @@ import "./CustomPausable.sol";
  * typical vesting scheme, vesting period. Optionally revocable by the
  * creator.
  */
-contract Vesting is CustomAdmin, FrequencyHelper, CustomPausable {
+contract VestingBase is CustomAdmin, FrequencyHelper, CustomPausable {
   using SafeMath for uint256;
  
 
