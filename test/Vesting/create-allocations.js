@@ -14,7 +14,7 @@ require('chai')
   contract('Vesting: Create Vesting', function(accounts) {
     describe('Ruleset for Creating Vesting Allocations', () => {
         let vestingCoinMock;
-        let vestingSchedule;
+        let vesting;
 
         beforeEach(async () => {
             const minimumVestingPeriod = duration.days(181);
