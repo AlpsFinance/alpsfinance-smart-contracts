@@ -1,10 +1,11 @@
 const Vesting = artifacts.require('./VestingBase.sol');
+const MockToken = artifacts.require('./ERC20TokenMock.sol');
+const EVMRevert = require('../../utils/EVMRevert').EVMRevert;
+const ether = require('../../utils/ether').ether;
+const { increaseTimeTo, duration} = require('../../utils/increaseTime');
 const BigNumber = require('bignumber.js');
-const { expect } = require('chai');
-const EVMRevert = require('./helpers/EVMRevert').EVMRevert;
-const ether = require('./helpers/ether').ether;
-const { increaseTimeTo, duration} = require('./helpers/increaseTime');
-const MockToken = artifacts.require('./StandardTokenMock.sol');
+
+
 
 require('chai')
   .use(require('chai-as-promised'))

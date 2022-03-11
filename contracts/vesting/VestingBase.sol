@@ -5,10 +5,10 @@ pragma solidity ^0.8.11;
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/security/Pausable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-import "./CustomAdmin.sol";
-import "./frequencyHelper.sol";
-import "./CustomPausable.sol";
+import "../libraries/frequencyHelper.sol";
 
 /**
  * @title Vesting
@@ -16,7 +16,7 @@ import "./CustomPausable.sol";
  * typical vesting scheme, vesting period. Optionally revocable by the
  * creator.
  */
-contract VestingBase is CustomAdmin, FrequencyHelper, CustomPausable {
+contract VestingBase is Ownable ,Pausable {
   using SafeMath for uint256;
  
 
@@ -82,7 +82,7 @@ contract VestingBase is CustomAdmin, FrequencyHelper, CustomPausable {
     ///@param _vestingCoin The ERC20 contract of the coin being vested.
 
 
-     constructor(uint256 _minPeriod, uint256 _withdrawalCap, ERC20 _vestingCoin,  Frequency _withdrawalFrequency)  {
+     constructor(uint256 _minPeriod, uint256 _withdrawalCap, ERC20 _vestingCoin,  FrequencyHelper.Frequency _withdrawalFrequency)  {
         minimumVestingPeriod = _minPeriod;
         vestingStartedOn = block.timestamp;
         vestingCoin = _vestingCoin;
@@ -92,7 +92,7 @@ contract VestingBase is CustomAdmin, FrequencyHelper, CustomPausable {
         earliestWithdrawalDate = vestingStartedOn.add(minimumVestingPeriod);
 
           if(_withdrawalCap > 0){
-            withdrawalFrequency = convertFrequency(_withdrawalFrequency);
+            withdrawalFrequency = FrequencyHelper.convertFrequency(_withdrawalFrequency);
         }
     }
 
@@ -120,7 +120,7 @@ contract VestingBase is CustomAdmin, FrequencyHelper, CustomPausable {
     ///for this smart contract address.
     ///Please note that this action is restricted to administrators only.
     ///@return Returns true if the funding was successful.
-    function fund() external onlyAdmin returns(bool) {
+    function fund() external onlyOwner returns(bool) {
         ///Check the funds available.
         uint256 allowance = vestingCoin.allowance(msg.sender, address(this));
         require(allowance > 0, "Nothing to fund.");
@@ -140,7 +140,7 @@ contract VestingBase is CustomAdmin, FrequencyHelper, CustomPausable {
     ///and you may only withdraw amounts above the sum total allocation balances.
     ///@param _amount The amount desired to withdraw.
     ///@return Returns true if the withdrawal was successful.
-    function removeFunds(uint256 _amount) external onlyAdmin returns(bool) {        
+    function removeFunds(uint256 _amount) external onlyOwner returns(bool) {        
         uint256 balance = vestingCoin.balanceOf(address(this));
         uint256 locked = getAmountInVesting();
 
@@ -165,7 +165,7 @@ contract VestingBase is CustomAdmin, FrequencyHelper, CustomPausable {
     ///@param _releaseOn The date on which the first vesting schedule becomes available for withdrawal.
     ///@return Returns true if the vesting schedule allocation was successfully created.
 
-       function createAllocation(address _address, string memory _memberName, uint256 _amount, uint256 _releaseOn) external onlyAdmin returns(bool) {
+       function createAllocation(address _address, string memory _memberName, uint256 _amount, uint256 _releaseOn) external onlyOwner returns(bool) {
         require(_address != address(0), "Invalid address.");
         require(_amount > 0, "Invalid amount.");
         require(allocations[_address].startedOn == 0, "Access is denied. Duplicate entry.");
@@ -194,7 +194,7 @@ contract VestingBase is CustomAdmin, FrequencyHelper, CustomPausable {
     ///Please note that this action can only be performed by an administrator.
     ///@param _address The address of the beneficiary whose allocation is being requested to be deleted.
     ///@return Returns true if the vesting schedule allocation was successfully deleted.
-     function deleteAllocation(address _address) external onlyAdmin returns(bool) {
+     function deleteAllocation(address _address) external onlyOwner returns(bool) {
         require(_address != address(0), "Invalid address.");
         require(allocations[_address].startedOn > 0, "Access is denied. Requested vesting schedule does not exist.");
         require(!allocations[_address].deleted, "Access is denied. Requested vesting schedule does not exist.");
@@ -221,7 +221,7 @@ contract VestingBase is CustomAdmin, FrequencyHelper, CustomPausable {
     ///@param _address The address of the beneficiary whose allocation is being requested to be increased.
     ///@param _additionalAmount The additional amount in vesting coin to be addeded to the existing allocation.
     ///@return Returns true if the vesting schedule allocation was successfully increased.
-    function increaseAllocation(address _address, uint256 _additionalAmount) external onlyAdmin returns(bool) {
+    function increaseAllocation(address _address, uint256 _additionalAmount) external onlyOwner returns(bool) {
         require(_address != address(0), "Invalid address.");
         require(_additionalAmount > 0, "Invalid amount.");
 
@@ -244,7 +244,7 @@ contract VestingBase is CustomAdmin, FrequencyHelper, CustomPausable {
     ///@param _address The address of the beneficiary whose allocation is being requested to be decreased.
     ///@param _lessAmount The amount in vesting coin to be decreased from the existing allocation.
     ///@return Returns true if the vesting schedule allocation was successfully decreased.
-    function decreaseAllocation(address _address, uint256 _lessAmount) external onlyAdmin returns(bool) {
+    function decreaseAllocation(address _address, uint256 _lessAmount) external onlyOwner returns(bool) {
         require(_address != address(0), "Invalid address.");
         require(_lessAmount > 0);
 
@@ -266,7 +266,7 @@ contract VestingBase is CustomAdmin, FrequencyHelper, CustomPausable {
     ///@param _address The address of the beneficiary who allocation is being requested to be extended.
     ///@param _newReleaseDate A new release date to extend the allocation to.
     ///@return Returns true if the vesting schedule allocation was successfully extended.
-    function extendAllocation(address _address, uint256 _newReleaseDate) external onlyAdmin returns(bool) {
+    function extendAllocation(address _address, uint256 _newReleaseDate) external onlyOwner returns(bool) {
         require(_address != address(0), "Invalid address.");
         require(allocations[_address].startedOn > 0, "Access is denied. Requested vesting schedule does not exist.");
         require(!allocations[_address].deleted, "Access is denied. Requested vesting schedule does not exist.");
@@ -330,7 +330,7 @@ contract VestingBase is CustomAdmin, FrequencyHelper, CustomPausable {
 
     ///@notice This action enables the beneficiaries to withdraw a desired amount from this contract.    
     ///@param _amount The amount in vesting coin desired to withdraw.
-    function withdraw(uint256 _amount) external canWithdraw(_amount) afterEarliestWithdrawalDate whenNotPaused returns(bool) {                        
+    function withdraw(uint256 _amount) external canWithdraw(_amount) afterEarliestWithdrawalDate whenNotPaused returns(bool pass ) {                        
         allocations[msg.sender].lastWithdrawnOn = block.timestamp;
 
         allocations[msg.sender].closingBalance = allocations[msg.sender].closingBalance.sub(_amount);
@@ -341,6 +341,7 @@ contract VestingBase is CustomAdmin, FrequencyHelper, CustomPausable {
         require(vestingCoin.transfer(msg.sender, _amount));
 
         emit Withdrawn(msg.sender, allocations[msg.sender].memberName, _amount);
-        return (true);
+       
+        return true ;
     }
 }

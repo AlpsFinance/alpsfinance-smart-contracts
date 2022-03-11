@@ -1,9 +1,9 @@
 const Vesting = artifacts.require('./VestingBase.sol');
 const BigNumber = require('bignumber.js');
-const ether = require('./helpers/ether').ether;
-const increaseTime = require('./helpers/increaseTime');
+const ether = require('../../utils/ether').ether;
+const increaseTime = require('../../utils/increaseTime');
 const duration = increaseTime.duration;
-const MockToken = artifacts.require('./StandardTokenMock.sol');
+const MockToken = artifacts.require('./ERC20TokenMock.sol');
 
 require('chai')
   .use(require('chai-as-promised'))
