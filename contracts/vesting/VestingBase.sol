@@ -7,6 +7,7 @@ import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/security/Pausable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 
 import "../libraries/frequencyHelper.sol";
 
@@ -18,7 +19,9 @@ import "../libraries/frequencyHelper.sol";
  */
 contract VestingBase is Ownable ,Pausable {
   using SafeMath for uint256;
+   bytes32 private merkleRoot;
  
+  
 
   ///@dev Token allocation structure for vesting.
     struct Allocation {
@@ -31,6 +34,7 @@ contract VestingBase is Ownable ,Pausable {
         uint256 withdrawn;
         uint256 lastWithdrawnOn;
     }
+
 
 
     ///@notice Maximum amount of tokens that can be withdrawn for the specified frequency.
@@ -60,6 +64,7 @@ contract VestingBase is Ownable ,Pausable {
 
     ///@notice The list of vesting schedule allocations;
     mapping(address => Allocation) internal allocations;
+   
 
 
 ///Events;
@@ -82,11 +87,12 @@ contract VestingBase is Ownable ,Pausable {
     ///@param _vestingCoin The ERC20 contract of the coin being vested.
 
 
-     constructor(uint256 _minPeriod, uint256 _withdrawalCap, ERC20 _vestingCoin,  FrequencyHelper.Frequency _withdrawalFrequency)  {
+     constructor(uint256 _minPeriod, uint256 _withdrawalCap, ERC20 _vestingCoin,  FrequencyHelper.Frequency _withdrawalFrequency, bytes32 _merkleRoot)  {
         minimumVestingPeriod = _minPeriod;
         vestingStartedOn = block.timestamp;
         vestingCoin = _vestingCoin;
         withdrawalCap = _withdrawalCap;
+        merkleRoot = _merkleRoot;
 
         ///Calcualate the earliest date of withdrawal.
         earliestWithdrawalDate = vestingStartedOn.add(minimumVestingPeriod);
@@ -309,6 +315,19 @@ contract VestingBase is Ownable ,Pausable {
         _lastWithdrawnOn = allocations[_address].lastWithdrawnOn;
         _deleted = allocations[_address].deleted;
     }
+
+       function getMerkleRoot() public view onlyOwner returns (bytes32) {
+        return merkleRoot;
+    }
+
+    function setMerkleRoot(bytes32 _newMerkleRoot) external onlyOwner {
+        require(
+            _newMerkleRoot != 0x00 || _newMerkleRoot != merkleRoot,
+            "Vesting: Invalid new merkle root value!"
+        );
+        merkleRoot = _newMerkleRoot;
+    }
+
     
     ///@notice Signifies if the sender has enough balances to withdraw the desired amount of the vesting coin.
     ///@param _amount The amount desired to be withdrawn.
@@ -330,11 +349,15 @@ contract VestingBase is Ownable ,Pausable {
 
     ///@notice This action enables the beneficiaries to withdraw a desired amount from this contract.    
     ///@param _amount The amount in vesting coin desired to withdraw.
-    function withdraw(uint256 _amount) external canWithdraw(_amount) afterEarliestWithdrawalDate whenNotPaused returns(bool pass ) {                        
+      function withdraw(uint256 _amount, bytes32[] calldata _proof) external  canWithdraw(_amount) afterEarliestWithdrawalDate whenNotPaused returns(bool hasWithdrew ) {                        
+       
         allocations[msg.sender].lastWithdrawnOn = block.timestamp;
-
         allocations[msg.sender].closingBalance = allocations[msg.sender].closingBalance.sub(_amount);
         allocations[msg.sender].withdrawn = allocations[msg.sender].withdrawn.add(_amount);
+
+        bytes32 leaf = keccak256(abi.encodePacked(msg.sender, _amount));
+        bool isValidLeaf = MerkleProof.verify(_proof, merkleRoot, leaf);
+        require(isValidLeaf, "Vesting: Address has no Vesting allocation!");
 
         totalWithdrawn = totalWithdrawn.add(_amount);
 
@@ -344,4 +367,4 @@ contract VestingBase is Ownable ,Pausable {
        
         return true ;
     }
-}
+} 
