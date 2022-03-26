@@ -1,11 +1,14 @@
-```const Vesting = artifacts.require('./VestingBase.sol');
+const Vesting = artifacts.require('./VestingBase.sol');
 const MockToken = artifacts.require('./ERC20TokenMock.sol');
 const EVMRevert = require('../../utils/EVMRevert').EVMRevert;
-const ether = require('../../utils/ether').ether;
+const ether = require('../../utils/ether').ether;  
 const { increaseTimeTo, duration} = require('../../utils/increaseTime');
 const BigNumber = require('bignumber.js');
 const keccak256 = require("keccak256");
+const { ethers } = require("ethers");
+const { decimals, airdrop } = require("../../config.json");
 const { MerkleTree } = require("merkletreejs");
+const truffleAssert = require("truffle-assertions");
 
 
 
@@ -17,7 +20,7 @@ require('chai')
   contract('Vesting: Withdrawal', function(accounts) {
     const merkleTree = new MerkleTree(
         // Generate leafs
-        Object.entries(Vesting).map(([address, tokens]) =>
+        Object.entries(airdrop).map(([address, tokens]) =>
           Buffer.from(
             // Hash in appropriate Merkle format
             ethers.utils
@@ -38,92 +41,139 @@ require('chai')
 
       let vesting; 
 
-      beforeEach(async () => {
-
-        vesting = await Vesting.new(minimumVestingPeriod, withdrawalCap, vestingCoinMock.address, withdrawalFrequency, merkleTree.getHexRoot(),  {
-            from: accounts[0],
-          } );
+    
 
 
+    describe('Ruleset for Vesting Allocations',async () => {
 
-
-      })
-    describe('Ruleset for Vesting Allocations', () => {
         let vestingCoinMock;
 
         beforeEach(async () => {
-            vestingCoinMock = await MockToken.new();                  
-        });
 
-        it('must correctly calculate daily allocations.', async () => {
             const minimumVestingPeriod = duration.days(181);
             const withdrawalCap = ether("10000");//18 decimal places
             const withdrawalFrequency = 0;//Daily
 
-             // Generate hashed leaf from address
-          const leaf = Buffer.from(
-            // Hash in appropriate Merkle format
-            ethers.utils
-              .solidityKeccak256(
-                ["address", "uint256"],
-                [formattedAddress, numTokens]
-              )
-              .slice(2),
-            "hex"
-          );
+            vestingCoinMock = await MockToken.new();
+            this.vesting = await Vesting.new(minimumVestingPeriod,
+                withdrawalCap, vestingCoinMock.address, 
+                withdrawalFrequency,
+                   {
+               from: accounts[0],
+             });  
 
-          const proof = merkleTree.getHexProof(leaf);
+             
+             await vestingCoinMock.approve(this.vesting.address, ether("50000000"));
+             await this.vesting.fund();
+                            
+        });
+       
+      
 
-            await vestingCoinMock.approve(vesting.address, ether("50000000"));
-            await vesting.fund();
 
-            let earliestWithdrawalDate = (await vesting.earliestWithdrawalDate()).toNumber();
+        accounts.forEach((account) => {
+            const amount = airdrop[account];
+            // Check if an account has claim, then test the withdrwal function
+            // Otherwise, check whether any revert exists.
+            it(
+              amount
+                ? `should allow ${account} has claim to withdraw vesting`
+                : `should disallow ${account} has no claim to withdraw vesting`,
+              async () => {
+                const formattedAddress = ethers.utils.getAddress(account);
+                // Get tokens for address
+                const numTokens = ethers.utils
+                  .parseUnits((amount ?? 100).toString(), decimals)
+                  .toString();
+      
+                // Generate hashed leaf from address
+                const leaf = Buffer.from(
+                  // Hash in appropriate Merkle format
+                  ethers.utils
+                    .solidityKeccak256(
+                      ["address", "uint256"],
+                      [formattedAddress, numTokens]
+                    )
+                    .slice(2),
+                  "hex"
+                );
+                // Generate airdrop proof
+                const proof = merkleTree.getHexProof(leaf);
+              
+
+
+            let earliestWithdrawalDate = (await this.vesting.earliestWithdrawalDate()).toNumber();
             let releaseOn = earliestWithdrawalDate + duration.minutes(1);
-            let totalVested = ether("111111");
+            let totalVested = numTokens;
+            let round = parseInt('1')
 
-            await vesting.createAllocation(accounts[1], 'John Doe 1', ether("111111"), releaseOn);
-            
-         
-            expect(parseInt(await vesting.totalVested())).to.equal(parseInt(totalVested));      
 
+            await this.vesting.createAllocation(account, 'John Doe 1',numTokens, releaseOn);
+            expect(parseInt(await this.vesting.totalVested())).to.equal(parseInt(totalVested));      
             await increaseTimeTo(releaseOn + duration.minutes(1));
 
-            expect(parseInt(await vesting.getDrawingPower(accounts[1]))).to.be.equal(parseInt(ether("10000")));
+            await this.vesting.setMerkleRoot( merkleTree.getHexRoot());
+             //Check if the beneficiary can withdraw amount more than actually allocated.
+             await this.vesting.withdraw(ether("20000000"), proof, round, {from: account}).should.be.rejectedWith(EVMRevert);
 
-            //Check if the beneficiary can withdraw amount more than actually allocated.
-            await vesting.withdraw(ether("20000000"), proof, {from: accounts[1]}).should.be.rejectedWith(EVMRevert);
+                if (amount) {
+                  await this.vesting.withdraw(numTokens, proof, round, { from: account });
+                 
+                } else {
+                 
+                  await  this.vesting.withdraw(numTokens, proof, round, { from: account }).should.be.rejectedWith(EVMRevert);
+                   
+              
+                }
+              }
+            );
+          });
 
-            await vesting.withdraw(ether("5000"),proof, {from: accounts[1]});
 
-            await increaseTimeTo(releaseOn + duration.days(1) + duration.minutes(1));
+    it("should disallow user that has already claimed their vesting", async () => {
+      const amount = airdrop[accounts[0]];
+      const formattedAddress = ethers.utils.getAddress(accounts[0]);
+      // Get tokens for address
+      const numTokens = ethers.utils
+        .parseUnits(amount.toString(), decimals)
+        .toString();
 
-        expect(parseInt(await vesting.getDrawingPower(accounts[1]))).to.equal(parseInt(ether("15000")));
+      // Generate hashed leaf from address
+      const leaf = Buffer.from(
+        // Hash in appropriate Merkle format
+        ethers.utils
+          .solidityKeccak256(
+            ["address", "uint256"],
+            [formattedAddress, numTokens]
+          )
+          .slice(2),
+        "hex"
+      );
+      // Generate airdrop proof
+      const proof = merkleTree.getHexProof(leaf);
+      let earliestWithdrawalDate = (await this.vesting.earliestWithdrawalDate()).toNumber();
+      let releaseOn = earliestWithdrawalDate + duration.minutes(1);
+      let round = parseInt('1')
 
-            await increaseTimeTo(releaseOn + duration.days(8) + duration.minutes(1));
+     
 
-        expect(parseInt(await vesting.getDrawingPower(accounts[1]))).to.equal(parseInt(ether("85000")));
+      await this.vesting.createAllocation(accounts[0], 'John Doe 1',numTokens, releaseOn); 
+      await this.vesting.setMerkleRoot( merkleTree.getHexRoot());
+      await increaseTimeTo(releaseOn + duration.minutes(1));
+     
+      // #1 Successful Claim
+      await this.vesting.withdraw(numTokens, proof, round, { from: accounts[0] });
+       // #2 Failed Claim
+        await this.vesting.withdraw(numTokens, proof, round, { from: accounts[0]}).should.be.rejectedWith(EVMRevert);
+       
+   
 
-            await increaseTimeTo(releaseOn + duration.days(10) + duration.minutes(1));
-
-            await vesting.withdraw(ether("25000"), {from: accounts[1]});
-
-            expect(parseInt(await vesting.getDrawingPower(accounts[1]))).to.equal(parseInt(ether("80000")));
-
-            await increaseTimeTo(releaseOn + duration.days(11) + duration.minutes(1));
-
-            await vesting.withdraw(ether("55000"), proof, {from: accounts[1]});
-
-            expect(parseInt(await vesting.getDrawingPower(accounts[1]))).to.equal(parseInt(ether("26111")));
-
-            await vesting.withdraw(ether("55000"), proof, {from: accounts[1]}).should.be.rejectedWith(EVMRevert);
-
-            await increaseTimeTo(releaseOn + duration.days(12) + duration.minutes(1));
-
-            await vesting.withdraw(ether("26112"), proof, {from: accounts[1]}).should.be.rejectedWith(EVMRevert);
-            await vesting.withdraw(ether("26111"), proof, {from: accounts[1]});
-
-           expect(parseInt(await vesting.getDrawingPower(accounts[1]))).to.equal(parseInt(ether("0")));
-        });
-
+     
     });
-}); ```
+      
+
+    
+
+      
+    });
+}); 

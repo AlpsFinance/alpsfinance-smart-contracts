@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.12+commit.f00d7308"
+		"version": "0.8.13+commit.abaa5c0e"
 	},
 	"language": "Solidity",
 	"output": {
@@ -307,6 +307,19 @@
 				"type": "event"
 			},
 			{
+				"inputs": [],
+				"name": "Rounds",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -535,6 +548,25 @@
 			{
 				"inputs": [
 					{
+						"internalType": "uint256",
+						"name": "_round",
+						"type": "uint256"
+					}
+				],
+				"name": "getMerkleRoot",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "address",
 						"name": "_address",
 						"type": "address"
@@ -622,6 +654,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_newMerkleRoot",
+						"type": "bytes32"
+					}
+				],
+				"name": "setMerkleRoot",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "totalVested",
 				"outputs": [
@@ -661,6 +706,25 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "vestingClaimed",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "vestingCoin",
 				"outputs": [
@@ -697,6 +761,11 @@
 						"internalType": "bytes32[]",
 						"name": "_proof",
 						"type": "bytes32[]"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_round",
+						"type": "uint256"
 					}
 				],
 				"name": "withdraw",
@@ -791,6 +860,11 @@
 						"_0": "Returns true if the funding was successful."
 					}
 				},
+				"getAmountInVesting()": {
+					"returns": {
+						"_0": "Returns Total vested balance."
+					}
+				},
 				"getAvailableFunds()": {
 					"returns": {
 						"_0": "Returns the closing balance of vesting coin held by this contract."
@@ -802,6 +876,14 @@
 					},
 					"returns": {
 						"_0": "Returns the amount in vesting coin that can be withdrawn."
+					}
+				},
+				"getMerkleRoot(uint256)": {
+					"params": {
+						"_round": "The round of which markleTree to be viewed."
+					},
+					"returns": {
+						"_0": "Returns Total vested balance."
 					}
 				},
 				"increaseAllocation(address,uint256)": {
@@ -833,7 +915,7 @@
 				"transferOwnership(address)": {
 					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
 				},
-				"withdraw(uint256,bytes32[])": {
+				"withdraw(uint256,bytes32[],uint256)": {
 					"params": {
 						"_amount": "The amount in vesting coin desired to withdraw."
 					}
@@ -871,11 +953,17 @@
 				"fund()": {
 					"notice": "Enables this vesting contract to receive the ERC20 (vesting coin). Before calling this function please approve your desired amount of the coin for this smart contract address. Please note that this action is restricted to administrators only."
 				},
+				"getAmountInVesting()": {
+					"notice": "The vesting Balance."
+				},
 				"getAvailableFunds()": {
-					"notice": "The balance of this smart contract. "
+					"notice": "The Vesting Token balance of this smart contract. "
 				},
 				"getDrawingPower(address)": {
 					"notice": "Gets the drawing power of the beneficiary."
+				},
+				"getMerkleRoot(uint256)": {
+					"notice": "Gets the markle tree of each vesting Rounds."
 				},
 				"increaseAllocation(address,uint256)": {
 					"notice": "Increases the total allocation of the specified vesting schedule. Please note that this action can only be performed by an administrator."
@@ -885,6 +973,9 @@
 				},
 				"removeFunds(uint256)": {
 					"notice": "Allows you to withdraw the surplus balance of the vesting coin from this contract. Please note that this action is restricted to administrators only and you may only withdraw amounts above the sum total allocation balances."
+				},
+				"setMerkleRoot(bytes32)": {
+					"notice": "This action enables admin to set newMarkelRoot.    "
 				},
 				"totalVested()": {
 					"notice": "The sum total amount of tokens vested for all allocations."
@@ -898,7 +989,7 @@
 				"vestingStartedOn()": {
 					"notice": "The date on which the vesting was started. "
 				},
-				"withdraw(uint256,bytes32[])": {
+				"withdraw(uint256,bytes32[],uint256)": {
 					"notice": "This action enables the beneficiaries to withdraw a desired amount from this contract.    "
 				},
 				"withdrawalCap()": {
@@ -992,11 +1083,11 @@
 			]
 		},
 		"contracts/Vesting/VestingBase.sol": {
-			"keccak256": "0x090bbef5164edb9a9e980abc152498476b00a46499f975f7ac958fc07480c7ac",
+			"keccak256": "0xaa6cd7dede98282a46b45cbaa2dbbbd89aed5003eb0f0ec02761703c446c2d3d",
 			"license": "AGPL-3.0",
 			"urls": [
-				"bzz-raw://5d77f6dab2bbdd9285486a687f12489b3636ad22e138ae10f3953b2e6f844852",
-				"dweb:/ipfs/QmVEPyfgDfNNwg3V83rPmid4CgyAHZzAGaQoHnqkW2vTrC"
+				"bzz-raw://5ca0878601264445f3fdff897e32e5e4ae679a7de2f8fb029207eac771463ddd",
+				"dweb:/ipfs/QmS7xkvcD8bCBRaGppGH2sj14auquFXJQPLUDqzNc9AzMp"
 			]
 		},
 		"contracts/libraries/frequencyHelper.sol": {

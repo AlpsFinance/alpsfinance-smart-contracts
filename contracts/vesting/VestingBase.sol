@@ -19,7 +19,7 @@ import "../libraries/frequencyHelper.sol";
  */
 contract VestingBase is Ownable ,Pausable {
   using SafeMath for uint256;
-   bytes32 private merkleRoot;
+   
  
   
 
@@ -62,8 +62,13 @@ contract VestingBase is Ownable ,Pausable {
     ///@notice The ERC20 contract of the coin being vested.
     ERC20 public vestingCoin;
 
+    uint256 public Rounds = 0;
+
     ///@notice The list of vesting schedule allocations;
     mapping(address => Allocation) internal allocations;
+     mapping(address => bool) public vestingClaimed;
+     mapping (uint => bytes32) private RootToRounds;
+   
    
 
 
@@ -87,12 +92,12 @@ contract VestingBase is Ownable ,Pausable {
     ///@param _vestingCoin The ERC20 contract of the coin being vested.
 
 
-     constructor(uint256 _minPeriod, uint256 _withdrawalCap, ERC20 _vestingCoin,  FrequencyHelper.Frequency _withdrawalFrequency, bytes32 _merkleRoot)  {
+     constructor(uint256 _minPeriod, uint256 _withdrawalCap, ERC20 _vestingCoin,  FrequencyHelper.Frequency _withdrawalFrequency)  {
         minimumVestingPeriod = _minPeriod;
         vestingStartedOn = block.timestamp;
         vestingCoin = _vestingCoin;
         withdrawalCap = _withdrawalCap;
-        merkleRoot = _merkleRoot;
+      
 
         ///Calcualate the earliest date of withdrawal.
         earliestWithdrawalDate = vestingStartedOn.add(minimumVestingPeriod);
@@ -102,24 +107,39 @@ contract VestingBase is Ownable ,Pausable {
         }
     }
 
+        ///@notice Signifies that the action is only possible 
+        ///after the earliest withdrawal date of the vesting contract.
+        modifier afterEarliestWithdrawalDate {
+        require(block.timestamp >= earliestWithdrawalDate);
+        
+        _;
+    }
 
-    ///@notice The balance of this smart contract. 
+
+    ///@notice The Vesting Token balance of this smart contract. 
     ///@return Returns the closing balance of vesting coin held by this contract.
     function getAvailableFunds() public view returns(uint256) {
         return vestingCoin.balanceOf(address(this));
     }
 
+
+      ///@notice The vesting Balance.
+    ///@return Returns Total vested balance.
+
       function getAmountInVesting() public view returns(uint256) {
         return totalVested.sub(totalWithdrawn);
     }
 
-    ///@notice Signifies that the action is only possible 
-    ///after the earliest withdrawal date of the vesting contract.
- modifier afterEarliestWithdrawalDate {
-        require(block.timestamp >= earliestWithdrawalDate);
+      ///@notice Gets the markle tree of each vesting Rounds.
+    ///@param _round The round of which markleTree to be viewed.
+    ///@return Returns Total vested balance.
+      function getMerkleRoot(uint _round) public view onlyOwner returns (bytes32) {
+
+           return RootToRounds[_round];
         
-        _;
     }
+
+
 
     ///@notice Enables this vesting contract to receive the ERC20 (vesting coin).
     ///Before calling this function please approve your desired amount of the coin
@@ -316,53 +336,47 @@ contract VestingBase is Ownable ,Pausable {
         _deleted = allocations[_address].deleted;
     }
 
-       function getMerkleRoot() public view onlyOwner returns (bytes32) {
-        return merkleRoot;
-    }
+     
+
+     ///@notice This action enables admin to set newMarkelRoot.    
 
     function setMerkleRoot(bytes32 _newMerkleRoot) external onlyOwner {
         require(
-            _newMerkleRoot != 0x00 || _newMerkleRoot != merkleRoot,
+            _newMerkleRoot != 0x00,
             "Vesting: Invalid new merkle root value!"
         );
-        merkleRoot = _newMerkleRoot;
+
+         Rounds = Rounds + 1;
+        RootToRounds[Rounds] = _newMerkleRoot;
+       
     }
 
-    
-    ///@notice Signifies if the sender has enough balances to withdraw the desired amount of the vesting coin.
-    ///@param _amount The amount desired to be withdrawn.
-    modifier canWithdraw(uint256 _amount)  {
-        require(allocations[msg.sender].startedOn > 0, "Access is denied. Requested vesting schedule does not exist.");
-        require(!allocations[msg.sender].deleted, "Access is denied. Requested vesting schedule does not exist.");
-        require(block.timestamp >= allocations[msg.sender].releaseOn, "Access is denied. You are not allowed to withdraw before the release date.");
-        require(allocations[msg.sender].closingBalance >= _amount, "Access is denied. Insufficient funds.");
-        
-        uint256 drawingPower = getDrawingPower(msg.sender);
 
-        ///Zero means unlimited amount.
-        ///We've already verified above that the investor has sufficient balance.
-        if(withdrawalCap > 0){
-            require(drawingPower >= _amount, "Access is denied. The requested amount exceeds your allocation.");
-            _;
-        }
-    }
-
+     
     ///@notice This action enables the beneficiaries to withdraw a desired amount from this contract.    
     ///@param _amount The amount in vesting coin desired to withdraw.
-      function withdraw(uint256 _amount, bytes32[] calldata _proof) external  canWithdraw(_amount) afterEarliestWithdrawalDate whenNotPaused returns(bool hasWithdrew ) {                        
-       
+      function withdraw(uint256 _amount, bytes32[] calldata _proof, uint _round) external afterEarliestWithdrawalDate   whenNotPaused returns(bool hasWithdrew ) {                        
+      require(allocations[msg.sender].startedOn > 0, "Access is denied. Requested vesting schedule does not exist.");
+       require(!allocations[msg.sender].deleted, "Access is denied. Requested vesting schedule does not exist.");
+      require(block.timestamp >= allocations[msg.sender].releaseOn, "Access is denied. You are not allowed to withdraw before the release date.");
+      require(allocations[msg.sender].closingBalance >= _amount, "Access is denied. Insufficient funds.");
+         require(
+            !vestingClaimed[msg.sender] ,
+            "Vesting: Vesting has been claimed!"  
+        );
         allocations[msg.sender].lastWithdrawnOn = block.timestamp;
         allocations[msg.sender].closingBalance = allocations[msg.sender].closingBalance.sub(_amount);
         allocations[msg.sender].withdrawn = allocations[msg.sender].withdrawn.add(_amount);
-
+        bytes32 merkleRoot = RootToRounds[_round];
         bytes32 leaf = keccak256(abi.encodePacked(msg.sender, _amount));
         bool isValidLeaf = MerkleProof.verify(_proof, merkleRoot, leaf);
         require(isValidLeaf, "Vesting: Address has no Vesting allocation!");
 
+        // Set address to claimed
+        vestingClaimed[msg.sender] = true;
         totalWithdrawn = totalWithdrawn.add(_amount);
 
         require(vestingCoin.transfer(msg.sender, _amount));
-
         emit Withdrawn(msg.sender, allocations[msg.sender].memberName, _amount);
        
         return true ;
