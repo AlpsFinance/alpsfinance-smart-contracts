@@ -10,7 +10,7 @@ module.exports = async (deployer, network) => {
 
     // Deploy `Presale` contract
     const erc20Inst = await ERC20Custom.deployed();
-    await deployer.deploy(Presale, erc20Inst.address, multisig, "1648486800");
+    await deployer.deploy(Presale, erc20Inst.address, multisig, "1649005200");
 
     // Grant `Presale` contract MINTER role
     const presaleInst = await Presale.deployed();
@@ -20,9 +20,9 @@ module.exports = async (deployer, network) => {
     );
 
     /**
-     * Pre-sale price Round 1 — 7th Feb. 12 noon EST — 0.000125
-     * Pre-sale price Round 2 — 14th March — 12 noon EST — 0.000250
-     * Pre-sale price Round 3 — 21st March — 12 noon EST — 0.00050
+     * Pre-sale price Round 1 — 14th March - 12 noon EST — 0.025
+     * Pre-sale price Round 2 — 21th March — 12 noon EST — 0.050
+     * Pre-sale price Round 3 — 28st March — 12 noon EST — 0.075
      */
     PresaleDetails.forEach(async (presale, index) => {
       const {
@@ -34,11 +34,13 @@ module.exports = async (deployer, network) => {
 
       await presaleInst.setPresaleRound(
         index.toString(),
-        // only deploy with real time schedule in FTM mainnet
         startingTime.toString(),
         web3.utils.toWei(usdPrice.toString()),
         web3.utils.toWei(
-          (network === "fantom_mainnet" ? minimumUSDPurchase : 0.01).toString()
+          (network === "avalanche_mainnet"
+            ? minimumUSDPurchase
+            : 0.01
+          ).toString()
         ),
         web3.utils.toWei(maximumPresaleAmount.toString())
       );
