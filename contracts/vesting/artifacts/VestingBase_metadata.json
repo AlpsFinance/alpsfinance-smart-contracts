@@ -1,0 +1,1103 @@
+{
+	"compiler": {
+		"version": "0.8.13+commit.abaa5c0e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_minPeriod",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_withdrawalCap",
+						"type": "uint256"
+					},
+					{
+						"internalType": "contract ERC20",
+						"name": "_vestingCoin",
+						"type": "address"
+					},
+					{
+						"internalType": "enum FrequencyHelper.Frequency",
+						"name": "_withdrawalFrequency",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "_memberName",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_releaseOn",
+						"type": "uint256"
+					}
+				],
+				"name": "AllocationCreated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "_memberName",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_lessAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "AllocationDecreased",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "_memberName",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "AllocationDeleted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "_memberName",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_additionalAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "AllocationIncreased",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_remainingInPool",
+						"type": "uint256"
+					}
+				],
+				"name": "FundRemoved",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_funder",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_previousCap",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_newCap",
+						"type": "uint256"
+					}
+				],
+				"name": "Funded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "Paused",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "_memberName",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_releaseOn",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_newReleaseDate",
+						"type": "uint256"
+					}
+				],
+				"name": "ScheduleExtended",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "Unpaused",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "_memberName",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "Withdrawn",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "Rounds",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "_memberName",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_releaseOn",
+						"type": "uint256"
+					}
+				],
+				"name": "createAllocation",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_lessAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "decreaseAllocation",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "deleteAllocation",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "earliestWithdrawalDate",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_newReleaseDate",
+						"type": "uint256"
+					}
+				],
+				"name": "extendAllocation",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "fund",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "getAllocation",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_startedOn",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_memberName",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_releaseOn",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_allocation",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_closingBalance",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_withdrawn",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_lastWithdrawnOn",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "_deleted",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getAmountInVesting",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getAvailableFunds",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "getDrawingPower",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_round",
+						"type": "uint256"
+					}
+				],
+				"name": "getMerkleRoot",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_additionalAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "increaseAllocation",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "minimumVestingPeriod",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "paused",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "removeFunds",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_newMerkleRoot",
+						"type": "bytes32"
+					}
+				],
+				"name": "setMerkleRoot",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalVested",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalWithdrawn",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "vestingClaimed",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "vestingCoin",
+				"outputs": [
+					{
+						"internalType": "contract ERC20",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "vestingStartedOn",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes32[]",
+						"name": "_proof",
+						"type": "bytes32[]"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_round",
+						"type": "uint256"
+					}
+				],
+				"name": "withdraw",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "hasWithdrew",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "withdrawalCap",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "withdrawalFrequency",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "A token holder contract that can release its token balance gradually like a typical vesting scheme, vesting period. Optionally revocable by the creator.",
+			"kind": "dev",
+			"methods": {
+				"constructor": {
+					"params": {
+						"_minPeriod": "The minimum vesting period.",
+						"_vestingCoin": "The ERC20 contract of the coin being vested.",
+						"_withdrawalCap": "Maximum amount of tokens that can be withdrawn for the specified frequency.",
+						"_withdrawalFrequency": "The frequency of token withdrawals. If the _withdrawalCap is zero, this variable is ignored."
+					}
+				},
+				"createAllocation(address,string,uint256,uint256)": {
+					"params": {
+						"_address": "The address which will receive the tokens in the future date.",
+						"_amount": "The total amount of tokens being vested over the period of vesting duration.",
+						"_memberName": "The name of the candidate for which this vesting schedule allocation is being created for.",
+						"_releaseOn": "The date on which the first vesting schedule becomes available for withdrawal."
+					},
+					"returns": {
+						"_0": "Returns true if the vesting schedule allocation was successfully created."
+					}
+				},
+				"decreaseAllocation(address,uint256)": {
+					"params": {
+						"_address": "The address of the beneficiary whose allocation is being requested to be decreased.",
+						"_lessAmount": "The amount in vesting coin to be decreased from the existing allocation."
+					},
+					"returns": {
+						"_0": "Returns true if the vesting schedule allocation was successfully decreased."
+					}
+				},
+				"deleteAllocation(address)": {
+					"params": {
+						"_address": "The address of the beneficiary whose allocation is being requested to be deleted."
+					},
+					"returns": {
+						"_0": "Returns true if the vesting schedule allocation was successfully deleted."
+					}
+				},
+				"extendAllocation(address,uint256)": {
+					"params": {
+						"_address": "The address of the beneficiary who allocation is being requested to be extended.",
+						"_newReleaseDate": "A new release date to extend the allocation to."
+					},
+					"returns": {
+						"_0": "Returns true if the vesting schedule allocation was successfully extended."
+					}
+				},
+				"fund()": {
+					"returns": {
+						"_0": "Returns true if the funding was successful."
+					}
+				},
+				"getAmountInVesting()": {
+					"returns": {
+						"_0": "Returns Total vested balance."
+					}
+				},
+				"getAvailableFunds()": {
+					"returns": {
+						"_0": "Returns the closing balance of vesting coin held by this contract."
+					}
+				},
+				"getDrawingPower(address)": {
+					"params": {
+						"_address": "The address to check the drawing power of."
+					},
+					"returns": {
+						"_0": "Returns the amount in vesting coin that can be withdrawn."
+					}
+				},
+				"getMerkleRoot(uint256)": {
+					"params": {
+						"_round": "The round of which markleTree to be viewed."
+					},
+					"returns": {
+						"_0": "Returns Total vested balance."
+					}
+				},
+				"increaseAllocation(address,uint256)": {
+					"params": {
+						"_additionalAmount": "The additional amount in vesting coin to be addeded to the existing allocation.",
+						"_address": "The address of the beneficiary whose allocation is being requested to be increased."
+					},
+					"returns": {
+						"_0": "Returns true if the vesting schedule allocation was successfully increased."
+					}
+				},
+				"owner()": {
+					"details": "Returns the address of the current owner."
+				},
+				"paused()": {
+					"details": "Returns true if the contract is paused, and false otherwise."
+				},
+				"removeFunds(uint256)": {
+					"params": {
+						"_amount": "The amount desired to withdraw."
+					},
+					"returns": {
+						"_0": "Returns true if the withdrawal was successful."
+					}
+				},
+				"renounceOwnership()": {
+					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner."
+				},
+				"transferOwnership(address)": {
+					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+				},
+				"withdraw(uint256,bytes32[],uint256)": {
+					"params": {
+						"_amount": "The amount in vesting coin desired to withdraw."
+					}
+				}
+			},
+			"title": "Vesting",
+			"version": 1
+		},
+		"userdoc": {
+			"events": {
+				"Funded(address,uint256,uint256,uint256)": {
+					"notice": "Events;"
+				}
+			},
+			"kind": "user",
+			"methods": {
+				"constructor": {
+					"notice": "Constructs this contract"
+				},
+				"createAllocation(address,string,uint256,uint256)": {
+					"notice": "Creates a vesting schedule allocation for a new beneficiary. A beneficiary could mean founders, employees, or advisors. Please note that this action can only be performed by an administrator."
+				},
+				"decreaseAllocation(address,uint256)": {
+					"notice": "Decreases the total allocation of the specified vesting schedule. Please note that this action can only be performed by an administrator."
+				},
+				"deleteAllocation(address)": {
+					"notice": "Deletes the specified vesting schedule allocation. Please note that this action can only be performed by an administrator."
+				},
+				"earliestWithdrawalDate()": {
+					"notice": "The earliest date on which the vested tokens can be redeemed."
+				},
+				"extendAllocation(address,uint256)": {
+					"notice": "Extends the release date of the specified vesting schedule allocation. Please note that this action can only be performed by an administrator."
+				},
+				"fund()": {
+					"notice": "Enables this vesting contract to receive the ERC20 (vesting coin). Before calling this function please approve your desired amount of the coin for this smart contract address. Please note that this action is restricted to administrators only."
+				},
+				"getAmountInVesting()": {
+					"notice": "The vesting Balance."
+				},
+				"getAvailableFunds()": {
+					"notice": "The Vesting Token balance of this smart contract. "
+				},
+				"getDrawingPower(address)": {
+					"notice": "Gets the drawing power of the beneficiary."
+				},
+				"getMerkleRoot(uint256)": {
+					"notice": "Gets the markle tree of each vesting Rounds."
+				},
+				"increaseAllocation(address,uint256)": {
+					"notice": "Increases the total allocation of the specified vesting schedule. Please note that this action can only be performed by an administrator."
+				},
+				"minimumVestingPeriod()": {
+					"notice": "The minimum period of vesting."
+				},
+				"removeFunds(uint256)": {
+					"notice": "Allows you to withdraw the surplus balance of the vesting coin from this contract. Please note that this action is restricted to administrators only and you may only withdraw amounts above the sum total allocation balances."
+				},
+				"setMerkleRoot(bytes32)": {
+					"notice": "This action enables admin to set newMarkelRoot.    "
+				},
+				"totalVested()": {
+					"notice": "The sum total amount of tokens vested for all allocations."
+				},
+				"totalWithdrawn()": {
+					"notice": "The sum total amount of tokens withdrawn from all allocations."
+				},
+				"vestingCoin()": {
+					"notice": "The ERC20 contract of the coin being vested."
+				},
+				"vestingStartedOn()": {
+					"notice": "The date on which the vesting was started. "
+				},
+				"withdraw(uint256,bytes32[],uint256)": {
+					"notice": "This action enables the beneficiaries to withdraw a desired amount from this contract.    "
+				},
+				"withdrawalCap()": {
+					"notice": "Maximum amount of tokens that can be withdrawn for the specified frequency. Zero means that there's no cap;"
+				},
+				"withdrawalFrequency()": {
+					"notice": "The frequency of token withdrawals. If the withdrawalCap is zero, this variable is ignored."
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/Vesting/VestingBase.sol": "VestingBase"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts/access/Ownable.sol": {
+			"keccak256": "0xb45e104b4d8ecd7f3ad94bdebd7a76bfa258f5bc91444bb4858f75616cfad140",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://06abef552fe0601522ef089d68e2f79ed8d15fe0c06dd4f35d7e6e5a1e247363",
+				"dweb:/ipfs/QmaT69xxfRukB41W5gWBRDEA5Y96etSExwvqV6qn75g3mg"
+			]
+		},
+		"@openzeppelin/contracts/security/Pausable.sol": {
+			"keccak256": "0xe68ed7fb8766ed1e888291f881e36b616037f852b37d96877045319ad298ba87",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1d491a2ca79dbf44bc02e876e21a5847a2cbcc011188532ad8662cdc1c134a4e",
+				"dweb:/ipfs/QmUQXhSV8ZvHLzfdG89ZNSh1nLrAYyjnNBLznJGwGcwVk8"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC20/ERC20.sol": {
+			"keccak256": "0xdadd41acb749920eccf40aeaa8d291adf9751399a7343561bad13e7a8d99be0b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://12af4ac016f9fdf3be5d15824f4292272aa11f6b2e0192a0f7320f5ad49bbbf0",
+				"dweb:/ipfs/QmRXMpdqCgA3TYuYxBodqs5p9jGbnMW6xa2gvjppvq4TWk"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+			"keccak256": "0xbbc8ac883ac3c0078ce5ad3e288fbb3ffcc8a30c3a98c0fda0114d64fc44fca2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://87a7a5d2f6f63f84598af02b8c50ca2df2631cb8ba2453e8d95fcb17e4be9824",
+				"dweb:/ipfs/QmR76hqtAcRqoFj33tmNjcWTLrgNsAaakYwnKZ8zoJtKei"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol": {
+			"keccak256": "0x8de418a5503946cabe331f35fe242d3201a73f67f77aaeb7110acb1f30423aca",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://5a376d3dda2cb70536c0a45c208b29b34ac560c4cb4f513a42079f96ba47d2dd",
+				"dweb:/ipfs/QmZQg6gn1sUpM8wHzwNvSnihumUCAhxD119MpXeKp8B9s8"
+			]
+		},
+		"@openzeppelin/contracts/utils/Context.sol": {
+			"keccak256": "0xe2e337e6dde9ef6b680e07338c493ebea1b5fd09b43424112868e9cc1706bca7",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6df0ddf21ce9f58271bdfaa85cde98b200ef242a05a3f85c2bc10a8294800a92",
+				"dweb:/ipfs/QmRK2Y5Yc6BK7tGKkgsgn3aJEQGi5aakeSPZvS65PV8Xp3"
+			]
+		},
+		"@openzeppelin/contracts/utils/cryptography/MerkleProof.sol": {
+			"keccak256": "0xea64fbaccbf9d8c235cf6838240ddcebb97f9fc383660289e9dff32e4fb85f7a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1e8a1dd0eac2fa865dc9a052bee01eec31677d7bc01b5b5aa825d820f3f1b343",
+				"dweb:/ipfs/QmR8WuNeoAvJhnL7msQfQwaZEkwVnNyNDUNBL3Y616ohYa"
+			]
+		},
+		"@openzeppelin/contracts/utils/math/SafeMath.sol": {
+			"keccak256": "0xa2f576be637946f767aa56601c26d717f48a0aff44f82e46f13807eea1009a21",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://973868f808e88e21a1a0a01d4839314515ee337ad096286c88e41b74dcc11fc2",
+				"dweb:/ipfs/QmfYuZxRfx2J2xdk4EXN7jKg4bUYEMTaYk9BAw9Bqn4o2Y"
+			]
+		},
+		"contracts/Vesting/VestingBase.sol": {
+			"keccak256": "0xaa6cd7dede98282a46b45cbaa2dbbbd89aed5003eb0f0ec02761703c446c2d3d",
+			"license": "AGPL-3.0",
+			"urls": [
+				"bzz-raw://5ca0878601264445f3fdff897e32e5e4ae679a7de2f8fb029207eac771463ddd",
+				"dweb:/ipfs/QmS7xkvcD8bCBRaGppGH2sj14auquFXJQPLUDqzNc9AzMp"
+			]
+		},
+		"contracts/libraries/frequencyHelper.sol": {
+			"keccak256": "0xf9b2dab80918f037ad048caa2dc17496e3005900692f0bd4757bbd8c4f61971a",
+			"license": "AGPL-3.0",
+			"urls": [
+				"bzz-raw://5525ceda7f83818c1c8867dacc9144b11129a5e33b74666fa2f1c4709da01f2e",
+				"dweb:/ipfs/QmWptnTmph7TFrfSK3oU9zB3Tj9QfzLzUPfcDttKsMad7b"
+			]
+		}
+	},
+	"version": 1
+}
