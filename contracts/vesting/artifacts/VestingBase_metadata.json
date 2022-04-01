@@ -8,146 +8,13 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "_minPeriod",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_withdrawalCap",
-						"type": "uint256"
-					},
-					{
 						"internalType": "contract ERC20",
 						"name": "_vestingCoin",
 						"type": "address"
-					},
-					{
-						"internalType": "enum FrequencyHelper.Frequency",
-						"name": "_withdrawalFrequency",
-						"type": "uint8"
 					}
 				],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "_address",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "string",
-						"name": "_memberName",
-						"type": "string"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "_amount",
-						"type": "uint256"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "_releaseOn",
-						"type": "uint256"
-					}
-				],
-				"name": "AllocationCreated",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "_address",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "string",
-						"name": "_memberName",
-						"type": "string"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "_amount",
-						"type": "uint256"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "_lessAmount",
-						"type": "uint256"
-					}
-				],
-				"name": "AllocationDecreased",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "_address",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "string",
-						"name": "_memberName",
-						"type": "string"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "_amount",
-						"type": "uint256"
-					}
-				],
-				"name": "AllocationDeleted",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "_address",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "string",
-						"name": "_memberName",
-						"type": "string"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "_amount",
-						"type": "uint256"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "_additionalAmount",
-						"type": "uint256"
-					}
-				],
-				"name": "AllocationIncreased",
-				"type": "event"
 			},
 			{
 				"anonymous": false,
@@ -241,37 +108,6 @@
 				"anonymous": false,
 				"inputs": [
 					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "_address",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "string",
-						"name": "_memberName",
-						"type": "string"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "_releaseOn",
-						"type": "uint256"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "_newReleaseDate",
-						"type": "uint256"
-					}
-				],
-				"name": "ScheduleExtended",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
 						"indexed": false,
 						"internalType": "address",
 						"name": "account",
@@ -289,12 +125,6 @@
 						"internalType": "address",
 						"name": "_address",
 						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "string",
-						"name": "_memberName",
-						"type": "string"
 					},
 					{
 						"indexed": false,
@@ -320,120 +150,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_address",
-						"type": "address"
-					},
-					{
-						"internalType": "string",
-						"name": "_memberName",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_amount",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_releaseOn",
-						"type": "uint256"
-					}
-				],
-				"name": "createAllocation",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_address",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_lessAmount",
-						"type": "uint256"
-					}
-				],
-				"name": "decreaseAllocation",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_address",
-						"type": "address"
-					}
-				],
-				"name": "deleteAllocation",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "earliestWithdrawalDate",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_address",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_newReleaseDate",
-						"type": "uint256"
-					}
-				],
-				"name": "extendAllocation",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
 				"inputs": [],
 				"name": "fund",
 				"outputs": [
@@ -447,94 +163,8 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_address",
-						"type": "address"
-					}
-				],
-				"name": "getAllocation",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "_startedOn",
-						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "_memberName",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_releaseOn",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_allocation",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_closingBalance",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_withdrawn",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_lastWithdrawnOn",
-						"type": "uint256"
-					},
-					{
-						"internalType": "bool",
-						"name": "_deleted",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "getAmountInVesting",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [],
 				"name": "getAvailableFunds",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_address",
-						"type": "address"
-					}
-				],
-				"name": "getDrawingPower",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -559,43 +189,6 @@
 						"internalType": "bytes32",
 						"name": "",
 						"type": "bytes32"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_address",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_additionalAmount",
-						"type": "uint256"
-					}
-				],
-				"name": "increaseAllocation",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "minimumVestingPeriod",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -668,19 +261,6 @@
 			},
 			{
 				"inputs": [],
-				"name": "totalVested",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
 				"name": "totalWithdrawn",
 				"outputs": [
 					{
@@ -738,19 +318,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "vestingStartedOn",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -772,37 +339,11 @@
 				"outputs": [
 					{
 						"internalType": "bool",
-						"name": "hasWithdrew",
+						"name": "",
 						"type": "bool"
 					}
 				],
 				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "withdrawalCap",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "withdrawalFrequency",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			}
 		],
@@ -812,47 +353,7 @@
 			"methods": {
 				"constructor": {
 					"params": {
-						"_minPeriod": "The minimum vesting period.",
-						"_vestingCoin": "The ERC20 contract of the coin being vested.",
-						"_withdrawalCap": "Maximum amount of tokens that can be withdrawn for the specified frequency.",
-						"_withdrawalFrequency": "The frequency of token withdrawals. If the _withdrawalCap is zero, this variable is ignored."
-					}
-				},
-				"createAllocation(address,string,uint256,uint256)": {
-					"params": {
-						"_address": "The address which will receive the tokens in the future date.",
-						"_amount": "The total amount of tokens being vested over the period of vesting duration.",
-						"_memberName": "The name of the candidate for which this vesting schedule allocation is being created for.",
-						"_releaseOn": "The date on which the first vesting schedule becomes available for withdrawal."
-					},
-					"returns": {
-						"_0": "Returns true if the vesting schedule allocation was successfully created."
-					}
-				},
-				"decreaseAllocation(address,uint256)": {
-					"params": {
-						"_address": "The address of the beneficiary whose allocation is being requested to be decreased.",
-						"_lessAmount": "The amount in vesting coin to be decreased from the existing allocation."
-					},
-					"returns": {
-						"_0": "Returns true if the vesting schedule allocation was successfully decreased."
-					}
-				},
-				"deleteAllocation(address)": {
-					"params": {
-						"_address": "The address of the beneficiary whose allocation is being requested to be deleted."
-					},
-					"returns": {
-						"_0": "Returns true if the vesting schedule allocation was successfully deleted."
-					}
-				},
-				"extendAllocation(address,uint256)": {
-					"params": {
-						"_address": "The address of the beneficiary who allocation is being requested to be extended.",
-						"_newReleaseDate": "A new release date to extend the allocation to."
-					},
-					"returns": {
-						"_0": "Returns true if the vesting schedule allocation was successfully extended."
+						"_vestingCoin": "The ERC20 contract of the coin being vested."
 					}
 				},
 				"fund()": {
@@ -860,22 +361,9 @@
 						"_0": "Returns true if the funding was successful."
 					}
 				},
-				"getAmountInVesting()": {
-					"returns": {
-						"_0": "Returns Total vested balance."
-					}
-				},
 				"getAvailableFunds()": {
 					"returns": {
 						"_0": "Returns the closing balance of vesting coin held by this contract."
-					}
-				},
-				"getDrawingPower(address)": {
-					"params": {
-						"_address": "The address to check the drawing power of."
-					},
-					"returns": {
-						"_0": "Returns the amount in vesting coin that can be withdrawn."
 					}
 				},
 				"getMerkleRoot(uint256)": {
@@ -884,15 +372,6 @@
 					},
 					"returns": {
 						"_0": "Returns Total vested balance."
-					}
-				},
-				"increaseAllocation(address,uint256)": {
-					"params": {
-						"_additionalAmount": "The additional amount in vesting coin to be addeded to the existing allocation.",
-						"_address": "The address of the beneficiary whose allocation is being requested to be increased."
-					},
-					"returns": {
-						"_0": "Returns true if the vesting schedule allocation was successfully increased."
 					}
 				},
 				"owner()": {
@@ -935,50 +414,20 @@
 				"constructor": {
 					"notice": "Constructs this contract"
 				},
-				"createAllocation(address,string,uint256,uint256)": {
-					"notice": "Creates a vesting schedule allocation for a new beneficiary. A beneficiary could mean founders, employees, or advisors. Please note that this action can only be performed by an administrator."
-				},
-				"decreaseAllocation(address,uint256)": {
-					"notice": "Decreases the total allocation of the specified vesting schedule. Please note that this action can only be performed by an administrator."
-				},
-				"deleteAllocation(address)": {
-					"notice": "Deletes the specified vesting schedule allocation. Please note that this action can only be performed by an administrator."
-				},
-				"earliestWithdrawalDate()": {
-					"notice": "The earliest date on which the vested tokens can be redeemed."
-				},
-				"extendAllocation(address,uint256)": {
-					"notice": "Extends the release date of the specified vesting schedule allocation. Please note that this action can only be performed by an administrator."
-				},
 				"fund()": {
 					"notice": "Enables this vesting contract to receive the ERC20 (vesting coin). Before calling this function please approve your desired amount of the coin for this smart contract address. Please note that this action is restricted to administrators only."
 				},
-				"getAmountInVesting()": {
-					"notice": "The vesting Balance."
-				},
 				"getAvailableFunds()": {
-					"notice": "The Vesting Token balance of this smart contract. "
-				},
-				"getDrawingPower(address)": {
-					"notice": "Gets the drawing power of the beneficiary."
+					"notice": "The Vesting Token balance of this smart contract."
 				},
 				"getMerkleRoot(uint256)": {
 					"notice": "Gets the markle tree of each vesting Rounds."
-				},
-				"increaseAllocation(address,uint256)": {
-					"notice": "Increases the total allocation of the specified vesting schedule. Please note that this action can only be performed by an administrator."
-				},
-				"minimumVestingPeriod()": {
-					"notice": "The minimum period of vesting."
 				},
 				"removeFunds(uint256)": {
 					"notice": "Allows you to withdraw the surplus balance of the vesting coin from this contract. Please note that this action is restricted to administrators only and you may only withdraw amounts above the sum total allocation balances."
 				},
 				"setMerkleRoot(bytes32)": {
-					"notice": "This action enables admin to set newMarkelRoot.    "
-				},
-				"totalVested()": {
-					"notice": "The sum total amount of tokens vested for all allocations."
+					"notice": "This action enables admin to set newMarkelRoot."
 				},
 				"totalWithdrawn()": {
 					"notice": "The sum total amount of tokens withdrawn from all allocations."
@@ -986,17 +435,8 @@
 				"vestingCoin()": {
 					"notice": "The ERC20 contract of the coin being vested."
 				},
-				"vestingStartedOn()": {
-					"notice": "The date on which the vesting was started. "
-				},
 				"withdraw(uint256,bytes32[],uint256)": {
-					"notice": "This action enables the beneficiaries to withdraw a desired amount from this contract.    "
-				},
-				"withdrawalCap()": {
-					"notice": "Maximum amount of tokens that can be withdrawn for the specified frequency. Zero means that there's no cap;"
-				},
-				"withdrawalFrequency()": {
-					"notice": "The frequency of token withdrawals. If the withdrawalCap is zero, this variable is ignored."
+					"notice": "This action enables the beneficiaries to withdraw a desired amount from this contract."
 				}
 			},
 			"version": 1
@@ -1083,19 +523,11 @@
 			]
 		},
 		"contracts/Vesting/VestingBase.sol": {
-			"keccak256": "0xaa6cd7dede98282a46b45cbaa2dbbbd89aed5003eb0f0ec02761703c446c2d3d",
+			"keccak256": "0x57ffe72f1a0c3ecbf282ed39c241d7601531a213537894314d8f1f71a7e0ba9d",
 			"license": "AGPL-3.0",
 			"urls": [
-				"bzz-raw://5ca0878601264445f3fdff897e32e5e4ae679a7de2f8fb029207eac771463ddd",
-				"dweb:/ipfs/QmS7xkvcD8bCBRaGppGH2sj14auquFXJQPLUDqzNc9AzMp"
-			]
-		},
-		"contracts/libraries/frequencyHelper.sol": {
-			"keccak256": "0xf9b2dab80918f037ad048caa2dc17496e3005900692f0bd4757bbd8c4f61971a",
-			"license": "AGPL-3.0",
-			"urls": [
-				"bzz-raw://5525ceda7f83818c1c8867dacc9144b11129a5e33b74666fa2f1c4709da01f2e",
-				"dweb:/ipfs/QmWptnTmph7TFrfSK3oU9zB3Tj9QfzLzUPfcDttKsMad7b"
+				"bzz-raw://b6e75a836eba9a1374bc1a8a7f5806faf1a9297e3c4eb3bd82631953add6d8e0",
+				"dweb:/ipfs/QmNiEYyX83L9NCnWjNH8FfoiTfWUz41Ahi2zvNyVQ9p8Tp"
 			]
 		}
 	},

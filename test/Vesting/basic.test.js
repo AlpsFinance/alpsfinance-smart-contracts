@@ -1,41 +1,24 @@
-const Vesting = artifacts.require('./VestingBase.sol');
-const BigNumber = require('bignumber.js');
-const ether = require('../../utils/ether').ether;
-const increaseTime = require('../../utils/increaseTime');
-const duration = increaseTime.duration;
-const MockToken = artifacts.require('./ERC20TokenMock.sol');
+const Vesting = artifacts.require("./VestingBase.sol");
+const BigNumber = require("bignumber.js");
+const increaseTime = require("../../utils/increaseTime");
+const MockToken = artifacts.require("./ERC20TokenMock.sol");
 
-require('chai')
-  .use(require('chai-as-promised'))
-  .use(require('chai-bignumber')(BigNumber))
+require("chai")
+  .use(require("chai-as-promised"))
+  .use(require("chai-bignumber")(BigNumber))
   .should();
 
-  
+contract("Vesting: Constructor", function (accounts) {
+  describe("Constructor", () => {
+    it("must construct properly with correct parameters.", async () => {
+      vestingCoinMock = await MockToken.new();
+      const vesting = await Vesting.new(vestingCoinMock.address);
 
-  contract('Vesting: Constructor', function(accounts) {
-    describe('Constructor', () => {
-      it('must construct properly with correct parameters.', async () => {
-        const minimumVestingPeriod = duration.days(181);
-        const withdrawalCap = ether("10000");//18 decimal places
-        const withdrawalFrequency = 1;//Weekly
-        vestingCoinMock = await MockToken.new();
-        
-        let vestingStartedOn;
-        let earliestWithdrawalDate;
+      ///The timestamp of contract deployment.
+      vestingStartedOn = (await vesting.vestingStartedOn()).toNumber();
+      earliestWithdrawalDate = vestingStartedOn + minimumVestingPeriod;
 
-   //
-
-        vesting = await Vesting.new(minimumVestingPeriod, withdrawalCap, vestingCoinMock.address, withdrawalFrequency );
-
-        ///The timestamp of contract deployment.
-        vestingStartedOn = (await vesting.vestingStartedOn()).toNumber();
-        earliestWithdrawalDate = vestingStartedOn + minimumVestingPeriod;
-
-        assert((await vesting.minimumVestingPeriod()).toNumber() == minimumVestingPeriod);
-        assert(await vesting.vestingCoin() == vestingCoinMock.address);
-    
-        assert((await vesting.withdrawalFrequency()).toNumber() == duration.days(7));
-        assert((await vesting.earliestWithdrawalDate()).toNumber() == earliestWithdrawalDate);
-      });
+      assert((await vesting.vestingCoin()) == vestingCoinMock.address);
     });
+  });
 });
