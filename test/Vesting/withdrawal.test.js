@@ -84,7 +84,7 @@ contract("Vesting: Withdrawal", function (accounts) {
 
           let round = parseInt("1");
 
-          await this.vesting.setMerkleRoot(merkleTree.getHexRoot());
+          await this.vesting.setMerkleRoot(merkleTree.getHexRoot(), round);
           //Check if the beneficiary can withdraw amount more than actually allocated.
           await this.vesting
             .withdraw(ether("20000000"), proof, round, { from: account })
@@ -128,7 +128,7 @@ contract("Vesting: Withdrawal", function (accounts) {
 
       let round = parseInt("1");
 
-      await this.vesting.setMerkleRoot(merkleTree.getHexRoot());
+      await this.vesting.setMerkleRoot(merkleTree.getHexRoot(), round);
 
       // #1 Successful Withdraw
       await this.vesting.withdraw(numTokens, proof, round, {

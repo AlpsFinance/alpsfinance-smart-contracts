@@ -107,14 +107,14 @@ contract VestingBase is Ownable, Pausable {
 
     ///@notice This action enables admin to set newMarkelRoot.
 
-    function setMerkleRoot(bytes32 _newMerkleRoot) external onlyOwner {
+    function setMerkleRoot(bytes32 _newMerkleRoot, uint _round) external onlyOwner {
         require(
             _newMerkleRoot != 0x00,
             "Vesting: Invalid new merkle root value!"
         );
 
-        Rounds = Rounds + 1;
-        RootToRounds[Rounds] = _newMerkleRoot;
+    
+        RootToRounds[_round] = _newMerkleRoot;
     }
 
     ///@notice This action enables the beneficiaries to withdraw a desired amount from this contract.
