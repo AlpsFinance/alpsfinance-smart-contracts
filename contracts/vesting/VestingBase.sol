@@ -26,8 +26,10 @@ contract VestingBase is Ownable, Pausable {
 
     uint256 public Rounds = 0;
 
-    mapping(address => bool) public vestingClaimed;
+
+     mapping(uint256 => mapping(address => bool))  vestingClaimed;
     mapping(uint256 => bytes32) private RootToRounds;
+   
 
     ///Events;
     event Funded(
@@ -125,7 +127,7 @@ contract VestingBase is Ownable, Pausable {
         uint256 _round
     ) external whenNotPaused returns (bool) {
         require(
-            !vestingClaimed[msg.sender],
+            !vestingClaimed[_round][msg.sender],
             "Vesting: Vesting has been claimed!"
         );
         bytes32 merkleRoot = RootToRounds[_round];
@@ -134,7 +136,7 @@ contract VestingBase is Ownable, Pausable {
         require(isValidLeaf, "Vesting: Address has no Vesting allocation!");
 
         // Set address to claimed
-        vestingClaimed[msg.sender] = true;
+        vestingClaimed[_round][msg.sender] = true;
         totalWithdrawn = totalWithdrawn.add(_amount);
 
         require(vestingCoin.transfer(msg.sender, _amount));
