@@ -1747,21 +1747,21 @@
     "absolutePath": "project:/contracts/account/AccountManager.sol",
     "exportedSymbols": {
       "AccountManager": [
-        7668
+        7664
       ],
       "HedgeFundAccount": [
-        7671
+        7667
       ],
       "MarginAccount": [
-        7674
+        7670
       ]
     },
-    "id": 7669,
+    "id": 7665,
     "license": "AGPL-3.0",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 7449,
+        "id": 7445,
         "literals": [
           "solidity",
           "^",
@@ -1774,11 +1774,11 @@
       {
         "absolutePath": "project:/contracts/account/MarginAccount.sol",
         "file": "./MarginAccount.sol",
-        "id": 7450,
+        "id": 7446,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 7669,
-        "sourceUnit": 7675,
+        "scope": 7665,
+        "sourceUnit": 7671,
         "src": "68:29:53",
         "symbolAliases": [],
         "unitAlias": ""
@@ -1786,11 +1786,11 @@
       {
         "absolutePath": "project:/contracts/account/HedgeFundAccount.sol",
         "file": "./HedgeFundAccount.sol",
-        "id": 7451,
+        "id": 7447,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 7669,
-        "sourceUnit": 7672,
+        "scope": 7665,
+        "sourceUnit": 7668,
         "src": "99:32:53",
         "symbolAliases": [],
         "unitAlias": ""
@@ -1800,20 +1800,20 @@
         "baseContracts": [],
         "canonicalName": "AccountManager",
         "contractDependencies": [
-          7671,
-          7674
+          7667,
+          7670
         ],
         "contractKind": "contract",
         "documentation": {
-          "id": 7452,
+          "id": 7448,
           "nodeType": "StructuredDocumentation",
           "src": "135:492:53",
           "text": " THIS IS THE `AccountManager` contract\n Description:\n This contract will function as a manager + factory for the account contracts.\n Some of the main functionality for the `AccountManager` contract will be to:\n - Create a new user account\n - Delete an existing user account\n - Managing access control to protect user's account\n Currently there are two types of account:\n - Margin Account (accountId = 0)\n - Hedge Fund Account (accountId = 1)"
         },
         "fullyImplemented": true,
-        "id": 7668,
+        "id": 7664,
         "linearizedBaseContracts": [
-          7668
+          7664
         ],
         "name": "AccountManager",
         "nameLocation": "638:14:53",
@@ -1822,18 +1822,18 @@
           {
             "constant": false,
             "documentation": {
-              "id": 7453,
+              "id": 7449,
               "nodeType": "StructuredDocumentation",
               "src": "660:275:53",
               "text": " ACCOUNT REGISTRIES\n The registry variables is used to store users account information in mapping type\n - first address is for user address, e.g. msg.sender\n - second address is for account address (type: margin or hedge fund)"
             },
             "functionSelector": "41596f08",
-            "id": 7457,
+            "id": 7453,
             "mutability": "mutable",
             "name": "marginAccountRegistry",
             "nameLocation": "976:21:53",
             "nodeType": "VariableDeclaration",
-            "scope": 7668,
+            "scope": 7664,
             "src": "941:56:53",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1842,9 +1842,9 @@
               "typeString": "mapping(address => address)"
             },
             "typeName": {
-              "id": 7456,
+              "id": 7452,
               "keyType": {
-                "id": 7454,
+                "id": 7450,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "949:7:53",
@@ -1860,7 +1860,7 @@
                 "typeString": "mapping(address => address)"
               },
               "valueType": {
-                "id": 7455,
+                "id": 7451,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "960:7:53",
@@ -1876,12 +1876,12 @@
           {
             "constant": false,
             "functionSelector": "c787c924",
-            "id": 7461,
+            "id": 7457,
             "mutability": "mutable",
             "name": "hedgeFundAccountRegistry",
             "nameLocation": "1039:24:53",
             "nodeType": "VariableDeclaration",
-            "scope": 7668,
+            "scope": 7664,
             "src": "1004:59:53",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1890,9 +1890,9 @@
               "typeString": "mapping(address => address)"
             },
             "typeName": {
-              "id": 7460,
+              "id": 7456,
               "keyType": {
-                "id": 7458,
+                "id": 7454,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "1012:7:53",
@@ -1908,7 +1908,7 @@
                 "typeString": "mapping(address => address)"
               },
               "valueType": {
-                "id": 7459,
+                "id": 7455,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "1023:7:53",
@@ -1923,7 +1923,7 @@
           },
           {
             "body": {
-              "id": 7480,
+              "id": 7476,
               "nodeType": "Block",
               "src": "1235:197:53",
               "statements": [
@@ -1935,7 +1935,7 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 7475,
+                        "id": 7471,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1943,11 +1943,11 @@
                         "leftExpression": {
                           "arguments": [
                             {
-                              "id": 7470,
+                              "id": 7466,
                               "name": "accountId",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 7464,
+                              "referencedDeclaration": 7460,
                               "src": "1290:9:53",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
@@ -1956,7 +1956,7 @@
                             },
                             {
                               "expression": {
-                                "id": 7471,
+                                "id": 7467,
                                 "name": "msg",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
@@ -1967,7 +1967,7 @@
                                   "typeString": "msg"
                                 }
                               },
-                              "id": 7472,
+                              "id": 7468,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -1992,18 +1992,18 @@
                                 "typeString": "address"
                               }
                             ],
-                            "id": 7469,
+                            "id": 7465,
                             "name": "getAccountAddressById",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 7557,
+                            "referencedDeclaration": 7553,
                             "src": "1268:21:53",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_internal_view$_t_uint256_$_t_address_$returns$_t_address_$",
                               "typeString": "function (uint256,address) view returns (address)"
                             }
                           },
-                          "id": 7473,
+                          "id": 7469,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -2021,11 +2021,11 @@
                         "nodeType": "BinaryOperation",
                         "operator": "==",
                         "rightExpression": {
-                          "id": 7474,
+                          "id": 7470,
                           "name": "accountAddress",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 7466,
+                          "referencedDeclaration": 7462,
                           "src": "1316:14:53",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -2040,7 +2040,7 @@
                       },
                       {
                         "hexValue": "596f7520617265206e6f7420746865206163636f756e74206f776e6572206f662074686973206163636f756e74206164647265737321",
-                        "id": 7476,
+                        "id": 7472,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -2066,7 +2066,7 @@
                           "typeString": "literal_string \"You are not the account owner of this account address!\""
                         }
                       ],
-                      "id": 7468,
+                      "id": 7464,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -2080,7 +2080,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 7477,
+                    "id": 7473,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2095,39 +2095,39 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 7478,
+                  "id": 7474,
                   "nodeType": "ExpressionStatement",
                   "src": "1246:166:53"
                 },
                 {
-                  "id": 7479,
+                  "id": 7475,
                   "nodeType": "PlaceholderStatement",
                   "src": "1423:1:53"
                 }
               ]
             },
             "documentation": {
-              "id": 7462,
+              "id": 7458,
               "nodeType": "StructuredDocumentation",
               "src": "1072:88:53",
               "text": " Check whether `msg.sender` is the account owner of `accountAddress`"
             },
-            "id": 7481,
+            "id": 7477,
             "name": "onlyAccountOwner",
             "nameLocation": "1175:16:53",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 7467,
+              "id": 7463,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7464,
+                  "id": 7460,
                   "mutability": "mutable",
                   "name": "accountId",
                   "nameLocation": "1200:9:53",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7481,
+                  "scope": 7477,
                   "src": "1192:17:53",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2136,7 +2136,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7463,
+                    "id": 7459,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1192:7:53",
@@ -2149,12 +2149,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 7466,
+                  "id": 7462,
                   "mutability": "mutable",
                   "name": "accountAddress",
                   "nameLocation": "1219:14:53",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7481,
+                  "scope": 7477,
                   "src": "1211:22:53",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2163,7 +2163,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7465,
+                    "id": 7461,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1211:7:53",
@@ -2184,17 +2184,17 @@
           },
           {
             "body": {
-              "id": 7521,
+              "id": 7517,
               "nodeType": "Block",
               "src": "1594:421:53",
               "statements": [
                 {
                   "condition": {
-                    "id": 7488,
+                    "id": 7484,
                     "name": "isExist",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 7486,
+                    "referencedDeclaration": 7482,
                     "src": "1609:7:53",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
@@ -2202,7 +2202,7 @@
                     }
                   },
                   "falseBody": {
-                    "id": 7518,
+                    "id": 7514,
                     "nodeType": "Block",
                     "src": "1810:186:53",
                     "statements": [
@@ -2214,7 +2214,7 @@
                                 "typeIdentifier": "t_address",
                                 "typeString": "address"
                               },
-                              "id": 7514,
+                              "id": 7510,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -2222,11 +2222,11 @@
                               "leftExpression": {
                                 "arguments": [
                                   {
-                                    "id": 7506,
+                                    "id": 7502,
                                     "name": "accountId",
                                     "nodeType": "Identifier",
                                     "overloadedDeclarations": [],
-                                    "referencedDeclaration": 7484,
+                                    "referencedDeclaration": 7480,
                                     "src": "1873:9:53",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_uint256",
@@ -2235,7 +2235,7 @@
                                   },
                                   {
                                     "expression": {
-                                      "id": 7507,
+                                      "id": 7503,
                                       "name": "msg",
                                       "nodeType": "Identifier",
                                       "overloadedDeclarations": [],
@@ -2246,7 +2246,7 @@
                                         "typeString": "msg"
                                       }
                                     },
-                                    "id": 7508,
+                                    "id": 7504,
                                     "isConstant": false,
                                     "isLValue": false,
                                     "isPure": false,
@@ -2271,18 +2271,18 @@
                                       "typeString": "address"
                                     }
                                   ],
-                                  "id": 7505,
+                                  "id": 7501,
                                   "name": "getAccountAddressById",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 7557,
+                                  "referencedDeclaration": 7553,
                                   "src": "1851:21:53",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_function_internal_view$_t_uint256_$_t_address_$returns$_t_address_$",
                                     "typeString": "function (uint256,address) view returns (address)"
                                   }
                                 },
-                                "id": 7509,
+                                "id": 7505,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": false,
@@ -2303,7 +2303,7 @@
                                 "arguments": [
                                   {
                                     "hexValue": "30",
-                                    "id": 7512,
+                                    "id": 7508,
                                     "isConstant": false,
                                     "isLValue": false,
                                     "isPure": true,
@@ -2325,7 +2325,7 @@
                                       "typeString": "int_const 0"
                                     }
                                   ],
-                                  "id": 7511,
+                                  "id": 7507,
                                   "isConstant": false,
                                   "isLValue": false,
                                   "isPure": true,
@@ -2337,14 +2337,14 @@
                                     "typeString": "type(address)"
                                   },
                                   "typeName": {
-                                    "id": 7510,
+                                    "id": 7506,
                                     "name": "address",
                                     "nodeType": "ElementaryTypeName",
                                     "src": "1899:7:53",
                                     "typeDescriptions": {}
                                   }
                                 },
-                                "id": 7513,
+                                "id": 7509,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -2367,7 +2367,7 @@
                             },
                             {
                               "hexValue": "416e206578697374696e67206163636f756e7420666f756e6420666f7220746865207573657221",
-                              "id": 7515,
+                              "id": 7511,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
@@ -2393,7 +2393,7 @@
                                 "typeString": "literal_string \"An existing account found for the user!\""
                               }
                             ],
-                            "id": 7504,
+                            "id": 7500,
                             "name": "require",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [
@@ -2407,7 +2407,7 @@
                               "typeString": "function (bool,string memory) pure"
                             }
                           },
-                          "id": 7516,
+                          "id": 7512,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -2422,17 +2422,17 @@
                             "typeString": "tuple()"
                           }
                         },
-                        "id": 7517,
+                        "id": 7513,
                         "nodeType": "ExpressionStatement",
                         "src": "1825:159:53"
                       }
                     ]
                   },
-                  "id": 7519,
+                  "id": 7515,
                   "nodeType": "IfStatement",
                   "src": "1605:391:53",
                   "trueBody": {
-                    "id": 7503,
+                    "id": 7499,
                     "nodeType": "Block",
                     "src": "1618:186:53",
                     "statements": [
@@ -2444,7 +2444,7 @@
                                 "typeIdentifier": "t_address",
                                 "typeString": "address"
                               },
-                              "id": 7499,
+                              "id": 7495,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -2452,11 +2452,11 @@
                               "leftExpression": {
                                 "arguments": [
                                   {
-                                    "id": 7491,
+                                    "id": 7487,
                                     "name": "accountId",
                                     "nodeType": "Identifier",
                                     "overloadedDeclarations": [],
-                                    "referencedDeclaration": 7484,
+                                    "referencedDeclaration": 7480,
                                     "src": "1681:9:53",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_uint256",
@@ -2465,7 +2465,7 @@
                                   },
                                   {
                                     "expression": {
-                                      "id": 7492,
+                                      "id": 7488,
                                       "name": "msg",
                                       "nodeType": "Identifier",
                                       "overloadedDeclarations": [],
@@ -2476,7 +2476,7 @@
                                         "typeString": "msg"
                                       }
                                     },
-                                    "id": 7493,
+                                    "id": 7489,
                                     "isConstant": false,
                                     "isLValue": false,
                                     "isPure": false,
@@ -2501,18 +2501,18 @@
                                       "typeString": "address"
                                     }
                                   ],
-                                  "id": 7490,
+                                  "id": 7486,
                                   "name": "getAccountAddressById",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 7557,
+                                  "referencedDeclaration": 7553,
                                   "src": "1659:21:53",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_function_internal_view$_t_uint256_$_t_address_$returns$_t_address_$",
                                     "typeString": "function (uint256,address) view returns (address)"
                                   }
                                 },
-                                "id": 7494,
+                                "id": 7490,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": false,
@@ -2533,7 +2533,7 @@
                                 "arguments": [
                                   {
                                     "hexValue": "30",
-                                    "id": 7497,
+                                    "id": 7493,
                                     "isConstant": false,
                                     "isLValue": false,
                                     "isPure": true,
@@ -2555,7 +2555,7 @@
                                       "typeString": "int_const 0"
                                     }
                                   ],
-                                  "id": 7496,
+                                  "id": 7492,
                                   "isConstant": false,
                                   "isLValue": false,
                                   "isPure": true,
@@ -2567,14 +2567,14 @@
                                     "typeString": "type(address)"
                                   },
                                   "typeName": {
-                                    "id": 7495,
+                                    "id": 7491,
                                     "name": "address",
                                     "nodeType": "ElementaryTypeName",
                                     "src": "1707:7:53",
                                     "typeDescriptions": {}
                                   }
                                 },
-                                "id": 7498,
+                                "id": 7494,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -2597,7 +2597,7 @@
                             },
                             {
                               "hexValue": "4e6f206578697374696e67206163636f756e7420666f756e6420666f7220746865207573657221",
-                              "id": 7500,
+                              "id": 7496,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
@@ -2623,7 +2623,7 @@
                                 "typeString": "literal_string \"No existing account found for the user!\""
                               }
                             ],
-                            "id": 7489,
+                            "id": 7485,
                             "name": "require",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [
@@ -2637,7 +2637,7 @@
                               "typeString": "function (bool,string memory) pure"
                             }
                           },
-                          "id": 7501,
+                          "id": 7497,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -2652,7 +2652,7 @@
                             "typeString": "tuple()"
                           }
                         },
-                        "id": 7502,
+                        "id": 7498,
                         "nodeType": "ExpressionStatement",
                         "src": "1633:159:53"
                       }
@@ -2660,34 +2660,34 @@
                   }
                 },
                 {
-                  "id": 7520,
+                  "id": 7516,
                   "nodeType": "PlaceholderStatement",
                   "src": "2006:1:53"
                 }
               ]
             },
             "documentation": {
-              "id": 7482,
+              "id": 7478,
               "nodeType": "StructuredDocumentation",
               "src": "1440:89:53",
               "text": " To check whether the user has an existing account based on `isExist`"
             },
-            "id": 7522,
+            "id": 7518,
             "name": "onlyAccountExist",
             "nameLocation": "1544:16:53",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 7487,
+              "id": 7483,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7484,
+                  "id": 7480,
                   "mutability": "mutable",
                   "name": "accountId",
                   "nameLocation": "1569:9:53",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7522,
+                  "scope": 7518,
                   "src": "1561:17:53",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2696,7 +2696,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7483,
+                    "id": 7479,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1561:7:53",
@@ -2709,12 +2709,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 7486,
+                  "id": 7482,
                   "mutability": "mutable",
                   "name": "isExist",
                   "nameLocation": "1585:7:53",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7522,
+                  "scope": 7518,
                   "src": "1580:12:53",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2723,7 +2723,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 7485,
+                    "id": 7481,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1580:4:53",
@@ -2743,7 +2743,7 @@
           },
           {
             "body": {
-              "id": 7556,
+              "id": 7552,
               "nodeType": "Block",
               "src": "2217:249:53",
               "statements": [
@@ -2753,17 +2753,17 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 7534,
+                    "id": 7530,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 7532,
+                      "id": 7528,
                       "name": "accountId",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7525,
+                      "referencedDeclaration": 7521,
                       "src": "2232:9:53",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -2774,7 +2774,7 @@
                     "operator": "==",
                     "rightExpression": {
                       "hexValue": "30",
-                      "id": 7533,
+                      "id": 7529,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -2800,17 +2800,17 @@
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       },
-                      "id": 7542,
+                      "id": 7538,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "leftExpression": {
-                        "id": 7540,
+                        "id": 7536,
                         "name": "accountId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7525,
+                        "referencedDeclaration": 7521,
                         "src": "2324:9:53",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -2821,7 +2821,7 @@
                       "operator": "==",
                       "rightExpression": {
                         "hexValue": "31",
-                        "id": 7541,
+                        "id": 7537,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -2842,7 +2842,7 @@
                       }
                     },
                     "falseBody": {
-                      "id": 7553,
+                      "id": 7549,
                       "nodeType": "Block",
                       "src": "2415:44:53",
                       "statements": [
@@ -2851,7 +2851,7 @@
                             "arguments": [
                               {
                                 "hexValue": "30",
-                                "id": 7550,
+                                "id": 7546,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -2873,7 +2873,7 @@
                                   "typeString": "int_const 0"
                                 }
                               ],
-                              "id": 7549,
+                              "id": 7545,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
@@ -2885,14 +2885,14 @@
                                 "typeString": "type(address)"
                               },
                               "typeName": {
-                                "id": 7548,
+                                "id": 7544,
                                 "name": "address",
                                 "nodeType": "ElementaryTypeName",
                                 "src": "2437:7:53",
                                 "typeDescriptions": {}
                               }
                             },
-                            "id": 7551,
+                            "id": 7547,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -2907,42 +2907,42 @@
                               "typeString": "address"
                             }
                           },
-                          "functionReturnParameters": 7531,
-                          "id": 7552,
+                          "functionReturnParameters": 7527,
+                          "id": 7548,
                           "nodeType": "Return",
                           "src": "2430:17:53"
                         }
                       ]
                     },
-                    "id": 7554,
+                    "id": 7550,
                     "nodeType": "IfStatement",
                     "src": "2320:139:53",
                     "trueBody": {
-                      "id": 7547,
+                      "id": 7543,
                       "nodeType": "Block",
                       "src": "2340:69:53",
                       "statements": [
                         {
                           "expression": {
                             "baseExpression": {
-                              "id": 7543,
+                              "id": 7539,
                               "name": "hedgeFundAccountRegistry",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 7461,
+                              "referencedDeclaration": 7457,
                               "src": "2362:24:53",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_mapping$_t_address_$_t_address_$",
                                 "typeString": "mapping(address => address)"
                               }
                             },
-                            "id": 7545,
+                            "id": 7541,
                             "indexExpression": {
-                              "id": 7544,
+                              "id": 7540,
                               "name": "msgSender",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 7527,
+                              "referencedDeclaration": 7523,
                               "src": "2387:9:53",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_address",
@@ -2960,43 +2960,43 @@
                               "typeString": "address"
                             }
                           },
-                          "functionReturnParameters": 7531,
-                          "id": 7546,
+                          "functionReturnParameters": 7527,
+                          "id": 7542,
                           "nodeType": "Return",
                           "src": "2355:42:53"
                         }
                       ]
                     }
                   },
-                  "id": 7555,
+                  "id": 7551,
                   "nodeType": "IfStatement",
                   "src": "2228:231:53",
                   "trueBody": {
-                    "id": 7539,
+                    "id": 7535,
                     "nodeType": "Block",
                     "src": "2248:66:53",
                     "statements": [
                       {
                         "expression": {
                           "baseExpression": {
-                            "id": 7535,
+                            "id": 7531,
                             "name": "marginAccountRegistry",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 7457,
+                            "referencedDeclaration": 7453,
                             "src": "2270:21:53",
                             "typeDescriptions": {
                               "typeIdentifier": "t_mapping$_t_address_$_t_address_$",
                               "typeString": "mapping(address => address)"
                             }
                           },
-                          "id": 7537,
+                          "id": 7533,
                           "indexExpression": {
-                            "id": 7536,
+                            "id": 7532,
                             "name": "msgSender",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 7527,
+                            "referencedDeclaration": 7523,
                             "src": "2292:9:53",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
@@ -3014,8 +3014,8 @@
                             "typeString": "address"
                           }
                         },
-                        "functionReturnParameters": 7531,
-                        "id": 7538,
+                        "functionReturnParameters": 7527,
+                        "id": 7534,
                         "nodeType": "Return",
                         "src": "2263:39:53"
                       }
@@ -3025,12 +3025,12 @@
               ]
             },
             "documentation": {
-              "id": 7523,
+              "id": 7519,
               "nodeType": "StructuredDocumentation",
               "src": "2023:55:53",
               "text": " Get Account address by `accountId`"
             },
-            "id": 7557,
+            "id": 7553,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -3038,17 +3038,17 @@
             "nameLocation": "2093:21:53",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7528,
+              "id": 7524,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7525,
+                  "id": 7521,
                   "mutability": "mutable",
                   "name": "accountId",
                   "nameLocation": "2123:9:53",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7557,
+                  "scope": 7553,
                   "src": "2115:17:53",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3057,7 +3057,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7524,
+                    "id": 7520,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "2115:7:53",
@@ -3070,12 +3070,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 7527,
+                  "id": 7523,
                   "mutability": "mutable",
                   "name": "msgSender",
                   "nameLocation": "2142:9:53",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7557,
+                  "scope": 7553,
                   "src": "2134:17:53",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3084,7 +3084,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7526,
+                    "id": 7522,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "2134:7:53",
@@ -3100,17 +3100,17 @@
               "src": "2114:38:53"
             },
             "returnParameters": {
-              "id": 7531,
+              "id": 7527,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7530,
+                  "id": 7526,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7557,
+                  "scope": 7553,
                   "src": "2203:7:53",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3119,7 +3119,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7529,
+                    "id": 7525,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "2203:7:53",
@@ -3134,7 +3134,7 @@
               ],
               "src": "2202:9:53"
             },
-            "scope": 7668,
+            "scope": 7664,
             "src": "2084:382:53",
             "stateMutability": "view",
             "virtual": false,
@@ -3142,7 +3142,7 @@
           },
           {
             "body": {
-              "id": 7618,
+              "id": 7614,
               "nodeType": "Block",
               "src": "2667:460:53",
               "statements": [
@@ -3152,17 +3152,17 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 7569,
+                    "id": 7565,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 7567,
+                      "id": 7563,
                       "name": "accountId",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7560,
+                      "referencedDeclaration": 7556,
                       "src": "2682:9:53",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -3173,7 +3173,7 @@
                     "operator": "==",
                     "rightExpression": {
                       "hexValue": "30",
-                      "id": 7568,
+                      "id": 7564,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -3199,17 +3199,17 @@
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       },
-                      "id": 7591,
+                      "id": 7587,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "leftExpression": {
-                        "id": 7589,
+                        "id": 7585,
                         "name": "accountId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7560,
+                        "referencedDeclaration": 7556,
                         "src": "2863:9:53",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -3220,7 +3220,7 @@
                       "operator": "==",
                       "rightExpression": {
                         "hexValue": "31",
-                        "id": 7590,
+                        "id": 7586,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -3241,7 +3241,7 @@
                       }
                     },
                     "falseBody": {
-                      "id": 7615,
+                      "id": 7611,
                       "nodeType": "Block",
                       "src": "3055:65:53",
                       "statements": [
@@ -3250,7 +3250,7 @@
                             "arguments": [
                               {
                                 "hexValue": "4e6f7420612076616c6964206163636f756e74496420676976656e21",
-                                "id": 7612,
+                                "id": 7608,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -3272,7 +3272,7 @@
                                   "typeString": "literal_string \"Not a valid accountId given!\""
                                 }
                               ],
-                              "id": 7611,
+                              "id": 7607,
                               "name": "revert",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [
@@ -3286,7 +3286,7 @@
                                 "typeString": "function (string memory) pure"
                               }
                             },
-                            "id": 7613,
+                            "id": 7609,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -3301,66 +3301,66 @@
                               "typeString": "tuple()"
                             }
                           },
-                          "id": 7614,
+                          "id": 7610,
                           "nodeType": "ExpressionStatement",
                           "src": "3070:38:53"
                         }
                       ]
                     },
-                    "id": 7616,
+                    "id": 7612,
                     "nodeType": "IfStatement",
                     "src": "2859:261:53",
                     "trueBody": {
-                      "id": 7610,
+                      "id": 7606,
                       "nodeType": "Block",
                       "src": "2879:170:53",
                       "statements": [
                         {
                           "assignments": [
-                            7594
+                            7590
                           ],
                           "declarations": [
                             {
                               "constant": false,
-                              "id": 7594,
+                              "id": 7590,
                               "mutability": "mutable",
                               "name": "newHedgeFundAccount",
                               "nameLocation": "2911:19:53",
                               "nodeType": "VariableDeclaration",
-                              "scope": 7610,
+                              "scope": 7606,
                               "src": "2894:36:53",
                               "stateVariable": false,
                               "storageLocation": "default",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_HedgeFundAccount_$7671",
+                                "typeIdentifier": "t_contract$_HedgeFundAccount_$7667",
                                 "typeString": "contract HedgeFundAccount"
                               },
                               "typeName": {
-                                "id": 7593,
+                                "id": 7589,
                                 "nodeType": "UserDefinedTypeName",
                                 "pathNode": {
-                                  "id": 7592,
+                                  "id": 7588,
                                   "name": "HedgeFundAccount",
                                   "nodeType": "IdentifierPath",
-                                  "referencedDeclaration": 7671,
+                                  "referencedDeclaration": 7667,
                                   "src": "2894:16:53"
                                 },
-                                "referencedDeclaration": 7671,
+                                "referencedDeclaration": 7667,
                                 "src": "2894:16:53",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_contract$_HedgeFundAccount_$7671",
+                                  "typeIdentifier": "t_contract$_HedgeFundAccount_$7667",
                                   "typeString": "contract HedgeFundAccount"
                                 }
                               },
                               "visibility": "internal"
                             }
                           ],
-                          "id": 7599,
+                          "id": 7595,
                           "initialValue": {
                             "arguments": [],
                             "expression": {
                               "argumentTypes": [],
-                              "id": 7597,
+                              "id": 7593,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -3368,28 +3368,28 @@
                               "nodeType": "NewExpression",
                               "src": "2933:20:53",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_function_creation_nonpayable$__$returns$_t_contract$_HedgeFundAccount_$7671_$",
+                                "typeIdentifier": "t_function_creation_nonpayable$__$returns$_t_contract$_HedgeFundAccount_$7667_$",
                                 "typeString": "function () returns (contract HedgeFundAccount)"
                               },
                               "typeName": {
-                                "id": 7596,
+                                "id": 7592,
                                 "nodeType": "UserDefinedTypeName",
                                 "pathNode": {
-                                  "id": 7595,
+                                  "id": 7591,
                                   "name": "HedgeFundAccount",
                                   "nodeType": "IdentifierPath",
-                                  "referencedDeclaration": 7671,
+                                  "referencedDeclaration": 7667,
                                   "src": "2937:16:53"
                                 },
-                                "referencedDeclaration": 7671,
+                                "referencedDeclaration": 7667,
                                 "src": "2937:16:53",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_contract$_HedgeFundAccount_$7671",
+                                  "typeIdentifier": "t_contract$_HedgeFundAccount_$7667",
                                   "typeString": "contract HedgeFundAccount"
                                 }
                               }
                             },
-                            "id": 7598,
+                            "id": 7594,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -3400,7 +3400,7 @@
                             "src": "2933:22:53",
                             "tryCall": false,
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_HedgeFundAccount_$7671",
+                              "typeIdentifier": "t_contract$_HedgeFundAccount_$7667",
                               "typeString": "contract HedgeFundAccount"
                             }
                           },
@@ -3409,28 +3409,28 @@
                         },
                         {
                           "expression": {
-                            "id": 7608,
+                            "id": 7604,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
                             "lValueRequested": false,
                             "leftHandSide": {
                               "baseExpression": {
-                                "id": 7600,
+                                "id": 7596,
                                 "name": "hedgeFundAccountRegistry",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 7461,
+                                "referencedDeclaration": 7457,
                                 "src": "2970:24:53",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_mapping$_t_address_$_t_address_$",
                                   "typeString": "mapping(address => address)"
                                 }
                               },
-                              "id": 7603,
+                              "id": 7599,
                               "indexExpression": {
                                 "expression": {
-                                  "id": 7601,
+                                  "id": 7597,
                                   "name": "msg",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
@@ -3441,7 +3441,7 @@
                                     "typeString": "msg"
                                   }
                                 },
-                                "id": 7602,
+                                "id": 7598,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": false,
@@ -3470,14 +3470,14 @@
                             "rightHandSide": {
                               "arguments": [
                                 {
-                                  "id": 7606,
+                                  "id": 7602,
                                   "name": "newHedgeFundAccount",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 7594,
+                                  "referencedDeclaration": 7590,
                                   "src": "3017:19:53",
                                   "typeDescriptions": {
-                                    "typeIdentifier": "t_contract$_HedgeFundAccount_$7671",
+                                    "typeIdentifier": "t_contract$_HedgeFundAccount_$7667",
                                     "typeString": "contract HedgeFundAccount"
                                   }
                                 }
@@ -3485,11 +3485,11 @@
                               "expression": {
                                 "argumentTypes": [
                                   {
-                                    "typeIdentifier": "t_contract$_HedgeFundAccount_$7671",
+                                    "typeIdentifier": "t_contract$_HedgeFundAccount_$7667",
                                     "typeString": "contract HedgeFundAccount"
                                   }
                                 ],
-                                "id": 7605,
+                                "id": 7601,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -3501,14 +3501,14 @@
                                   "typeString": "type(address)"
                                 },
                                 "typeName": {
-                                  "id": 7604,
+                                  "id": 7600,
                                   "name": "address",
                                   "nodeType": "ElementaryTypeName",
                                   "src": "3009:7:53",
                                   "typeDescriptions": {}
                                 }
                               },
-                              "id": 7607,
+                              "id": 7603,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -3529,67 +3529,67 @@
                               "typeString": "address"
                             }
                           },
-                          "id": 7609,
+                          "id": 7605,
                           "nodeType": "ExpressionStatement",
                           "src": "2970:67:53"
                         }
                       ]
                     }
                   },
-                  "id": 7617,
+                  "id": 7613,
                   "nodeType": "IfStatement",
                   "src": "2678:442:53",
                   "trueBody": {
-                    "id": 7588,
+                    "id": 7584,
                     "nodeType": "Block",
                     "src": "2698:155:53",
                     "statements": [
                       {
                         "assignments": [
-                          7572
+                          7568
                         ],
                         "declarations": [
                           {
                             "constant": false,
-                            "id": 7572,
+                            "id": 7568,
                             "mutability": "mutable",
                             "name": "newMarginAccount",
                             "nameLocation": "2727:16:53",
                             "nodeType": "VariableDeclaration",
-                            "scope": 7588,
+                            "scope": 7584,
                             "src": "2713:30:53",
                             "stateVariable": false,
                             "storageLocation": "default",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_MarginAccount_$7674",
+                              "typeIdentifier": "t_contract$_MarginAccount_$7670",
                               "typeString": "contract MarginAccount"
                             },
                             "typeName": {
-                              "id": 7571,
+                              "id": 7567,
                               "nodeType": "UserDefinedTypeName",
                               "pathNode": {
-                                "id": 7570,
+                                "id": 7566,
                                 "name": "MarginAccount",
                                 "nodeType": "IdentifierPath",
-                                "referencedDeclaration": 7674,
+                                "referencedDeclaration": 7670,
                                 "src": "2713:13:53"
                               },
-                              "referencedDeclaration": 7674,
+                              "referencedDeclaration": 7670,
                               "src": "2713:13:53",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_MarginAccount_$7674",
+                                "typeIdentifier": "t_contract$_MarginAccount_$7670",
                                 "typeString": "contract MarginAccount"
                               }
                             },
                             "visibility": "internal"
                           }
                         ],
-                        "id": 7577,
+                        "id": 7573,
                         "initialValue": {
                           "arguments": [],
                           "expression": {
                             "argumentTypes": [],
-                            "id": 7575,
+                            "id": 7571,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -3597,28 +3597,28 @@
                             "nodeType": "NewExpression",
                             "src": "2746:17:53",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_function_creation_nonpayable$__$returns$_t_contract$_MarginAccount_$7674_$",
+                              "typeIdentifier": "t_function_creation_nonpayable$__$returns$_t_contract$_MarginAccount_$7670_$",
                               "typeString": "function () returns (contract MarginAccount)"
                             },
                             "typeName": {
-                              "id": 7574,
+                              "id": 7570,
                               "nodeType": "UserDefinedTypeName",
                               "pathNode": {
-                                "id": 7573,
+                                "id": 7569,
                                 "name": "MarginAccount",
                                 "nodeType": "IdentifierPath",
-                                "referencedDeclaration": 7674,
+                                "referencedDeclaration": 7670,
                                 "src": "2750:13:53"
                               },
-                              "referencedDeclaration": 7674,
+                              "referencedDeclaration": 7670,
                               "src": "2750:13:53",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_MarginAccount_$7674",
+                                "typeIdentifier": "t_contract$_MarginAccount_$7670",
                                 "typeString": "contract MarginAccount"
                               }
                             }
                           },
-                          "id": 7576,
+                          "id": 7572,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -3629,7 +3629,7 @@
                           "src": "2746:19:53",
                           "tryCall": false,
                           "typeDescriptions": {
-                            "typeIdentifier": "t_contract$_MarginAccount_$7674",
+                            "typeIdentifier": "t_contract$_MarginAccount_$7670",
                             "typeString": "contract MarginAccount"
                           }
                         },
@@ -3638,28 +3638,28 @@
                       },
                       {
                         "expression": {
-                          "id": 7586,
+                          "id": 7582,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
                           "leftHandSide": {
                             "baseExpression": {
-                              "id": 7578,
+                              "id": 7574,
                               "name": "marginAccountRegistry",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 7457,
+                              "referencedDeclaration": 7453,
                               "src": "2780:21:53",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_mapping$_t_address_$_t_address_$",
                                 "typeString": "mapping(address => address)"
                               }
                             },
-                            "id": 7581,
+                            "id": 7577,
                             "indexExpression": {
                               "expression": {
-                                "id": 7579,
+                                "id": 7575,
                                 "name": "msg",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
@@ -3670,7 +3670,7 @@
                                   "typeString": "msg"
                                 }
                               },
-                              "id": 7580,
+                              "id": 7576,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -3699,14 +3699,14 @@
                           "rightHandSide": {
                             "arguments": [
                               {
-                                "id": 7584,
+                                "id": 7580,
                                 "name": "newMarginAccount",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 7572,
+                                "referencedDeclaration": 7568,
                                 "src": "2824:16:53",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_contract$_MarginAccount_$7674",
+                                  "typeIdentifier": "t_contract$_MarginAccount_$7670",
                                   "typeString": "contract MarginAccount"
                                 }
                               }
@@ -3714,11 +3714,11 @@
                             "expression": {
                               "argumentTypes": [
                                 {
-                                  "typeIdentifier": "t_contract$_MarginAccount_$7674",
+                                  "typeIdentifier": "t_contract$_MarginAccount_$7670",
                                   "typeString": "contract MarginAccount"
                                 }
                               ],
-                              "id": 7583,
+                              "id": 7579,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
@@ -3730,14 +3730,14 @@
                                 "typeString": "type(address)"
                               },
                               "typeName": {
-                                "id": 7582,
+                                "id": 7578,
                                 "name": "address",
                                 "nodeType": "ElementaryTypeName",
                                 "src": "2816:7:53",
                                 "typeDescriptions": {}
                               }
                             },
-                            "id": 7585,
+                            "id": 7581,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -3758,7 +3758,7 @@
                             "typeString": "address"
                           }
                         },
-                        "id": 7587,
+                        "id": 7583,
                         "nodeType": "ExpressionStatement",
                         "src": "2780:61:53"
                       }
@@ -3768,24 +3768,24 @@
               ]
             },
             "documentation": {
-              "id": 7558,
+              "id": 7554,
               "nodeType": "StructuredDocumentation",
               "src": "2474:75:53",
               "text": " Create new user account with type based on `accountId`"
             },
             "functionSelector": "85a237a9",
-            "id": 7619,
+            "id": 7615,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": [
                   {
-                    "id": 7563,
+                    "id": 7559,
                     "name": "accountId",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 7560,
+                    "referencedDeclaration": 7556,
                     "src": "2644:9:53",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
@@ -3794,7 +3794,7 @@
                   },
                   {
                     "hexValue": "66616c7365",
-                    "id": 7564,
+                    "id": 7560,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -3809,13 +3809,13 @@
                     "value": "false"
                   }
                 ],
-                "id": 7565,
+                "id": 7561,
                 "kind": "modifierInvocation",
                 "modifierName": {
-                  "id": 7562,
+                  "id": 7558,
                   "name": "onlyAccountExist",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 7522,
+                  "referencedDeclaration": 7518,
                   "src": "2627:16:53"
                 },
                 "nodeType": "ModifierInvocation",
@@ -3826,17 +3826,17 @@
             "nameLocation": "2564:16:53",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7561,
+              "id": 7557,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7560,
+                  "id": 7556,
                   "mutability": "mutable",
                   "name": "accountId",
                   "nameLocation": "2589:9:53",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7619,
+                  "scope": 7615,
                   "src": "2581:17:53",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3845,7 +3845,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7559,
+                    "id": 7555,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "2581:7:53",
@@ -3860,12 +3860,12 @@
               "src": "2580:19:53"
             },
             "returnParameters": {
-              "id": 7566,
+              "id": 7562,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "2667:0:53"
             },
-            "scope": 7668,
+            "scope": 7664,
             "src": "2555:572:53",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -3873,7 +3873,7 @@
           },
           {
             "body": {
-              "id": 7666,
+              "id": 7662,
               "nodeType": "Block",
               "src": "3396:221:53",
               "statements": [
@@ -3883,17 +3883,17 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 7637,
+                    "id": 7633,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 7635,
+                      "id": 7631,
                       "name": "accountId",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7622,
+                      "referencedDeclaration": 7618,
                       "src": "3411:9:53",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -3904,7 +3904,7 @@
                     "operator": "==",
                     "rightExpression": {
                       "hexValue": "30",
-                      "id": 7636,
+                      "id": 7632,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -3930,17 +3930,17 @@
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       },
-                      "id": 7651,
+                      "id": 7647,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "leftExpression": {
-                        "id": 7649,
+                        "id": 7645,
                         "name": "accountId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7622,
+                        "referencedDeclaration": 7618,
                         "src": "3510:9:53",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -3951,7 +3951,7 @@
                       "operator": "==",
                       "rightExpression": {
                         "hexValue": "31",
-                        "id": 7650,
+                        "id": 7646,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -3972,43 +3972,43 @@
                       }
                     },
                     "falseBody": {
-                      "id": 7663,
+                      "id": 7659,
                       "nodeType": "Block",
                       "src": "3608:2:53",
                       "statements": []
                     },
-                    "id": 7664,
+                    "id": 7660,
                     "nodeType": "IfStatement",
                     "src": "3506:104:53",
                     "trueBody": {
-                      "id": 7662,
+                      "id": 7658,
                       "nodeType": "Block",
                       "src": "3526:76:53",
                       "statements": [
                         {
                           "expression": {
-                            "id": 7660,
+                            "id": 7656,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
                             "lValueRequested": false,
                             "leftHandSide": {
                               "baseExpression": {
-                                "id": 7652,
+                                "id": 7648,
                                 "name": "hedgeFundAccountRegistry",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 7461,
+                                "referencedDeclaration": 7457,
                                 "src": "3541:24:53",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_mapping$_t_address_$_t_address_$",
                                   "typeString": "mapping(address => address)"
                                 }
                               },
-                              "id": 7655,
+                              "id": 7651,
                               "indexExpression": {
                                 "expression": {
-                                  "id": 7653,
+                                  "id": 7649,
                                   "name": "msg",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
@@ -4019,7 +4019,7 @@
                                     "typeString": "msg"
                                   }
                                 },
-                                "id": 7654,
+                                "id": 7650,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": false,
@@ -4049,7 +4049,7 @@
                               "arguments": [
                                 {
                                   "hexValue": "30",
-                                  "id": 7658,
+                                  "id": 7654,
                                   "isConstant": false,
                                   "isLValue": false,
                                   "isPure": true,
@@ -4071,7 +4071,7 @@
                                     "typeString": "int_const 0"
                                   }
                                 ],
-                                "id": 7657,
+                                "id": 7653,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -4083,14 +4083,14 @@
                                   "typeString": "type(address)"
                                 },
                                 "typeName": {
-                                  "id": 7656,
+                                  "id": 7652,
                                   "name": "address",
                                   "nodeType": "ElementaryTypeName",
                                   "src": "3580:7:53",
                                   "typeDescriptions": {}
                                 }
                               },
-                              "id": 7659,
+                              "id": 7655,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
@@ -4111,45 +4111,45 @@
                               "typeString": "address"
                             }
                           },
-                          "id": 7661,
+                          "id": 7657,
                           "nodeType": "ExpressionStatement",
                           "src": "3541:49:53"
                         }
                       ]
                     }
                   },
-                  "id": 7665,
+                  "id": 7661,
                   "nodeType": "IfStatement",
                   "src": "3407:203:53",
                   "trueBody": {
-                    "id": 7648,
+                    "id": 7644,
                     "nodeType": "Block",
                     "src": "3427:73:53",
                     "statements": [
                       {
                         "expression": {
-                          "id": 7646,
+                          "id": 7642,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
                           "leftHandSide": {
                             "baseExpression": {
-                              "id": 7638,
+                              "id": 7634,
                               "name": "marginAccountRegistry",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 7457,
+                              "referencedDeclaration": 7453,
                               "src": "3442:21:53",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_mapping$_t_address_$_t_address_$",
                                 "typeString": "mapping(address => address)"
                               }
                             },
-                            "id": 7641,
+                            "id": 7637,
                             "indexExpression": {
                               "expression": {
-                                "id": 7639,
+                                "id": 7635,
                                 "name": "msg",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
@@ -4160,7 +4160,7 @@
                                   "typeString": "msg"
                                 }
                               },
-                              "id": 7640,
+                              "id": 7636,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -4190,7 +4190,7 @@
                             "arguments": [
                               {
                                 "hexValue": "30",
-                                "id": 7644,
+                                "id": 7640,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -4212,7 +4212,7 @@
                                   "typeString": "int_const 0"
                                 }
                               ],
-                              "id": 7643,
+                              "id": 7639,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
@@ -4224,14 +4224,14 @@
                                 "typeString": "type(address)"
                               },
                               "typeName": {
-                                "id": 7642,
+                                "id": 7638,
                                 "name": "address",
                                 "nodeType": "ElementaryTypeName",
                                 "src": "3478:7:53",
                                 "typeDescriptions": {}
                               }
                             },
-                            "id": 7645,
+                            "id": 7641,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -4252,7 +4252,7 @@
                             "typeString": "address"
                           }
                         },
-                        "id": 7647,
+                        "id": 7643,
                         "nodeType": "ExpressionStatement",
                         "src": "3442:46:53"
                       }
@@ -4262,24 +4262,24 @@
               ]
             },
             "documentation": {
-              "id": 7620,
+              "id": 7616,
               "nodeType": "StructuredDocumentation",
               "src": "3135:72:53",
               "text": " Delete an existing user account of `accountAddress`"
             },
             "functionSelector": "a7a368fe",
-            "id": 7667,
+            "id": 7663,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": [
                   {
-                    "id": 7627,
+                    "id": 7623,
                     "name": "accountId",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 7622,
+                    "referencedDeclaration": 7618,
                     "src": "3321:9:53",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
@@ -4288,7 +4288,7 @@
                   },
                   {
                     "hexValue": "74727565",
-                    "id": 7628,
+                    "id": 7624,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -4303,13 +4303,13 @@
                     "value": "true"
                   }
                 ],
-                "id": 7629,
+                "id": 7625,
                 "kind": "modifierInvocation",
                 "modifierName": {
-                  "id": 7626,
+                  "id": 7622,
                   "name": "onlyAccountExist",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 7522,
+                  "referencedDeclaration": 7518,
                   "src": "3304:16:53"
                 },
                 "nodeType": "ModifierInvocation",
@@ -4318,11 +4318,11 @@
               {
                 "arguments": [
                   {
-                    "id": 7631,
+                    "id": 7627,
                     "name": "accountId",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 7622,
+                    "referencedDeclaration": 7618,
                     "src": "3364:9:53",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
@@ -4330,11 +4330,11 @@
                     }
                   },
                   {
-                    "id": 7632,
+                    "id": 7628,
                     "name": "accountAddress",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 7624,
+                    "referencedDeclaration": 7620,
                     "src": "3375:14:53",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -4342,13 +4342,13 @@
                     }
                   }
                 ],
-                "id": 7633,
+                "id": 7629,
                 "kind": "modifierInvocation",
                 "modifierName": {
-                  "id": 7630,
+                  "id": 7626,
                   "name": "onlyAccountOwner",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 7481,
+                  "referencedDeclaration": 7477,
                   "src": "3347:16:53"
                 },
                 "nodeType": "ModifierInvocation",
@@ -4359,17 +4359,17 @@
             "nameLocation": "3222:13:53",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7625,
+              "id": 7621,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7622,
+                  "id": 7618,
                   "mutability": "mutable",
                   "name": "accountId",
                   "nameLocation": "3244:9:53",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7667,
+                  "scope": 7663,
                   "src": "3236:17:53",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4378,7 +4378,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7621,
+                    "id": 7617,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "3236:7:53",
@@ -4391,12 +4391,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 7624,
+                  "id": 7620,
                   "mutability": "mutable",
                   "name": "accountAddress",
                   "nameLocation": "3263:14:53",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7667,
+                  "scope": 7663,
                   "src": "3255:22:53",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4405,7 +4405,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7623,
+                    "id": 7619,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "3255:7:53",
@@ -4421,19 +4421,19 @@
               "src": "3235:43:53"
             },
             "returnParameters": {
-              "id": 7634,
+              "id": 7630,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "3396:0:53"
             },
-            "scope": 7668,
+            "scope": 7664,
             "src": "3213:404:53",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 7669,
+        "scope": 7665,
         "src": "629:2991:53",
         "usedErrors": []
       }
@@ -4444,21 +4444,21 @@
     "absolutePath": "project:/contracts/account/AccountManager.sol",
     "exportedSymbols": {
       "AccountManager": [
-        7668
+        7664
       ],
       "HedgeFundAccount": [
-        7671
+        7667
       ],
       "MarginAccount": [
-        7674
+        7670
       ]
     },
-    "id": 7669,
+    "id": 7665,
     "license": "AGPL-3.0",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 7449,
+        "id": 7445,
         "literals": [
           "solidity",
           "^",
@@ -4471,11 +4471,11 @@
       {
         "absolutePath": "project:/contracts/account/MarginAccount.sol",
         "file": "./MarginAccount.sol",
-        "id": 7450,
+        "id": 7446,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 7669,
-        "sourceUnit": 7675,
+        "scope": 7665,
+        "sourceUnit": 7671,
         "src": "68:29:53",
         "symbolAliases": [],
         "unitAlias": ""
@@ -4483,11 +4483,11 @@
       {
         "absolutePath": "project:/contracts/account/HedgeFundAccount.sol",
         "file": "./HedgeFundAccount.sol",
-        "id": 7451,
+        "id": 7447,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 7669,
-        "sourceUnit": 7672,
+        "scope": 7665,
+        "sourceUnit": 7668,
         "src": "99:32:53",
         "symbolAliases": [],
         "unitAlias": ""
@@ -4497,20 +4497,20 @@
         "baseContracts": [],
         "canonicalName": "AccountManager",
         "contractDependencies": [
-          7671,
-          7674
+          7667,
+          7670
         ],
         "contractKind": "contract",
         "documentation": {
-          "id": 7452,
+          "id": 7448,
           "nodeType": "StructuredDocumentation",
           "src": "135:492:53",
           "text": " THIS IS THE `AccountManager` contract\n Description:\n This contract will function as a manager + factory for the account contracts.\n Some of the main functionality for the `AccountManager` contract will be to:\n - Create a new user account\n - Delete an existing user account\n - Managing access control to protect user's account\n Currently there are two types of account:\n - Margin Account (accountId = 0)\n - Hedge Fund Account (accountId = 1)"
         },
         "fullyImplemented": true,
-        "id": 7668,
+        "id": 7664,
         "linearizedBaseContracts": [
-          7668
+          7664
         ],
         "name": "AccountManager",
         "nameLocation": "638:14:53",
@@ -4519,18 +4519,18 @@
           {
             "constant": false,
             "documentation": {
-              "id": 7453,
+              "id": 7449,
               "nodeType": "StructuredDocumentation",
               "src": "660:275:53",
               "text": " ACCOUNT REGISTRIES\n The registry variables is used to store users account information in mapping type\n - first address is for user address, e.g. msg.sender\n - second address is for account address (type: margin or hedge fund)"
             },
             "functionSelector": "41596f08",
-            "id": 7457,
+            "id": 7453,
             "mutability": "mutable",
             "name": "marginAccountRegistry",
             "nameLocation": "976:21:53",
             "nodeType": "VariableDeclaration",
-            "scope": 7668,
+            "scope": 7664,
             "src": "941:56:53",
             "stateVariable": true,
             "storageLocation": "default",
@@ -4539,9 +4539,9 @@
               "typeString": "mapping(address => address)"
             },
             "typeName": {
-              "id": 7456,
+              "id": 7452,
               "keyType": {
-                "id": 7454,
+                "id": 7450,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "949:7:53",
@@ -4557,7 +4557,7 @@
                 "typeString": "mapping(address => address)"
               },
               "valueType": {
-                "id": 7455,
+                "id": 7451,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "960:7:53",
@@ -4573,12 +4573,12 @@
           {
             "constant": false,
             "functionSelector": "c787c924",
-            "id": 7461,
+            "id": 7457,
             "mutability": "mutable",
             "name": "hedgeFundAccountRegistry",
             "nameLocation": "1039:24:53",
             "nodeType": "VariableDeclaration",
-            "scope": 7668,
+            "scope": 7664,
             "src": "1004:59:53",
             "stateVariable": true,
             "storageLocation": "default",
@@ -4587,9 +4587,9 @@
               "typeString": "mapping(address => address)"
             },
             "typeName": {
-              "id": 7460,
+              "id": 7456,
               "keyType": {
-                "id": 7458,
+                "id": 7454,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "1012:7:53",
@@ -4605,7 +4605,7 @@
                 "typeString": "mapping(address => address)"
               },
               "valueType": {
-                "id": 7459,
+                "id": 7455,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "1023:7:53",
@@ -4620,7 +4620,7 @@
           },
           {
             "body": {
-              "id": 7480,
+              "id": 7476,
               "nodeType": "Block",
               "src": "1235:197:53",
               "statements": [
@@ -4632,7 +4632,7 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 7475,
+                        "id": 7471,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -4640,11 +4640,11 @@
                         "leftExpression": {
                           "arguments": [
                             {
-                              "id": 7470,
+                              "id": 7466,
                               "name": "accountId",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 7464,
+                              "referencedDeclaration": 7460,
                               "src": "1290:9:53",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
@@ -4653,7 +4653,7 @@
                             },
                             {
                               "expression": {
-                                "id": 7471,
+                                "id": 7467,
                                 "name": "msg",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
@@ -4664,7 +4664,7 @@
                                   "typeString": "msg"
                                 }
                               },
-                              "id": 7472,
+                              "id": 7468,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -4689,18 +4689,18 @@
                                 "typeString": "address"
                               }
                             ],
-                            "id": 7469,
+                            "id": 7465,
                             "name": "getAccountAddressById",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 7557,
+                            "referencedDeclaration": 7553,
                             "src": "1268:21:53",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_internal_view$_t_uint256_$_t_address_$returns$_t_address_$",
                               "typeString": "function (uint256,address) view returns (address)"
                             }
                           },
-                          "id": 7473,
+                          "id": 7469,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -4718,11 +4718,11 @@
                         "nodeType": "BinaryOperation",
                         "operator": "==",
                         "rightExpression": {
-                          "id": 7474,
+                          "id": 7470,
                           "name": "accountAddress",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 7466,
+                          "referencedDeclaration": 7462,
                           "src": "1316:14:53",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -4737,7 +4737,7 @@
                       },
                       {
                         "hexValue": "596f7520617265206e6f7420746865206163636f756e74206f776e6572206f662074686973206163636f756e74206164647265737321",
-                        "id": 7476,
+                        "id": 7472,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -4763,7 +4763,7 @@
                           "typeString": "literal_string \"You are not the account owner of this account address!\""
                         }
                       ],
-                      "id": 7468,
+                      "id": 7464,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -4777,7 +4777,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 7477,
+                    "id": 7473,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -4792,39 +4792,39 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 7478,
+                  "id": 7474,
                   "nodeType": "ExpressionStatement",
                   "src": "1246:166:53"
                 },
                 {
-                  "id": 7479,
+                  "id": 7475,
                   "nodeType": "PlaceholderStatement",
                   "src": "1423:1:53"
                 }
               ]
             },
             "documentation": {
-              "id": 7462,
+              "id": 7458,
               "nodeType": "StructuredDocumentation",
               "src": "1072:88:53",
               "text": " Check whether `msg.sender` is the account owner of `accountAddress`"
             },
-            "id": 7481,
+            "id": 7477,
             "name": "onlyAccountOwner",
             "nameLocation": "1175:16:53",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 7467,
+              "id": 7463,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7464,
+                  "id": 7460,
                   "mutability": "mutable",
                   "name": "accountId",
                   "nameLocation": "1200:9:53",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7481,
+                  "scope": 7477,
                   "src": "1192:17:53",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4833,7 +4833,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7463,
+                    "id": 7459,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1192:7:53",
@@ -4846,12 +4846,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 7466,
+                  "id": 7462,
                   "mutability": "mutable",
                   "name": "accountAddress",
                   "nameLocation": "1219:14:53",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7481,
+                  "scope": 7477,
                   "src": "1211:22:53",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4860,7 +4860,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7465,
+                    "id": 7461,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1211:7:53",
@@ -4881,17 +4881,17 @@
           },
           {
             "body": {
-              "id": 7521,
+              "id": 7517,
               "nodeType": "Block",
               "src": "1594:421:53",
               "statements": [
                 {
                   "condition": {
-                    "id": 7488,
+                    "id": 7484,
                     "name": "isExist",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 7486,
+                    "referencedDeclaration": 7482,
                     "src": "1609:7:53",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
@@ -4899,7 +4899,7 @@
                     }
                   },
                   "falseBody": {
-                    "id": 7518,
+                    "id": 7514,
                     "nodeType": "Block",
                     "src": "1810:186:53",
                     "statements": [
@@ -4911,7 +4911,7 @@
                                 "typeIdentifier": "t_address",
                                 "typeString": "address"
                               },
-                              "id": 7514,
+                              "id": 7510,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -4919,11 +4919,11 @@
                               "leftExpression": {
                                 "arguments": [
                                   {
-                                    "id": 7506,
+                                    "id": 7502,
                                     "name": "accountId",
                                     "nodeType": "Identifier",
                                     "overloadedDeclarations": [],
-                                    "referencedDeclaration": 7484,
+                                    "referencedDeclaration": 7480,
                                     "src": "1873:9:53",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_uint256",
@@ -4932,7 +4932,7 @@
                                   },
                                   {
                                     "expression": {
-                                      "id": 7507,
+                                      "id": 7503,
                                       "name": "msg",
                                       "nodeType": "Identifier",
                                       "overloadedDeclarations": [],
@@ -4943,7 +4943,7 @@
                                         "typeString": "msg"
                                       }
                                     },
-                                    "id": 7508,
+                                    "id": 7504,
                                     "isConstant": false,
                                     "isLValue": false,
                                     "isPure": false,
@@ -4968,18 +4968,18 @@
                                       "typeString": "address"
                                     }
                                   ],
-                                  "id": 7505,
+                                  "id": 7501,
                                   "name": "getAccountAddressById",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 7557,
+                                  "referencedDeclaration": 7553,
                                   "src": "1851:21:53",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_function_internal_view$_t_uint256_$_t_address_$returns$_t_address_$",
                                     "typeString": "function (uint256,address) view returns (address)"
                                   }
                                 },
-                                "id": 7509,
+                                "id": 7505,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": false,
@@ -5000,7 +5000,7 @@
                                 "arguments": [
                                   {
                                     "hexValue": "30",
-                                    "id": 7512,
+                                    "id": 7508,
                                     "isConstant": false,
                                     "isLValue": false,
                                     "isPure": true,
@@ -5022,7 +5022,7 @@
                                       "typeString": "int_const 0"
                                     }
                                   ],
-                                  "id": 7511,
+                                  "id": 7507,
                                   "isConstant": false,
                                   "isLValue": false,
                                   "isPure": true,
@@ -5034,14 +5034,14 @@
                                     "typeString": "type(address)"
                                   },
                                   "typeName": {
-                                    "id": 7510,
+                                    "id": 7506,
                                     "name": "address",
                                     "nodeType": "ElementaryTypeName",
                                     "src": "1899:7:53",
                                     "typeDescriptions": {}
                                   }
                                 },
-                                "id": 7513,
+                                "id": 7509,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -5064,7 +5064,7 @@
                             },
                             {
                               "hexValue": "416e206578697374696e67206163636f756e7420666f756e6420666f7220746865207573657221",
-                              "id": 7515,
+                              "id": 7511,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
@@ -5090,7 +5090,7 @@
                                 "typeString": "literal_string \"An existing account found for the user!\""
                               }
                             ],
-                            "id": 7504,
+                            "id": 7500,
                             "name": "require",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [
@@ -5104,7 +5104,7 @@
                               "typeString": "function (bool,string memory) pure"
                             }
                           },
-                          "id": 7516,
+                          "id": 7512,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -5119,17 +5119,17 @@
                             "typeString": "tuple()"
                           }
                         },
-                        "id": 7517,
+                        "id": 7513,
                         "nodeType": "ExpressionStatement",
                         "src": "1825:159:53"
                       }
                     ]
                   },
-                  "id": 7519,
+                  "id": 7515,
                   "nodeType": "IfStatement",
                   "src": "1605:391:53",
                   "trueBody": {
-                    "id": 7503,
+                    "id": 7499,
                     "nodeType": "Block",
                     "src": "1618:186:53",
                     "statements": [
@@ -5141,7 +5141,7 @@
                                 "typeIdentifier": "t_address",
                                 "typeString": "address"
                               },
-                              "id": 7499,
+                              "id": 7495,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -5149,11 +5149,11 @@
                               "leftExpression": {
                                 "arguments": [
                                   {
-                                    "id": 7491,
+                                    "id": 7487,
                                     "name": "accountId",
                                     "nodeType": "Identifier",
                                     "overloadedDeclarations": [],
-                                    "referencedDeclaration": 7484,
+                                    "referencedDeclaration": 7480,
                                     "src": "1681:9:53",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_uint256",
@@ -5162,7 +5162,7 @@
                                   },
                                   {
                                     "expression": {
-                                      "id": 7492,
+                                      "id": 7488,
                                       "name": "msg",
                                       "nodeType": "Identifier",
                                       "overloadedDeclarations": [],
@@ -5173,7 +5173,7 @@
                                         "typeString": "msg"
                                       }
                                     },
-                                    "id": 7493,
+                                    "id": 7489,
                                     "isConstant": false,
                                     "isLValue": false,
                                     "isPure": false,
@@ -5198,18 +5198,18 @@
                                       "typeString": "address"
                                     }
                                   ],
-                                  "id": 7490,
+                                  "id": 7486,
                                   "name": "getAccountAddressById",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 7557,
+                                  "referencedDeclaration": 7553,
                                   "src": "1659:21:53",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_function_internal_view$_t_uint256_$_t_address_$returns$_t_address_$",
                                     "typeString": "function (uint256,address) view returns (address)"
                                   }
                                 },
-                                "id": 7494,
+                                "id": 7490,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": false,
@@ -5230,7 +5230,7 @@
                                 "arguments": [
                                   {
                                     "hexValue": "30",
-                                    "id": 7497,
+                                    "id": 7493,
                                     "isConstant": false,
                                     "isLValue": false,
                                     "isPure": true,
@@ -5252,7 +5252,7 @@
                                       "typeString": "int_const 0"
                                     }
                                   ],
-                                  "id": 7496,
+                                  "id": 7492,
                                   "isConstant": false,
                                   "isLValue": false,
                                   "isPure": true,
@@ -5264,14 +5264,14 @@
                                     "typeString": "type(address)"
                                   },
                                   "typeName": {
-                                    "id": 7495,
+                                    "id": 7491,
                                     "name": "address",
                                     "nodeType": "ElementaryTypeName",
                                     "src": "1707:7:53",
                                     "typeDescriptions": {}
                                   }
                                 },
-                                "id": 7498,
+                                "id": 7494,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -5294,7 +5294,7 @@
                             },
                             {
                               "hexValue": "4e6f206578697374696e67206163636f756e7420666f756e6420666f7220746865207573657221",
-                              "id": 7500,
+                              "id": 7496,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
@@ -5320,7 +5320,7 @@
                                 "typeString": "literal_string \"No existing account found for the user!\""
                               }
                             ],
-                            "id": 7489,
+                            "id": 7485,
                             "name": "require",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [
@@ -5334,7 +5334,7 @@
                               "typeString": "function (bool,string memory) pure"
                             }
                           },
-                          "id": 7501,
+                          "id": 7497,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -5349,7 +5349,7 @@
                             "typeString": "tuple()"
                           }
                         },
-                        "id": 7502,
+                        "id": 7498,
                         "nodeType": "ExpressionStatement",
                         "src": "1633:159:53"
                       }
@@ -5357,34 +5357,34 @@
                   }
                 },
                 {
-                  "id": 7520,
+                  "id": 7516,
                   "nodeType": "PlaceholderStatement",
                   "src": "2006:1:53"
                 }
               ]
             },
             "documentation": {
-              "id": 7482,
+              "id": 7478,
               "nodeType": "StructuredDocumentation",
               "src": "1440:89:53",
               "text": " To check whether the user has an existing account based on `isExist`"
             },
-            "id": 7522,
+            "id": 7518,
             "name": "onlyAccountExist",
             "nameLocation": "1544:16:53",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 7487,
+              "id": 7483,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7484,
+                  "id": 7480,
                   "mutability": "mutable",
                   "name": "accountId",
                   "nameLocation": "1569:9:53",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7522,
+                  "scope": 7518,
                   "src": "1561:17:53",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5393,7 +5393,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7483,
+                    "id": 7479,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1561:7:53",
@@ -5406,12 +5406,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 7486,
+                  "id": 7482,
                   "mutability": "mutable",
                   "name": "isExist",
                   "nameLocation": "1585:7:53",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7522,
+                  "scope": 7518,
                   "src": "1580:12:53",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5420,7 +5420,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 7485,
+                    "id": 7481,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1580:4:53",
@@ -5440,7 +5440,7 @@
           },
           {
             "body": {
-              "id": 7556,
+              "id": 7552,
               "nodeType": "Block",
               "src": "2217:249:53",
               "statements": [
@@ -5450,17 +5450,17 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 7534,
+                    "id": 7530,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 7532,
+                      "id": 7528,
                       "name": "accountId",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7525,
+                      "referencedDeclaration": 7521,
                       "src": "2232:9:53",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -5471,7 +5471,7 @@
                     "operator": "==",
                     "rightExpression": {
                       "hexValue": "30",
-                      "id": 7533,
+                      "id": 7529,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -5497,17 +5497,17 @@
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       },
-                      "id": 7542,
+                      "id": 7538,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "leftExpression": {
-                        "id": 7540,
+                        "id": 7536,
                         "name": "accountId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7525,
+                        "referencedDeclaration": 7521,
                         "src": "2324:9:53",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -5518,7 +5518,7 @@
                       "operator": "==",
                       "rightExpression": {
                         "hexValue": "31",
-                        "id": 7541,
+                        "id": 7537,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -5539,7 +5539,7 @@
                       }
                     },
                     "falseBody": {
-                      "id": 7553,
+                      "id": 7549,
                       "nodeType": "Block",
                       "src": "2415:44:53",
                       "statements": [
@@ -5548,7 +5548,7 @@
                             "arguments": [
                               {
                                 "hexValue": "30",
-                                "id": 7550,
+                                "id": 7546,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -5570,7 +5570,7 @@
                                   "typeString": "int_const 0"
                                 }
                               ],
-                              "id": 7549,
+                              "id": 7545,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
@@ -5582,14 +5582,14 @@
                                 "typeString": "type(address)"
                               },
                               "typeName": {
-                                "id": 7548,
+                                "id": 7544,
                                 "name": "address",
                                 "nodeType": "ElementaryTypeName",
                                 "src": "2437:7:53",
                                 "typeDescriptions": {}
                               }
                             },
-                            "id": 7551,
+                            "id": 7547,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -5604,42 +5604,42 @@
                               "typeString": "address"
                             }
                           },
-                          "functionReturnParameters": 7531,
-                          "id": 7552,
+                          "functionReturnParameters": 7527,
+                          "id": 7548,
                           "nodeType": "Return",
                           "src": "2430:17:53"
                         }
                       ]
                     },
-                    "id": 7554,
+                    "id": 7550,
                     "nodeType": "IfStatement",
                     "src": "2320:139:53",
                     "trueBody": {
-                      "id": 7547,
+                      "id": 7543,
                       "nodeType": "Block",
                       "src": "2340:69:53",
                       "statements": [
                         {
                           "expression": {
                             "baseExpression": {
-                              "id": 7543,
+                              "id": 7539,
                               "name": "hedgeFundAccountRegistry",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 7461,
+                              "referencedDeclaration": 7457,
                               "src": "2362:24:53",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_mapping$_t_address_$_t_address_$",
                                 "typeString": "mapping(address => address)"
                               }
                             },
-                            "id": 7545,
+                            "id": 7541,
                             "indexExpression": {
-                              "id": 7544,
+                              "id": 7540,
                               "name": "msgSender",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 7527,
+                              "referencedDeclaration": 7523,
                               "src": "2387:9:53",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_address",
@@ -5657,43 +5657,43 @@
                               "typeString": "address"
                             }
                           },
-                          "functionReturnParameters": 7531,
-                          "id": 7546,
+                          "functionReturnParameters": 7527,
+                          "id": 7542,
                           "nodeType": "Return",
                           "src": "2355:42:53"
                         }
                       ]
                     }
                   },
-                  "id": 7555,
+                  "id": 7551,
                   "nodeType": "IfStatement",
                   "src": "2228:231:53",
                   "trueBody": {
-                    "id": 7539,
+                    "id": 7535,
                     "nodeType": "Block",
                     "src": "2248:66:53",
                     "statements": [
                       {
                         "expression": {
                           "baseExpression": {
-                            "id": 7535,
+                            "id": 7531,
                             "name": "marginAccountRegistry",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 7457,
+                            "referencedDeclaration": 7453,
                             "src": "2270:21:53",
                             "typeDescriptions": {
                               "typeIdentifier": "t_mapping$_t_address_$_t_address_$",
                               "typeString": "mapping(address => address)"
                             }
                           },
-                          "id": 7537,
+                          "id": 7533,
                           "indexExpression": {
-                            "id": 7536,
+                            "id": 7532,
                             "name": "msgSender",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 7527,
+                            "referencedDeclaration": 7523,
                             "src": "2292:9:53",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
@@ -5711,8 +5711,8 @@
                             "typeString": "address"
                           }
                         },
-                        "functionReturnParameters": 7531,
-                        "id": 7538,
+                        "functionReturnParameters": 7527,
+                        "id": 7534,
                         "nodeType": "Return",
                         "src": "2263:39:53"
                       }
@@ -5722,12 +5722,12 @@
               ]
             },
             "documentation": {
-              "id": 7523,
+              "id": 7519,
               "nodeType": "StructuredDocumentation",
               "src": "2023:55:53",
               "text": " Get Account address by `accountId`"
             },
-            "id": 7557,
+            "id": 7553,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -5735,17 +5735,17 @@
             "nameLocation": "2093:21:53",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7528,
+              "id": 7524,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7525,
+                  "id": 7521,
                   "mutability": "mutable",
                   "name": "accountId",
                   "nameLocation": "2123:9:53",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7557,
+                  "scope": 7553,
                   "src": "2115:17:53",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5754,7 +5754,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7524,
+                    "id": 7520,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "2115:7:53",
@@ -5767,12 +5767,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 7527,
+                  "id": 7523,
                   "mutability": "mutable",
                   "name": "msgSender",
                   "nameLocation": "2142:9:53",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7557,
+                  "scope": 7553,
                   "src": "2134:17:53",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5781,7 +5781,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7526,
+                    "id": 7522,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "2134:7:53",
@@ -5797,17 +5797,17 @@
               "src": "2114:38:53"
             },
             "returnParameters": {
-              "id": 7531,
+              "id": 7527,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7530,
+                  "id": 7526,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7557,
+                  "scope": 7553,
                   "src": "2203:7:53",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5816,7 +5816,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7529,
+                    "id": 7525,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "2203:7:53",
@@ -5831,7 +5831,7 @@
               ],
               "src": "2202:9:53"
             },
-            "scope": 7668,
+            "scope": 7664,
             "src": "2084:382:53",
             "stateMutability": "view",
             "virtual": false,
@@ -5839,7 +5839,7 @@
           },
           {
             "body": {
-              "id": 7618,
+              "id": 7614,
               "nodeType": "Block",
               "src": "2667:460:53",
               "statements": [
@@ -5849,17 +5849,17 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 7569,
+                    "id": 7565,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 7567,
+                      "id": 7563,
                       "name": "accountId",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7560,
+                      "referencedDeclaration": 7556,
                       "src": "2682:9:53",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -5870,7 +5870,7 @@
                     "operator": "==",
                     "rightExpression": {
                       "hexValue": "30",
-                      "id": 7568,
+                      "id": 7564,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -5896,17 +5896,17 @@
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       },
-                      "id": 7591,
+                      "id": 7587,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "leftExpression": {
-                        "id": 7589,
+                        "id": 7585,
                         "name": "accountId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7560,
+                        "referencedDeclaration": 7556,
                         "src": "2863:9:53",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -5917,7 +5917,7 @@
                       "operator": "==",
                       "rightExpression": {
                         "hexValue": "31",
-                        "id": 7590,
+                        "id": 7586,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -5938,7 +5938,7 @@
                       }
                     },
                     "falseBody": {
-                      "id": 7615,
+                      "id": 7611,
                       "nodeType": "Block",
                       "src": "3055:65:53",
                       "statements": [
@@ -5947,7 +5947,7 @@
                             "arguments": [
                               {
                                 "hexValue": "4e6f7420612076616c6964206163636f756e74496420676976656e21",
-                                "id": 7612,
+                                "id": 7608,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -5969,7 +5969,7 @@
                                   "typeString": "literal_string \"Not a valid accountId given!\""
                                 }
                               ],
-                              "id": 7611,
+                              "id": 7607,
                               "name": "revert",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [
@@ -5983,7 +5983,7 @@
                                 "typeString": "function (string memory) pure"
                               }
                             },
-                            "id": 7613,
+                            "id": 7609,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -5998,66 +5998,66 @@
                               "typeString": "tuple()"
                             }
                           },
-                          "id": 7614,
+                          "id": 7610,
                           "nodeType": "ExpressionStatement",
                           "src": "3070:38:53"
                         }
                       ]
                     },
-                    "id": 7616,
+                    "id": 7612,
                     "nodeType": "IfStatement",
                     "src": "2859:261:53",
                     "trueBody": {
-                      "id": 7610,
+                      "id": 7606,
                       "nodeType": "Block",
                       "src": "2879:170:53",
                       "statements": [
                         {
                           "assignments": [
-                            7594
+                            7590
                           ],
                           "declarations": [
                             {
                               "constant": false,
-                              "id": 7594,
+                              "id": 7590,
                               "mutability": "mutable",
                               "name": "newHedgeFundAccount",
                               "nameLocation": "2911:19:53",
                               "nodeType": "VariableDeclaration",
-                              "scope": 7610,
+                              "scope": 7606,
                               "src": "2894:36:53",
                               "stateVariable": false,
                               "storageLocation": "default",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_HedgeFundAccount_$7671",
+                                "typeIdentifier": "t_contract$_HedgeFundAccount_$7667",
                                 "typeString": "contract HedgeFundAccount"
                               },
                               "typeName": {
-                                "id": 7593,
+                                "id": 7589,
                                 "nodeType": "UserDefinedTypeName",
                                 "pathNode": {
-                                  "id": 7592,
+                                  "id": 7588,
                                   "name": "HedgeFundAccount",
                                   "nodeType": "IdentifierPath",
-                                  "referencedDeclaration": 7671,
+                                  "referencedDeclaration": 7667,
                                   "src": "2894:16:53"
                                 },
-                                "referencedDeclaration": 7671,
+                                "referencedDeclaration": 7667,
                                 "src": "2894:16:53",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_contract$_HedgeFundAccount_$7671",
+                                  "typeIdentifier": "t_contract$_HedgeFundAccount_$7667",
                                   "typeString": "contract HedgeFundAccount"
                                 }
                               },
                               "visibility": "internal"
                             }
                           ],
-                          "id": 7599,
+                          "id": 7595,
                           "initialValue": {
                             "arguments": [],
                             "expression": {
                               "argumentTypes": [],
-                              "id": 7597,
+                              "id": 7593,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -6065,28 +6065,28 @@
                               "nodeType": "NewExpression",
                               "src": "2933:20:53",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_function_creation_nonpayable$__$returns$_t_contract$_HedgeFundAccount_$7671_$",
+                                "typeIdentifier": "t_function_creation_nonpayable$__$returns$_t_contract$_HedgeFundAccount_$7667_$",
                                 "typeString": "function () returns (contract HedgeFundAccount)"
                               },
                               "typeName": {
-                                "id": 7596,
+                                "id": 7592,
                                 "nodeType": "UserDefinedTypeName",
                                 "pathNode": {
-                                  "id": 7595,
+                                  "id": 7591,
                                   "name": "HedgeFundAccount",
                                   "nodeType": "IdentifierPath",
-                                  "referencedDeclaration": 7671,
+                                  "referencedDeclaration": 7667,
                                   "src": "2937:16:53"
                                 },
-                                "referencedDeclaration": 7671,
+                                "referencedDeclaration": 7667,
                                 "src": "2937:16:53",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_contract$_HedgeFundAccount_$7671",
+                                  "typeIdentifier": "t_contract$_HedgeFundAccount_$7667",
                                   "typeString": "contract HedgeFundAccount"
                                 }
                               }
                             },
-                            "id": 7598,
+                            "id": 7594,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -6097,7 +6097,7 @@
                             "src": "2933:22:53",
                             "tryCall": false,
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_HedgeFundAccount_$7671",
+                              "typeIdentifier": "t_contract$_HedgeFundAccount_$7667",
                               "typeString": "contract HedgeFundAccount"
                             }
                           },
@@ -6106,28 +6106,28 @@
                         },
                         {
                           "expression": {
-                            "id": 7608,
+                            "id": 7604,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
                             "lValueRequested": false,
                             "leftHandSide": {
                               "baseExpression": {
-                                "id": 7600,
+                                "id": 7596,
                                 "name": "hedgeFundAccountRegistry",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 7461,
+                                "referencedDeclaration": 7457,
                                 "src": "2970:24:53",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_mapping$_t_address_$_t_address_$",
                                   "typeString": "mapping(address => address)"
                                 }
                               },
-                              "id": 7603,
+                              "id": 7599,
                               "indexExpression": {
                                 "expression": {
-                                  "id": 7601,
+                                  "id": 7597,
                                   "name": "msg",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
@@ -6138,7 +6138,7 @@
                                     "typeString": "msg"
                                   }
                                 },
-                                "id": 7602,
+                                "id": 7598,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": false,
@@ -6167,14 +6167,14 @@
                             "rightHandSide": {
                               "arguments": [
                                 {
-                                  "id": 7606,
+                                  "id": 7602,
                                   "name": "newHedgeFundAccount",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 7594,
+                                  "referencedDeclaration": 7590,
                                   "src": "3017:19:53",
                                   "typeDescriptions": {
-                                    "typeIdentifier": "t_contract$_HedgeFundAccount_$7671",
+                                    "typeIdentifier": "t_contract$_HedgeFundAccount_$7667",
                                     "typeString": "contract HedgeFundAccount"
                                   }
                                 }
@@ -6182,11 +6182,11 @@
                               "expression": {
                                 "argumentTypes": [
                                   {
-                                    "typeIdentifier": "t_contract$_HedgeFundAccount_$7671",
+                                    "typeIdentifier": "t_contract$_HedgeFundAccount_$7667",
                                     "typeString": "contract HedgeFundAccount"
                                   }
                                 ],
-                                "id": 7605,
+                                "id": 7601,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -6198,14 +6198,14 @@
                                   "typeString": "type(address)"
                                 },
                                 "typeName": {
-                                  "id": 7604,
+                                  "id": 7600,
                                   "name": "address",
                                   "nodeType": "ElementaryTypeName",
                                   "src": "3009:7:53",
                                   "typeDescriptions": {}
                                 }
                               },
-                              "id": 7607,
+                              "id": 7603,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -6226,67 +6226,67 @@
                               "typeString": "address"
                             }
                           },
-                          "id": 7609,
+                          "id": 7605,
                           "nodeType": "ExpressionStatement",
                           "src": "2970:67:53"
                         }
                       ]
                     }
                   },
-                  "id": 7617,
+                  "id": 7613,
                   "nodeType": "IfStatement",
                   "src": "2678:442:53",
                   "trueBody": {
-                    "id": 7588,
+                    "id": 7584,
                     "nodeType": "Block",
                     "src": "2698:155:53",
                     "statements": [
                       {
                         "assignments": [
-                          7572
+                          7568
                         ],
                         "declarations": [
                           {
                             "constant": false,
-                            "id": 7572,
+                            "id": 7568,
                             "mutability": "mutable",
                             "name": "newMarginAccount",
                             "nameLocation": "2727:16:53",
                             "nodeType": "VariableDeclaration",
-                            "scope": 7588,
+                            "scope": 7584,
                             "src": "2713:30:53",
                             "stateVariable": false,
                             "storageLocation": "default",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_MarginAccount_$7674",
+                              "typeIdentifier": "t_contract$_MarginAccount_$7670",
                               "typeString": "contract MarginAccount"
                             },
                             "typeName": {
-                              "id": 7571,
+                              "id": 7567,
                               "nodeType": "UserDefinedTypeName",
                               "pathNode": {
-                                "id": 7570,
+                                "id": 7566,
                                 "name": "MarginAccount",
                                 "nodeType": "IdentifierPath",
-                                "referencedDeclaration": 7674,
+                                "referencedDeclaration": 7670,
                                 "src": "2713:13:53"
                               },
-                              "referencedDeclaration": 7674,
+                              "referencedDeclaration": 7670,
                               "src": "2713:13:53",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_MarginAccount_$7674",
+                                "typeIdentifier": "t_contract$_MarginAccount_$7670",
                                 "typeString": "contract MarginAccount"
                               }
                             },
                             "visibility": "internal"
                           }
                         ],
-                        "id": 7577,
+                        "id": 7573,
                         "initialValue": {
                           "arguments": [],
                           "expression": {
                             "argumentTypes": [],
-                            "id": 7575,
+                            "id": 7571,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -6294,28 +6294,28 @@
                             "nodeType": "NewExpression",
                             "src": "2746:17:53",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_function_creation_nonpayable$__$returns$_t_contract$_MarginAccount_$7674_$",
+                              "typeIdentifier": "t_function_creation_nonpayable$__$returns$_t_contract$_MarginAccount_$7670_$",
                               "typeString": "function () returns (contract MarginAccount)"
                             },
                             "typeName": {
-                              "id": 7574,
+                              "id": 7570,
                               "nodeType": "UserDefinedTypeName",
                               "pathNode": {
-                                "id": 7573,
+                                "id": 7569,
                                 "name": "MarginAccount",
                                 "nodeType": "IdentifierPath",
-                                "referencedDeclaration": 7674,
+                                "referencedDeclaration": 7670,
                                 "src": "2750:13:53"
                               },
-                              "referencedDeclaration": 7674,
+                              "referencedDeclaration": 7670,
                               "src": "2750:13:53",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_MarginAccount_$7674",
+                                "typeIdentifier": "t_contract$_MarginAccount_$7670",
                                 "typeString": "contract MarginAccount"
                               }
                             }
                           },
-                          "id": 7576,
+                          "id": 7572,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -6326,7 +6326,7 @@
                           "src": "2746:19:53",
                           "tryCall": false,
                           "typeDescriptions": {
-                            "typeIdentifier": "t_contract$_MarginAccount_$7674",
+                            "typeIdentifier": "t_contract$_MarginAccount_$7670",
                             "typeString": "contract MarginAccount"
                           }
                         },
@@ -6335,28 +6335,28 @@
                       },
                       {
                         "expression": {
-                          "id": 7586,
+                          "id": 7582,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
                           "leftHandSide": {
                             "baseExpression": {
-                              "id": 7578,
+                              "id": 7574,
                               "name": "marginAccountRegistry",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 7457,
+                              "referencedDeclaration": 7453,
                               "src": "2780:21:53",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_mapping$_t_address_$_t_address_$",
                                 "typeString": "mapping(address => address)"
                               }
                             },
-                            "id": 7581,
+                            "id": 7577,
                             "indexExpression": {
                               "expression": {
-                                "id": 7579,
+                                "id": 7575,
                                 "name": "msg",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
@@ -6367,7 +6367,7 @@
                                   "typeString": "msg"
                                 }
                               },
-                              "id": 7580,
+                              "id": 7576,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -6396,14 +6396,14 @@
                           "rightHandSide": {
                             "arguments": [
                               {
-                                "id": 7584,
+                                "id": 7580,
                                 "name": "newMarginAccount",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 7572,
+                                "referencedDeclaration": 7568,
                                 "src": "2824:16:53",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_contract$_MarginAccount_$7674",
+                                  "typeIdentifier": "t_contract$_MarginAccount_$7670",
                                   "typeString": "contract MarginAccount"
                                 }
                               }
@@ -6411,11 +6411,11 @@
                             "expression": {
                               "argumentTypes": [
                                 {
-                                  "typeIdentifier": "t_contract$_MarginAccount_$7674",
+                                  "typeIdentifier": "t_contract$_MarginAccount_$7670",
                                   "typeString": "contract MarginAccount"
                                 }
                               ],
-                              "id": 7583,
+                              "id": 7579,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
@@ -6427,14 +6427,14 @@
                                 "typeString": "type(address)"
                               },
                               "typeName": {
-                                "id": 7582,
+                                "id": 7578,
                                 "name": "address",
                                 "nodeType": "ElementaryTypeName",
                                 "src": "2816:7:53",
                                 "typeDescriptions": {}
                               }
                             },
-                            "id": 7585,
+                            "id": 7581,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -6455,7 +6455,7 @@
                             "typeString": "address"
                           }
                         },
-                        "id": 7587,
+                        "id": 7583,
                         "nodeType": "ExpressionStatement",
                         "src": "2780:61:53"
                       }
@@ -6465,24 +6465,24 @@
               ]
             },
             "documentation": {
-              "id": 7558,
+              "id": 7554,
               "nodeType": "StructuredDocumentation",
               "src": "2474:75:53",
               "text": " Create new user account with type based on `accountId`"
             },
             "functionSelector": "85a237a9",
-            "id": 7619,
+            "id": 7615,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": [
                   {
-                    "id": 7563,
+                    "id": 7559,
                     "name": "accountId",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 7560,
+                    "referencedDeclaration": 7556,
                     "src": "2644:9:53",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
@@ -6491,7 +6491,7 @@
                   },
                   {
                     "hexValue": "66616c7365",
-                    "id": 7564,
+                    "id": 7560,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -6506,13 +6506,13 @@
                     "value": "false"
                   }
                 ],
-                "id": 7565,
+                "id": 7561,
                 "kind": "modifierInvocation",
                 "modifierName": {
-                  "id": 7562,
+                  "id": 7558,
                   "name": "onlyAccountExist",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 7522,
+                  "referencedDeclaration": 7518,
                   "src": "2627:16:53"
                 },
                 "nodeType": "ModifierInvocation",
@@ -6523,17 +6523,17 @@
             "nameLocation": "2564:16:53",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7561,
+              "id": 7557,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7560,
+                  "id": 7556,
                   "mutability": "mutable",
                   "name": "accountId",
                   "nameLocation": "2589:9:53",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7619,
+                  "scope": 7615,
                   "src": "2581:17:53",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -6542,7 +6542,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7559,
+                    "id": 7555,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "2581:7:53",
@@ -6557,12 +6557,12 @@
               "src": "2580:19:53"
             },
             "returnParameters": {
-              "id": 7566,
+              "id": 7562,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "2667:0:53"
             },
-            "scope": 7668,
+            "scope": 7664,
             "src": "2555:572:53",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -6570,7 +6570,7 @@
           },
           {
             "body": {
-              "id": 7666,
+              "id": 7662,
               "nodeType": "Block",
               "src": "3396:221:53",
               "statements": [
@@ -6580,17 +6580,17 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 7637,
+                    "id": 7633,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 7635,
+                      "id": 7631,
                       "name": "accountId",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7622,
+                      "referencedDeclaration": 7618,
                       "src": "3411:9:53",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -6601,7 +6601,7 @@
                     "operator": "==",
                     "rightExpression": {
                       "hexValue": "30",
-                      "id": 7636,
+                      "id": 7632,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -6627,17 +6627,17 @@
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       },
-                      "id": 7651,
+                      "id": 7647,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "leftExpression": {
-                        "id": 7649,
+                        "id": 7645,
                         "name": "accountId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7622,
+                        "referencedDeclaration": 7618,
                         "src": "3510:9:53",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -6648,7 +6648,7 @@
                       "operator": "==",
                       "rightExpression": {
                         "hexValue": "31",
-                        "id": 7650,
+                        "id": 7646,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -6669,43 +6669,43 @@
                       }
                     },
                     "falseBody": {
-                      "id": 7663,
+                      "id": 7659,
                       "nodeType": "Block",
                       "src": "3608:2:53",
                       "statements": []
                     },
-                    "id": 7664,
+                    "id": 7660,
                     "nodeType": "IfStatement",
                     "src": "3506:104:53",
                     "trueBody": {
-                      "id": 7662,
+                      "id": 7658,
                       "nodeType": "Block",
                       "src": "3526:76:53",
                       "statements": [
                         {
                           "expression": {
-                            "id": 7660,
+                            "id": 7656,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
                             "lValueRequested": false,
                             "leftHandSide": {
                               "baseExpression": {
-                                "id": 7652,
+                                "id": 7648,
                                 "name": "hedgeFundAccountRegistry",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 7461,
+                                "referencedDeclaration": 7457,
                                 "src": "3541:24:53",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_mapping$_t_address_$_t_address_$",
                                   "typeString": "mapping(address => address)"
                                 }
                               },
-                              "id": 7655,
+                              "id": 7651,
                               "indexExpression": {
                                 "expression": {
-                                  "id": 7653,
+                                  "id": 7649,
                                   "name": "msg",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
@@ -6716,7 +6716,7 @@
                                     "typeString": "msg"
                                   }
                                 },
-                                "id": 7654,
+                                "id": 7650,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": false,
@@ -6746,7 +6746,7 @@
                               "arguments": [
                                 {
                                   "hexValue": "30",
-                                  "id": 7658,
+                                  "id": 7654,
                                   "isConstant": false,
                                   "isLValue": false,
                                   "isPure": true,
@@ -6768,7 +6768,7 @@
                                     "typeString": "int_const 0"
                                   }
                                 ],
-                                "id": 7657,
+                                "id": 7653,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -6780,14 +6780,14 @@
                                   "typeString": "type(address)"
                                 },
                                 "typeName": {
-                                  "id": 7656,
+                                  "id": 7652,
                                   "name": "address",
                                   "nodeType": "ElementaryTypeName",
                                   "src": "3580:7:53",
                                   "typeDescriptions": {}
                                 }
                               },
-                              "id": 7659,
+                              "id": 7655,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
@@ -6808,45 +6808,45 @@
                               "typeString": "address"
                             }
                           },
-                          "id": 7661,
+                          "id": 7657,
                           "nodeType": "ExpressionStatement",
                           "src": "3541:49:53"
                         }
                       ]
                     }
                   },
-                  "id": 7665,
+                  "id": 7661,
                   "nodeType": "IfStatement",
                   "src": "3407:203:53",
                   "trueBody": {
-                    "id": 7648,
+                    "id": 7644,
                     "nodeType": "Block",
                     "src": "3427:73:53",
                     "statements": [
                       {
                         "expression": {
-                          "id": 7646,
+                          "id": 7642,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
                           "leftHandSide": {
                             "baseExpression": {
-                              "id": 7638,
+                              "id": 7634,
                               "name": "marginAccountRegistry",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 7457,
+                              "referencedDeclaration": 7453,
                               "src": "3442:21:53",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_mapping$_t_address_$_t_address_$",
                                 "typeString": "mapping(address => address)"
                               }
                             },
-                            "id": 7641,
+                            "id": 7637,
                             "indexExpression": {
                               "expression": {
-                                "id": 7639,
+                                "id": 7635,
                                 "name": "msg",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
@@ -6857,7 +6857,7 @@
                                   "typeString": "msg"
                                 }
                               },
-                              "id": 7640,
+                              "id": 7636,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -6887,7 +6887,7 @@
                             "arguments": [
                               {
                                 "hexValue": "30",
-                                "id": 7644,
+                                "id": 7640,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -6909,7 +6909,7 @@
                                   "typeString": "int_const 0"
                                 }
                               ],
-                              "id": 7643,
+                              "id": 7639,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
@@ -6921,14 +6921,14 @@
                                 "typeString": "type(address)"
                               },
                               "typeName": {
-                                "id": 7642,
+                                "id": 7638,
                                 "name": "address",
                                 "nodeType": "ElementaryTypeName",
                                 "src": "3478:7:53",
                                 "typeDescriptions": {}
                               }
                             },
-                            "id": 7645,
+                            "id": 7641,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -6949,7 +6949,7 @@
                             "typeString": "address"
                           }
                         },
-                        "id": 7647,
+                        "id": 7643,
                         "nodeType": "ExpressionStatement",
                         "src": "3442:46:53"
                       }
@@ -6959,24 +6959,24 @@
               ]
             },
             "documentation": {
-              "id": 7620,
+              "id": 7616,
               "nodeType": "StructuredDocumentation",
               "src": "3135:72:53",
               "text": " Delete an existing user account of `accountAddress`"
             },
             "functionSelector": "a7a368fe",
-            "id": 7667,
+            "id": 7663,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": [
                   {
-                    "id": 7627,
+                    "id": 7623,
                     "name": "accountId",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 7622,
+                    "referencedDeclaration": 7618,
                     "src": "3321:9:53",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
@@ -6985,7 +6985,7 @@
                   },
                   {
                     "hexValue": "74727565",
-                    "id": 7628,
+                    "id": 7624,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -7000,13 +7000,13 @@
                     "value": "true"
                   }
                 ],
-                "id": 7629,
+                "id": 7625,
                 "kind": "modifierInvocation",
                 "modifierName": {
-                  "id": 7626,
+                  "id": 7622,
                   "name": "onlyAccountExist",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 7522,
+                  "referencedDeclaration": 7518,
                   "src": "3304:16:53"
                 },
                 "nodeType": "ModifierInvocation",
@@ -7015,11 +7015,11 @@
               {
                 "arguments": [
                   {
-                    "id": 7631,
+                    "id": 7627,
                     "name": "accountId",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 7622,
+                    "referencedDeclaration": 7618,
                     "src": "3364:9:53",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
@@ -7027,11 +7027,11 @@
                     }
                   },
                   {
-                    "id": 7632,
+                    "id": 7628,
                     "name": "accountAddress",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 7624,
+                    "referencedDeclaration": 7620,
                     "src": "3375:14:53",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -7039,13 +7039,13 @@
                     }
                   }
                 ],
-                "id": 7633,
+                "id": 7629,
                 "kind": "modifierInvocation",
                 "modifierName": {
-                  "id": 7630,
+                  "id": 7626,
                   "name": "onlyAccountOwner",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 7481,
+                  "referencedDeclaration": 7477,
                   "src": "3347:16:53"
                 },
                 "nodeType": "ModifierInvocation",
@@ -7056,17 +7056,17 @@
             "nameLocation": "3222:13:53",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7625,
+              "id": 7621,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7622,
+                  "id": 7618,
                   "mutability": "mutable",
                   "name": "accountId",
                   "nameLocation": "3244:9:53",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7667,
+                  "scope": 7663,
                   "src": "3236:17:53",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -7075,7 +7075,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7621,
+                    "id": 7617,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "3236:7:53",
@@ -7088,12 +7088,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 7624,
+                  "id": 7620,
                   "mutability": "mutable",
                   "name": "accountAddress",
                   "nameLocation": "3263:14:53",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7667,
+                  "scope": 7663,
                   "src": "3255:22:53",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -7102,7 +7102,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7623,
+                    "id": 7619,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "3255:7:53",
@@ -7118,19 +7118,19 @@
               "src": "3235:43:53"
             },
             "returnParameters": {
-              "id": 7634,
+              "id": 7630,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "3396:0:53"
             },
-            "scope": 7668,
+            "scope": 7664,
             "src": "3213:404:53",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 7669,
+        "scope": 7665,
         "src": "629:2991:53",
         "usedErrors": []
       }
@@ -7143,7 +7143,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.5",
-  "updatedAt": "2022-04-02T13:44:00.086Z",
+  "updatedAt": "2022-04-03T04:56:39.616Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
