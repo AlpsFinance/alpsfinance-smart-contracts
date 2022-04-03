@@ -24,10 +24,7 @@ contract VestingBase is Ownable, Pausable {
     ///@notice The ERC20 contract of the coin being vested.
     ERC20 public vestingCoin;
 
-    uint256 public Rounds = 0;
-
-
-     mapping(uint256 => mapping(address => bool))  vestingClaimed;
+    mapping(uint256 => mapping(address => bool))  vestingClaimed;
     mapping(uint256 => bytes32) private RootToRounds;
    
 
