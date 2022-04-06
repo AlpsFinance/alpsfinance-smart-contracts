@@ -18,7 +18,7 @@ contract Domains is ERC721URIStorage {
 
   mapping(string => address) public domains;
   
-  //For some info about the domain
+  //For some additional info about the domain
   mapping(string => string) public domainRecords;
 
 
@@ -64,7 +64,7 @@ contract Domains is ERC721URIStorage {
   function getPrice(string calldata name) public pure returns (uint256) {
     uint256 len = bytes(name).length;
     require(len > 0);
-    if (len == 3) {
+    if (len < 3) {
       return 4 * 10**17;
     } else if (len == 4) {
       return 3 * 10**17;
