@@ -17,8 +17,12 @@ contract Domains is ERC721URIStorage {
   }
 
   mapping(string => address) public domains;
+  
+  //For some info about the domain
   mapping(string => string) public domainRecords;
 
+
+//for buying a domain
   function registerForDomain(string calldata name) public payable {
     require(domains[name] == address(0));
     uint256 price = getPrice(name);
@@ -51,10 +55,12 @@ contract Domains is ERC721URIStorage {
     _tokenIds.increment();
   }
 
+//get owner address for a specific domain
   function getDomainOwner(string calldata name) public view returns (address) {
     return domains[name];
   }
 
+//to decide price of domain based on the length
   function getPrice(string calldata name) public pure returns (uint256) {
     uint256 len = bytes(name).length;
     require(len > 0);
@@ -67,6 +73,7 @@ contract Domains is ERC721URIStorage {
     }
   }
 
+//set some additional info about the domain
   function setDomainRecord(string calldata name, string calldata record)
     public
   {
@@ -74,6 +81,7 @@ contract Domains is ERC721URIStorage {
     domainRecords[name] = record;
   }
 
+//get some additional info about the domain
   function getDomainRecord(string calldata name)
     public
     view
