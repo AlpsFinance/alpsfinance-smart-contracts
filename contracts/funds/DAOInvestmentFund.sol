@@ -11,7 +11,7 @@ import "@openzeppelin/contracts/governance/extensions/GovernorVotesQuorumFractio
 import "@openzeppelin/contracts/governance/extensions/GovernorTimelockControl.sol";
 import "@opengsn/contracts/src/BaseRelayRecipient.sol";
 
-contract DAOInvestmentFundBase is
+contract DAOInvestmentFund is
     AccessControl,
     Governor,
     GovernorSettings,

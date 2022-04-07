@@ -4,7 +4,7 @@ pragma solidity ^0.8.11;
 
 import "@openzeppelin/contracts/proxy/utils/Initializable.sol";
 import "./IndividualInvestmentFund.sol";
-import "./DAOInvestmentFund/DAOInvestmentFundBase.sol";
+import "./DAOInvestmentFund.sol";
 
 /**
  * @notice THIS IS THE `FundFactory` contract
@@ -74,6 +74,7 @@ contract FundFactory is Initializable {
      * @dev Create new user account with type based on `accountId`
      */
     function createNewFund(InvestmentFundType investmentFund) external {
+        /// @notice need to change to `MinimalClone` for gas efficiency
         if (investmentFund == InvestmentFundType.INDIVIDUAL) {
             IndividualInvestmentFund newIndividualInvestmentFund = new IndividualInvestmentFund();
             individualInvestmentFundRegistry[msg.sender] = address(
