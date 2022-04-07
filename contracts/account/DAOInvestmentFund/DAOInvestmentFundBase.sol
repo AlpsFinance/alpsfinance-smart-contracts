@@ -9,6 +9,7 @@ import "@openzeppelin/contracts/governance/extensions/GovernorCountingSimple.sol
 import "@openzeppelin/contracts/governance/extensions/GovernorVotes.sol";
 import "@openzeppelin/contracts/governance/extensions/GovernorVotesQuorumFraction.sol";
 import "@openzeppelin/contracts/governance/extensions/GovernorTimelockControl.sol";
+import "@opengsn/contracts/src/BaseRelayRecipient.sol";
 
 contract DAOInvestmentFundBase is
     AccessControl,
@@ -32,7 +33,6 @@ contract DAOInvestmentFundBase is
     {}
 
     // The following functions are overrides required by Solidity.
-
     function votingDelay()
         public
         view
