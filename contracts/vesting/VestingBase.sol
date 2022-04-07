@@ -8,7 +8,6 @@ import "@openzeppelin/contracts/security/Pausable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 
-
 /**
  * @title Vesting
  * @dev A token holder contract that can release its token balance gradually like a
@@ -18,17 +17,16 @@ import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 contract VestingBase is Ownable, Pausable {
     using SafeMath for uint256;
 
-    ///@notice The sum total amount of tokens withdrawn from all allocations.
+    /// @notice The sum total amount of tokens withdrawn from all allocations.
     uint256 public totalWithdrawn;
 
-    ///@notice The ERC20 contract of the coin being vested.
+    /// @notice The ERC20 contract of the coin being vested.
     ERC20 public vestingCoin;
 
-    mapping(uint256 => mapping(address => bool))  vestingClaimed;
+    mapping(uint256 => mapping(address => bool)) vestingClaimed;
     mapping(uint256 => bytes32) private RootToRounds;
-   
 
-    ///Events;
+    /// Events;
     event Funded(
         address indexed _funder,
         uint256 _amount,
@@ -42,22 +40,27 @@ contract VestingBase is Ownable, Pausable {
     );
     event Withdrawn(address indexed _address, uint256 _amount);
 
-    ///@notice Constructs this contract
-    ///@param _vestingCoin The ERC20 contract of the coin being vested.
-
+    /**
+     * @notice Constructs this contract
+     * @param _vestingCoin The ERC20 contract of the coin being vested.
+     */
     constructor(ERC20 _vestingCoin) {
         vestingCoin = _vestingCoin;
     }
 
-    ///@notice The Vesting Token balance of this smart contract.
-    ///@return Returns the closing balance of vesting coin held by this contract.
+    /**
+     * @notice The Vesting Token balance of this smart contract.
+     * @return Returns the closing balance of vesting coin held by this contract.
+     */
     function getAvailableFunds() public view returns (uint256) {
         return vestingCoin.balanceOf(address(this));
     }
 
-    ///@notice Gets the markle tree of each vesting Rounds.
-    ///@param _round The round of which markleTree to be viewed.
-    ///@return Returns Total vested balance.
+    /**
+     * @notice Gets the markle tree of each vesting Rounds.
+     * @param _round The round of which markleTree to be viewed.
+     * @return Returns Total vested balance.
+     */
     function getMerkleRoot(uint256 _round)
         public
         view
@@ -67,11 +70,13 @@ contract VestingBase is Ownable, Pausable {
         return RootToRounds[_round];
     }
 
-    ///@notice Enables this vesting contract to receive the ERC20 (vesting coin).
-    ///Before calling this function please approve your desired amount of the coin
-    ///for this smart contract address.
-    ///Please note that this action is restricted to administrators only.
-    ///@return Returns true if the funding was successful.
+    /**
+     * @notice Enables this vesting contract to receive the ERC20 (vesting coin).
+     * Before calling this function please approve your desired amount of the coin
+     * for this smart contract address.
+     * Please note that this action is restricted to administrators only.
+     * @return Returns true if the funding was successful.
+     */
     function fund() external onlyOwner returns (bool) {
         ///Check the funds available.
         uint256 allowance = vestingCoin.allowance(msg.sender, address(this));
@@ -86,11 +91,13 @@ contract VestingBase is Ownable, Pausable {
         return true;
     }
 
-    ///@notice Allows you to withdraw the surplus balance of the vesting coin from this contract.
-    ///Please note that this action is restricted to administrators only
-    ///and you may only withdraw amounts above the sum total allocation balances.
-    ///@param _amount The amount desired to withdraw.
-    ///@return Returns true if the withdrawal was successful.
+    /**
+     * @notice Allows you to withdraw the surplus balance of the vesting coin from this contract.
+     * Please note that this action is restricted to administrators only
+     * and you may only withdraw amounts above the sum total allocation balances.
+     * @param _amount The amount desired to withdraw.
+     * @return Returns true if the withdrawal was successful.
+     */
     function removeFunds(uint256 _amount) external onlyOwner returns (bool) {
         uint256 balance = vestingCoin.balanceOf(address(this));
 
@@ -104,20 +111,25 @@ contract VestingBase is Ownable, Pausable {
         return true;
     }
 
-    ///@notice This action enables admin to set newMarkelRoot.
-
-    function setMerkleRoot(bytes32 _newMerkleRoot, uint _round) external onlyOwner {
+    /**
+     * @notice This action enables admin to set newMarkelRoot.
+     */
+    function setMerkleRoot(bytes32 _newMerkleRoot, uint256 _round)
+        external
+        onlyOwner
+    {
         require(
             _newMerkleRoot != 0x00,
             "Vesting: Invalid new merkle root value!"
         );
 
-    
         RootToRounds[_round] = _newMerkleRoot;
     }
 
-    ///@notice This action enables the beneficiaries to withdraw a desired amount from this contract.
-    ///@param _amount The amount in vesting coin desired to withdraw.
+    /**
+     * @notice This action enables the beneficiaries to withdraw a desired amount from this contract.
+     * @param _amount The amount in vesting coin desired to withdraw.
+     */
     function withdraw(
         uint256 _amount,
         bytes32[] calldata _proof,

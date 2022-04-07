@@ -159,7 +159,8 @@ module.exports = {
       provider: () =>
         new HDWalletProvider(
           mnemonic,
-          `https://speedy-nodes-nyc.moralis.io/${process.env.MORALIS_SPEEDY_NODES_KEY}/avalanche/testnet`
+          "https://api.avax-test.network/ext/bc/C/rpc"
+          // `https://speedy-nodes-nyc.moralis.io/${process.env.MORALIS_SPEEDY_NODES_KEY}/avalanche/testnet`
         ),
       network_id: 43113,
       skipDryRun: true,
@@ -168,7 +169,8 @@ module.exports = {
       provider: () =>
         new HDWalletProvider(
           mnemonic,
-          `https://speedy-nodes-nyc.moralis.io/${process.env.MORALIS_SPEEDY_NODES_KEY}/avalanche/mainnet`
+          "https://api.avax.network/ext/bc/C/rpc"
+          // `https://speedy-nodes-nyc.moralis.io/${process.env.MORALIS_SPEEDY_NODES_KEY}/avalanche/mainnet`
         ),
       network_id: 43114,
       skipDryRun: true,
