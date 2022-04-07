@@ -4,7 +4,7 @@ pragma solidity ^0.8.11;
 
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/utils/Address.sol";
-import "@opengsn/contracts/src/BaseRelayRecipient.sol";
+import "@openzeppelin/contracts/metatx/ERC2771Context.sol";
 
 contract IndividualInvestmentFund is AccessControl {
     event TransactionExecuted(
