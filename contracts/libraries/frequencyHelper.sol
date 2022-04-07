@@ -12,28 +12,32 @@ library FrequencyHelper {
         Yearly
     }
 
-    function convertFrequency(Frequency _frequency) internal pure returns(uint256) {
-        if(_frequency == Frequency.Daily) {
+    function convertFrequency(Frequency _frequency)
+        internal
+        pure
+        returns (uint256)
+    {
+        if (_frequency == Frequency.Daily) {
             return 1 days;
         }
-        
-        if(_frequency == Frequency.Weekly) {
+
+        if (_frequency == Frequency.Weekly) {
             return 7 days;
         }
-        
-        if(_frequency == Frequency.HalfMonthly) {
+
+        if (_frequency == Frequency.HalfMonthly) {
             return 15 days;
         }
 
-        if(_frequency == Frequency.Monthly) {
+        if (_frequency == Frequency.Monthly) {
             return 30 days;
         }
 
-        if(_frequency == Frequency.Quarterly) {
+        if (_frequency == Frequency.Quarterly) {
             return 91 days;
         }
 
-        if(_frequency == Frequency.HalfYearly) {
+        if (_frequency == Frequency.HalfYearly) {
             return 182 days;
         }
 
