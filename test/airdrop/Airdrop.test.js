@@ -121,7 +121,7 @@ contract("Airdrop", (accounts) => {
       // Generate airdrop proof
       const proof = merkleTree.getHexProof(leaf);
 
-      // #1 Successful Claim
+      // #1 Successful Claim 
       await this.airdrop.claim(numTokens, proof, { from: accounts[0] });
 
       // #2 Failed Claim
