@@ -27,17 +27,7 @@ contract VestingBase is Ownable, Pausable {
     mapping(uint256 => bytes32) private RootToRounds;
 
     /// Events;
-    event Funded(
-        address indexed _funder,
-        uint256 _amount,
-        uint256 _previousCap,
-        uint256 _newCap
-    );
-    event FundRemoved(
-        address indexed _address,
-        uint256 _amount,
-        uint256 _remainingInPool
-    );
+    event FundRemoved(address indexed _address, uint256 _amount);
     event Withdrawn(address indexed _address, uint256 _amount);
 
     /**
@@ -71,27 +61,6 @@ contract VestingBase is Ownable, Pausable {
     }
 
     /**
-     * @notice Enables this vesting contract to receive the ERC20 (vesting coin).
-     * Before calling this function please approve your desired amount of the coin
-     * for this smart contract address.
-     * Please note that this action is restricted to administrators only.
-     * @return Returns true if the funding was successful.
-     */
-    function fund() external onlyOwner returns (bool) {
-        ///Check the funds available.
-        uint256 allowance = vestingCoin.allowance(msg.sender, address(this));
-        require(allowance > 0, "Nothing to fund.");
-
-        ///Get the current allocation.
-        uint256 current = getAvailableFunds();
-
-        require(vestingCoin.transferFrom(msg.sender, address(this), allowance));
-
-        emit Funded(msg.sender, allowance, current, getAvailableFunds());
-        return true;
-    }
-
-    /**
      * @notice Allows you to withdraw the surplus balance of the vesting coin from this contract.
      * Please note that this action is restricted to administrators only
      * and you may only withdraw amounts above the sum total allocation balances.
@@ -101,13 +70,11 @@ contract VestingBase is Ownable, Pausable {
     function removeFunds(uint256 _amount) external onlyOwner returns (bool) {
         uint256 balance = vestingCoin.balanceOf(address(this));
 
-        uint256 available = balance - totalWithdrawn;
-
-        require(available >= _amount, "amount is grater than balanace");
+        require(balance >= _amount, "amount is grater than balanace");
 
         require(vestingCoin.transfer(msg.sender, _amount));
 
-        emit FundRemoved(msg.sender, _amount, available.sub(_amount));
+        emit FundRemoved(msg.sender, _amount);
         return true;
     }
 
@@ -120,7 +87,7 @@ contract VestingBase is Ownable, Pausable {
     {
         require(
             _newMerkleRoot != 0x00,
-            "Vesting: Invalid new merkle root value!"
+            "VestingBase: Invalid new merkle root value!"
         );
 
         RootToRounds[_round] = _newMerkleRoot;
@@ -137,12 +104,12 @@ contract VestingBase is Ownable, Pausable {
     ) external whenNotPaused returns (bool) {
         require(
             !vestingClaimed[_round][msg.sender],
-            "Vesting: Vesting has been claimed!"
+            "VestingBase: Vesting has been claimed!"
         );
         bytes32 merkleRoot = RootToRounds[_round];
         bytes32 leaf = keccak256(abi.encodePacked(msg.sender, _amount));
         bool isValidLeaf = MerkleProof.verify(_proof, merkleRoot, leaf);
-        require(isValidLeaf, "Vesting: Address has no Vesting allocation!");
+        require(isValidLeaf, "VestingBase: Address has no Vesting allocation!");
 
         // Set address to claimed
         vestingClaimed[_round][msg.sender] = true;

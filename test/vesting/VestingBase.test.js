@@ -14,7 +14,9 @@ require("chai")
   .use(require("chai-bignumber")(BigNumber))
   .should();
 
-contract("Vesting: Withdrawal", function (accounts) {
+contract("VestingBase", function (accounts) {
+  let vestingCoinMock;
+  let vesting;
   const merkleTree = new MerkleTree(
     // Generate leafs
     Object.entries(airdrop).map(([address, tokens]) =>
@@ -36,23 +38,32 @@ contract("Vesting: Withdrawal", function (accounts) {
     { sortPairs: true }
   );
 
-  describe("Ruleset for Vesting Allocations", async () => {
-    let vestingCoinMock;
+  beforeEach(async () => {
+    vestingCoinMock = await MockToken.new();
+    vesting = await Vesting.new(vestingCoinMock.address);
+    await vestingCoinMock.transfer(vesting.address, ether("50000000"));
+  });
 
-    beforeEach(async () => {
-      vestingCoinMock = await MockToken.new();
-      this.vesting = await Vesting.new(
-        vestingCoinMock.address,
+  describe("Constructor", () => {
+    it("must construct properly with correct parameters.", async () => {
+      assert((await vesting.vestingCoin()) == vestingCoinMock.address);
+    });
+  });
 
-        {
-          from: accounts[0],
-        }
-      );
-
-      await vestingCoinMock.approve(this.vesting.address, ether("50000000"));
-      await this.vesting.fund();
+  describe("Ruleset for Funding and Withdrawing Funds", () => {
+    it("must not allow non admins to remove funds from the vesting.", async () => {
+      await vesting
+        .removeFunds(ether("20000000"), { from: accounts[1] })
+        .should.be.rejectedWith(EVMRevert);
     });
 
+    it("must allow admins to remove funds from the vesting.", async () => {
+      const withdrawnAmount = ether("20000000");
+      await vesting.removeFunds(withdrawnAmount, { from: accounts[0] });
+    });
+  });
+
+  describe("Ruleset for Vesting Allocations", async () => {
     accounts.forEach((account) => {
       const amount = airdrop[account];
       // Check if an account has claim, then test the withdrwal function
@@ -84,20 +95,20 @@ contract("Vesting: Withdrawal", function (accounts) {
 
           let round = parseInt("1");
 
-          await this.vesting.setMerkleRoot(merkleTree.getHexRoot(), round);
+          await vesting.setMerkleRoot(merkleTree.getHexRoot(), round);
           //Check if the beneficiary can withdraw amount more than actually allocated.
-          await this.vesting
+          await vesting
             .withdraw(ether("20000000"), proof, round, { from: account })
             .should.be.rejectedWith(EVMRevert);
 
           if (amount) {
-            await this.vesting.withdraw(numTokens, proof, round, {
+            await vesting.withdraw(numTokens, proof, round, {
               from: account,
             });
           } else {
             await truffleAssert.reverts(
-              this.vesting.withdraw(numTokens, proof, round, { from: account }),
-              "Vesting: Address has no Vesting allocation!"
+              vesting.withdraw(numTokens, proof, round, { from: account }),
+              "VestingBase: Address has no Vesting allocation!"
             );
           }
         }
@@ -128,18 +139,18 @@ contract("Vesting: Withdrawal", function (accounts) {
 
       let round = parseInt("1");
 
-      await this.vesting.setMerkleRoot(merkleTree.getHexRoot(), round);
+      await vesting.setMerkleRoot(merkleTree.getHexRoot(), round);
 
       // #1 Successful Withdraw
-      await this.vesting.withdraw(numTokens, proof, round, {
+      await vesting.withdraw(numTokens, proof, round, {
         from: accounts[0],
       });
       // #2 Failed Withdraw
       await truffleAssert.reverts(
-        this.vesting.withdraw(numTokens, proof, round, {
-        from: accounts[0],
-      }),
-      "Vesting: Vesting has been claimed!"
+        vesting.withdraw(numTokens, proof, round, {
+          from: accounts[0],
+        }),
+        "VestingBase: Vesting has been claimed!"
       );
     });
   });
