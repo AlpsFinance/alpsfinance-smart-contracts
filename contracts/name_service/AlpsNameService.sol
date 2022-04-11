@@ -1,10 +1,12 @@
 //SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Royalty.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/token/common/ERC2981.sol";
 import "base64-sol/base64.sol";
 
-contract AlpsNameService is ERC721URIStorage {
+contract AlpsNameService is ERC721URIStorage, ERC721Royalty {
     using Counters for Counters.Counter;
     Counters.Counter public _tokenIds;
     string public topLevelDomain;
@@ -21,10 +23,13 @@ contract AlpsNameService is ERC721URIStorage {
     //For some additional info about the domain
     mapping(string => string) public domainRecords;
 
-    //for buying a domain
+    /**
+     * @dev Allow users to buy and register for .alps domain
+     * @param Domain name
+     */
     function registerForDomain(string calldata name) public payable {
         require(domains[name] == address(0));
-        uint256 price = getPrice(name);
+        uint256 price = getDomainPrice(name);
         require(msg.value >= price, "Not enough matic");
 
         string memory _name = string(
@@ -56,7 +61,10 @@ contract AlpsNameService is ERC721URIStorage {
         _tokenIds.increment();
     }
 
-    //get owner address for a specific domain
+    /**
+     * @dev Fetch a domain's owner
+     * @param name Domain name
+     */
     function getDomainOwner(string calldata name)
         public
         view
@@ -65,12 +73,22 @@ contract AlpsNameService is ERC721URIStorage {
         return domains[name];
     }
 
-    //to decide price of domain based on the length
-    function getPrice(string calldata name) public pure returns (uint256) {
+    /**
+     * @dev Fetch domain's price
+     * @param name Domain name
+     */
+    function getDomainPrice(string calldata name)
+        public
+        pure
+        returns (uint256)
+    {
         uint256 len = bytes(name).length;
-        require(len > 0);
-        if (len < 3) {
-            return 4 * 10**17;
+        require(
+            len > 0,
+            "AlpsNameService: Domain name has to be longer than 0 length!"
+        );
+        if (len <= 3) {
+            return 5 * 10**17;
         } else if (len == 4) {
             return 3 * 10**17;
         } else {
@@ -93,5 +111,26 @@ contract AlpsNameService is ERC721URIStorage {
         returns (string memory)
     {
         return domainRecords[name];
+    }
+
+    function supportsInterface(bytes4 interfaceId)
+        public
+        view
+        override(ERC721, ERC721Royalty)
+        returns (bool)
+    {
+        return super.supportsInterface(interfaceId);
+    }
+
+    /**
+     * @dev See {ERC721-_burn}. This override additionally clears the royalty information for the token.
+     */
+    function _burn(uint256 tokenId)
+        internal
+        virtual
+        override(ERC721URIStorage, ERC721Royalty)
+    {
+        super._burn(tokenId);
+        _resetTokenRoyalty(tokenId);
     }
 }
