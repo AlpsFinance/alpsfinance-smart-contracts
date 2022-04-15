@@ -1,12 +1,11 @@
-//SPDX-License-Identifier: Unlicense
+//SPDX-License-Identifier: AGPL-3.0
 pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Royalty.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/token/common/ERC2981.sol";
 import "base64-sol/base64.sol";
 
-contract AlpsNameService is ERC721URIStorage, ERC721Royalty {
+contract AlpsNameService is ERC721URIStorage, ERC2981 {
     using Counters for Counters.Counter;
     Counters.Counter public _tokenIds;
     string public topLevelDomain;
@@ -25,7 +24,7 @@ contract AlpsNameService is ERC721URIStorage, ERC721Royalty {
 
     /**
      * @dev Allow users to buy and register for .alps domain
-     * @param Domain name
+     * @param name Domain name
      */
     function registerForDomain(string calldata name) public payable {
         require(domains[name] == address(0));
@@ -116,21 +115,9 @@ contract AlpsNameService is ERC721URIStorage, ERC721Royalty {
     function supportsInterface(bytes4 interfaceId)
         public
         view
-        override(ERC721, ERC721Royalty)
+        override(ERC721, ERC2981)
         returns (bool)
     {
         return super.supportsInterface(interfaceId);
-    }
-
-    /**
-     * @dev See {ERC721-_burn}. This override additionally clears the royalty information for the token.
-     */
-    function _burn(uint256 tokenId)
-        internal
-        virtual
-        override(ERC721URIStorage, ERC721Royalty)
-    {
-        super._burn(tokenId);
-        _resetTokenRoyalty(tokenId);
     }
 }
