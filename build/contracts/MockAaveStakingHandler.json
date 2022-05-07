@@ -1,0 +1,209 @@
+{
+  "contractName": "MockAaveStakingHandler",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.11+commit.d7f03943\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/defi/aave/mocks/MockAaveStakingHandler.sol\":\"MockAaveStakingHandler\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0xbbc8ac883ac3c0078ce5ad3e288fbb3ffcc8a30c3a98c0fda0114d64fc44fca2\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://87a7a5d2f6f63f84598af02b8c50ca2df2631cb8ba2453e8d95fcb17e4be9824\",\"dweb:/ipfs/QmR76hqtAcRqoFj33tmNjcWTLrgNsAaakYwnKZ8zoJtKei\"]},\"@openzeppelin/contracts/utils/math/SafeMath.sol\":{\"keccak256\":\"0xa2f576be637946f767aa56601c26d717f48a0aff44f82e46f13807eea1009a21\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://973868f808e88e21a1a0a01d4839314515ee337ad096286c88e41b74dcc11fc2\",\"dweb:/ipfs/QmfYuZxRfx2J2xdk4EXN7jKg4bUYEMTaYk9BAw9Bqn4o2Y\"]},\"project:/contracts/defi/aave/interfaces/IStakedAave.sol\":{\"keccak256\":\"0x4448e08aae5c2d517a929265f576fce67f6c9a642c0286749928c7ee619ef768\",\"license\":\"AGPL-3.0\",\"urls\":[\"bzz-raw://723f9e6739c3faa5d963904a47a2f2b2f5bee41eea1782143c8b7dc76ec956d1\",\"dweb:/ipfs/QmUh3hoZ2S8FVz17wPvvQdwZbX6rAvU2qNsgfpjPCzQDZ8\"]},\"project:/contracts/defi/aave/mocks/MockAaveStakingHandler.sol\":{\"keccak256\":\"0x8367e18272f522d5808255995db3c9bd0378bb7c6a18728121630bb484fda349\",\"license\":\"AGPL-3.0\",\"urls\":[\"bzz-raw://5a3ae29ccec5f1e9b5f5e581d18356f04b6e7fe094f4b100d72c487c485ab745\",\"dweb:/ipfs/QmVmxLpNVBPD9BPvMbsrKgJhmhyrZiT8nBVAni7kWLHRr3\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea2646970667358221220f9e71928ce1b10b1b15aa429d97fc85c9b40d8f6eaad7fd43526abd43c52be2764736f6c634300080b0033",
+  "deployedBytecode": "0x6080604052600080fdfea2646970667358221220f9e71928ce1b10b1b15aa429d97fc85c9b40d8f6eaad7fd43526abd43c52be2764736f6c634300080b0033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "220:34:58:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "220:34:58:-:0;;;;;",
+  "source": "// SPDX-License-Identifier: AGPL-3.0\n\npragma solidity ^0.8.11;\n\nimport \"@openzeppelin/contracts/token/ERC20/IERC20.sol\";\nimport \"@openzeppelin/contracts/utils/math/SafeMath.sol\";\nimport \"../interfaces/IStakedAave.sol\";\n\ncontract MockAaveStakingHandler {}\n",
+  "sourcePath": "/Users/yosephks/Documents/GitHub/alpsfinance-smart-contracts/contracts/defi/aave/mocks/MockAaveStakingHandler.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/defi/aave/mocks/MockAaveStakingHandler.sol",
+    "exportedSymbols": {
+      "IERC20": [
+        5896
+      ],
+      "IStakedAave": [
+        10969
+      ],
+      "MockAaveStakingHandler": [
+        10975
+      ],
+      "SafeMath": [
+        10481
+      ]
+    },
+    "id": 10976,
+    "license": "AGPL-3.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 10971,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".11"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "38:24:58"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "id": 10972,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 10976,
+        "sourceUnit": 5897,
+        "src": "64:56:58",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/utils/math/SafeMath.sol",
+        "file": "@openzeppelin/contracts/utils/math/SafeMath.sol",
+        "id": 10973,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 10976,
+        "sourceUnit": 10482,
+        "src": "121:57:58",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/defi/aave/interfaces/IStakedAave.sol",
+        "file": "../interfaces/IStakedAave.sol",
+        "id": 10974,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 10976,
+        "sourceUnit": 10970,
+        "src": "179:39:58",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "MockAaveStakingHandler",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 10975,
+        "linearizedBaseContracts": [
+          10975
+        ],
+        "name": "MockAaveStakingHandler",
+        "nameLocation": "229:22:58",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 10976,
+        "src": "220:34:58",
+        "usedErrors": []
+      }
+    ],
+    "src": "38:217:58"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/defi/aave/mocks/MockAaveStakingHandler.sol",
+    "exportedSymbols": {
+      "IERC20": [
+        5896
+      ],
+      "IStakedAave": [
+        10969
+      ],
+      "MockAaveStakingHandler": [
+        10975
+      ],
+      "SafeMath": [
+        10481
+      ]
+    },
+    "id": 10976,
+    "license": "AGPL-3.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 10971,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".11"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "38:24:58"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "id": 10972,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 10976,
+        "sourceUnit": 5897,
+        "src": "64:56:58",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/utils/math/SafeMath.sol",
+        "file": "@openzeppelin/contracts/utils/math/SafeMath.sol",
+        "id": 10973,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 10976,
+        "sourceUnit": 10482,
+        "src": "121:57:58",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/defi/aave/interfaces/IStakedAave.sol",
+        "file": "../interfaces/IStakedAave.sol",
+        "id": 10974,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 10976,
+        "sourceUnit": 10970,
+        "src": "179:39:58",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "MockAaveStakingHandler",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 10975,
+        "linearizedBaseContracts": [
+          10975
+        ],
+        "name": "MockAaveStakingHandler",
+        "nameLocation": "229:22:58",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 10976,
+        "src": "220:34:58",
+        "usedErrors": []
+      }
+    ],
+    "src": "38:217:58"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.11+commit.d7f03943.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.6",
+  "updatedAt": "2022-05-07T15:19:07.101Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
