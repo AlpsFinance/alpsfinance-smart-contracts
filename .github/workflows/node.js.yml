@@ -18,6 +18,5 @@ jobs:
       - run: yarn install
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
-      - run: yarn compile
       - run: yarn airdrop
       - run: yarn test
