@@ -1,9 +1,13 @@
 //SPDX-License-Identifier: AGPL-3.0
+
 pragma solidity ^0.8.0;
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
-import "@openzeppelin/contracts/token/common/ERC2981.sol";
-import "base64-sol/base64.sol";
+
+import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import {ERC721URIStorage} from "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import {Counters} from "@openzeppelin/contracts/utils/Counters.sol";
+import {ERC2981} from "@openzeppelin/contracts/token/common/ERC2981.sol";
+import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
+import {Base64} from "base64-sol/base64.sol";
 
 contract AlpsNameService is ERC721URIStorage, ERC2981 {
     using Counters for Counters.Counter;

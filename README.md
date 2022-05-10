@@ -1,4 +1,4 @@
-# Alps Smart Contracts 💚
+# Alps Smart Contracts 💙
 
 [![Truffle CI](https://github.com/AlpsFinance/alpsfinance-smart-contracts/actions/workflows/node.js.yml/badge.svg)](https://github.com/AlpsFinance/alpsfinance-smart-contracts/actions/workflows/node.js.yml)
 [![NPM Publish CI](https://github.com/AlpsFinance/alpsfinance-smart-contracts/actions/workflows/publish.yml/badge.svg?branch=main)](https://github.com/AlpsFinance/alpsfinance-smart-contracts/actions/workflows/publish.yml)
@@ -7,7 +7,7 @@
 
 This is the official repository for Alps Finance Smart Contracts using Truffle Framework.
 
-Built with 💚 from Alps Finance Developers.
+Built with 💙 from Alps Finance Developers.
 
 ## Table of Contents
 
