@@ -35,12 +35,8 @@ contract AlpsNameService is ERC721URIStorage, ERC2981 {
         uint256 price = getDomainPrice(name);
         require(msg.value >= price, "Not enough matic");
 
-        string memory _name = string(
-            abi.encodePacked(name, ".", topLevelDomain)
-        );
-        string memory finalSvg = string(
-            abi.encodePacked(svgPartOne, _name, svgPartTwo)
-        );
+        string memory _name = string(abi.encodePacked(name, ".", topLevelDomain));
+        string memory finalSvg = string(abi.encodePacked(svgPartOne, _name, svgPartTwo));
         uint256 newRecordId = _tokenIds.current();
         uint256 length = bytes(name).length;
         string memory strLen = Strings.toString(length);
@@ -68,11 +64,7 @@ contract AlpsNameService is ERC721URIStorage, ERC2981 {
      * @dev Fetch a domain's owner
      * @param name Domain name
      */
-    function getDomainOwner(string calldata name)
-        public
-        view
-        returns (address)
-    {
+    function getDomainOwner(string calldata name) public view returns (address) {
         return domains[name];
     }
 
@@ -80,16 +72,9 @@ contract AlpsNameService is ERC721URIStorage, ERC2981 {
      * @dev Fetch domain's price
      * @param name Domain name
      */
-    function getDomainPrice(string calldata name)
-        public
-        pure
-        returns (uint256)
-    {
+    function getDomainPrice(string calldata name) public pure returns (uint256) {
         uint256 len = bytes(name).length;
-        require(
-            len > 0,
-            "AlpsNameService: Domain name has to be longer than 0 length!"
-        );
+        require(len > 0, "AlpsNameService: Domain name has to be longer than 0 length!");
         if (len <= 3) {
             return 5 * 10**17;
         } else if (len == 4) {
@@ -100,19 +85,13 @@ contract AlpsNameService is ERC721URIStorage, ERC2981 {
     }
 
     //set some additional info about the domain
-    function setDomainRecord(string calldata name, string calldata record)
-        public
-    {
+    function setDomainRecord(string calldata name, string calldata record) public {
         require(domains[name] == msg.sender);
         domainRecords[name] = record;
     }
 
     //get some additional info about the domain
-    function getDomainRecord(string calldata name)
-        public
-        view
-        returns (string memory)
-    {
+    function getDomainRecord(string calldata name) public view returns (string memory) {
         return domainRecords[name];
     }
 
