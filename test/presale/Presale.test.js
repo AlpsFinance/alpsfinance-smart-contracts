@@ -127,7 +127,7 @@ contract("Presale", (accounts) => {
    */
   describe("should have basic presale features", () => {
     it("should enable user to purchase ALPS token with native token", async () => {
-      const nativeTokenAmount = web3.utils.toWei((100).toString());
+      const nativeTokenAmount = web3.utils.toWei((1).toString());
       // Make the token available to be used to purchase ALPS token
       await this.presale.setPresalePaymentToken(
         "0x0000000000000000000000000000000000000000",
@@ -156,7 +156,7 @@ contract("Presale", (accounts) => {
             (await this.erc20Custom.balanceOf(accounts[0])).toString()
           )
         )
-      ).to.equal(1200); // This is just a mock calculation 100/0.000125
+      ).to.equal(1200); // This is just a mock calculation 1/0.000125
       expect(
         parseInt(
           (
@@ -226,7 +226,7 @@ contract("Presale", (accounts) => {
     });
 
     it("should disable user from purchasing ALPS after ending time is reached", async () => {
-      const nativeTokenAmount = web3.utils.toWei((100).toString());
+      const nativeTokenAmount = web3.utils.toWei((1).toString());
       // Make the token available to be used to purchase ALPS token
       await this.presale.setPresalePaymentToken(
         "0x0000000000000000000000000000000000000000",
