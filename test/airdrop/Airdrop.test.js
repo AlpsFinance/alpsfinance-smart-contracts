@@ -36,13 +36,9 @@ contract("Airdrop", (accounts) => {
     this.erc20Custom = await ERC20Custom.new(name, symbol, initialCap, {
       from: accounts[0],
     });
-    this.airdrop = await Airdrop.new(
-      this.erc20Custom.address,
-      merkleTree.getHexRoot(),
-      {
-        from: accounts[0],
-      }
-    );
+    this.airdrop = await Airdrop.new(this.erc20Custom.address, merkleTree.getHexRoot(), {
+      from: accounts[0],
+    });
     // Granting Role for Airdrop contract to be a minter
     await this.erc20Custom.grantRole(
       "0x9f2df0fed2c77648de5860a4cc508cd0818c85b8b8a1ab4ceeef8d981c8956a6",
@@ -73,10 +69,7 @@ contract("Airdrop", (accounts) => {
           const leaf = Buffer.from(
             // Hash in appropriate Merkle format
             ethers.utils
-              .solidityKeccak256(
-                ["address", "uint256"],
-                [formattedAddress, numTokens]
-              )
+              .solidityKeccak256(["address", "uint256"], [formattedAddress, numTokens])
               .slice(2),
             "hex"
           );
@@ -86,9 +79,9 @@ contract("Airdrop", (accounts) => {
           if (amount) {
             await this.airdrop.claim(numTokens, proof, { from: account });
             // Still get error here
-            expect(
-              parseInt(await this.erc20Custom.balanceOf(account)).toString()
-            ).to.equal(numTokens);
+            expect(parseInt(await this.erc20Custom.balanceOf(account)).toString()).to.equal(
+              numTokens
+            );
           } else {
             await truffleAssert.reverts(
               this.airdrop.claim(numTokens, proof, { from: account }),
@@ -103,25 +96,20 @@ contract("Airdrop", (accounts) => {
       const amount = airdrop[accounts[0]];
       const formattedAddress = ethers.utils.getAddress(accounts[0]);
       // Get tokens for address
-      const numTokens = ethers.utils
-        .parseUnits(amount.toString(), decimals)
-        .toString();
+      const numTokens = ethers.utils.parseUnits(amount.toString(), decimals).toString();
 
       // Generate hashed leaf from address
       const leaf = Buffer.from(
         // Hash in appropriate Merkle format
         ethers.utils
-          .solidityKeccak256(
-            ["address", "uint256"],
-            [formattedAddress, numTokens]
-          )
+          .solidityKeccak256(["address", "uint256"], [formattedAddress, numTokens])
           .slice(2),
         "hex"
       );
       // Generate airdrop proof
       const proof = merkleTree.getHexProof(leaf);
 
-      // #1 Successful Claim 
+      // #1 Successful Claim
       await this.airdrop.claim(numTokens, proof, { from: accounts[0] });
 
       // #2 Failed Claim
@@ -135,18 +123,13 @@ contract("Airdrop", (accounts) => {
       const amount = 0;
       const formattedAddress = ethers.utils.getAddress(accounts[2]);
       // Get tokens for address
-      const numTokens = ethers.utils
-        .parseUnits(amount.toString(), decimals)
-        .toString();
+      const numTokens = ethers.utils.parseUnits(amount.toString(), decimals).toString();
 
       // Generate hashed leaf from address
       const leaf = Buffer.from(
         // Hash in appropriate Merkle format
         ethers.utils
-          .solidityKeccak256(
-            ["address", "uint256"],
-            [formattedAddress, numTokens]
-          )
+          .solidityKeccak256(["address", "uint256"], [formattedAddress, numTokens])
           .slice(2),
         "hex"
       );
@@ -162,13 +145,10 @@ contract("Airdrop", (accounts) => {
 
   describe("should have admin access to implement changes", () => {
     it("should allow changes to new merkle root", async () => {
-      const newMerkleRoot =
-        "0x9f2df0fed2c77648de5860a4cc508cd0818c85b8b8a1ab4ceeef8d981c8956a6";
+      const newMerkleRoot = "0x9f2df0fed2c77648de5860a4cc508cd0818c85b8b8a1ab4ceeef8d981c8956a6";
       await this.airdrop.setMerkleRoot(newMerkleRoot, { from: accounts[0] });
 
-      expect(await this.airdrop.getMerkleRoot({ from: accounts[0] })).to.equal(
-        newMerkleRoot
-      );
+      expect(await this.airdrop.getMerkleRoot({ from: accounts[0] })).to.equal(newMerkleRoot);
     });
 
     it("should disallow changes for 0 value merkle root", async () => {
