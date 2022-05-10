@@ -41,7 +41,12 @@
     "chai-as-promised": "^7.1.1",
     "chai-bignumber": "^2.0.2",
     "dotenv": "^10.0.0",
-    "truffle-plugin-verify": "^0.5.20"
+    "truffle-plugin-verify": "^0.5.20",
+    "prettier": "^2.5.1",
+    "prettier-plugin-solidity": "^1.0.0-beta.19",
+    "solhint": "^3.3.6",
+    "solhint-plugin-prettier": "^0.0.5",
+    "husky": "^7.0.0"
   },
   "scripts": {
     "compile": "truffle compile --all",
@@ -50,6 +55,9 @@
     "develop": "truffle develop",
     "test": "truffle test",
     "verify": "truffle run verify",
-    "airdrop": "node airdrop/app.js"
+    "airdrop": "node airdrop/app.js",
+    "solhint": "npx solhint contracts/**/*.sol",
+    "prettier:solidity": "npx prettier --write contracts/**/*.sol",
+    "prepare": "husky install"
   }
 }

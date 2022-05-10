@@ -16,8 +16,7 @@ contract("Presale", (accounts) => {
   const initialCap = "5000000000000000000000000000";
   const currentTime = Date.now();
   const startingTime = (currentTime - 100000).toString();
-  const { usdPrice, minimumUSDPurchase, maximumPresaleAmount } =
-    PresaleDetails[0];
+  const { usdPrice, minimumUSDPurchase, maximumPresaleAmount } = PresaleDetails[0];
 
   beforeEach(async () => {
     this.erc20Custom = await ERC20Custom.new(name, symbol, initialCap, {
@@ -61,9 +60,7 @@ contract("Presale", (accounts) => {
    */
   describe("should have the properly working getter methods", () => {
     it("should be able to fetch current presale round (with only one round)", async () => {
-      expect(
-        parseInt((await this.presale.getCurrentPresaleRound()).toString())
-      ).to.equal(0);
+      expect(parseInt((await this.presale.getCurrentPresaleRound()).toString())).to.equal(0);
     });
 
     it("should be able to fetch current presale round (with multiple rounds)", async () => {
@@ -80,22 +77,15 @@ contract("Presale", (accounts) => {
 
       await timeTravel(currentTime);
 
-      expect(
-        parseInt((await this.presale.getCurrentPresaleRound()).toString())
-      ).to.equal(1);
+      expect(parseInt((await this.presale.getCurrentPresaleRound()).toString())).to.equal(1);
     });
 
     it("should be able to fetch current presale details", async () => {
-      const currentPresaleDetails =
-        await this.presale.getCurrentPresaleDetails();
+      const currentPresaleDetails = await this.presale.getCurrentPresaleDetails();
 
       expect(currentPresaleDetails[0].toString()).to.equal(startingTime);
-      expect(parseInt(currentPresaleDetails[1].toString()) / 10 ** 18).to.equal(
-        usdPrice
-      );
-      expect(parseInt(currentPresaleDetails[2].toString()) / 10 ** 18).to.equal(
-        minimumUSDPurchase
-      );
+      expect(parseInt(currentPresaleDetails[1].toString()) / 10 ** 18).to.equal(usdPrice);
+      expect(parseInt(currentPresaleDetails[2].toString()) / 10 ** 18).to.equal(minimumUSDPurchase);
       expect(parseInt(currentPresaleDetails[3].toString()) / 10 ** 18).to.equal(
         maximumPresaleAmount
       );
@@ -113,9 +103,7 @@ contract("Presale", (accounts) => {
         { from: accounts[0] }
       );
 
-      expect(
-        parseInt((await this.presale.getTotalPresaleRound()).toString())
-      ).to.equal(2);
+      expect(parseInt((await this.presale.getTotalPresaleRound()).toString())).to.equal(2);
     });
   });
 
@@ -146,23 +134,13 @@ contract("Presale", (accounts) => {
           value: nativeTokenAmount,
         }
       );
-      const currentPresaleRound = (
-        await this.presale.getCurrentPresaleRound()
-      ).toString();
+      const currentPresaleRound = (await this.presale.getCurrentPresaleRound()).toString();
 
       expect(
-        parseInt(
-          web3.utils.fromWei(
-            (await this.erc20Custom.balanceOf(accounts[0])).toString()
-          )
-        )
+        parseInt(web3.utils.fromWei((await this.erc20Custom.balanceOf(accounts[0])).toString()))
       ).to.equal(1200); // This is just a mock calculation 1/0.000125
       expect(
-        parseInt(
-          (
-            await this.presale.getPresaleAmountByRound(currentPresaleRound)
-          ).toString()
-        )
+        parseInt((await this.presale.getPresaleAmountByRound(currentPresaleRound)).toString())
       ).to.equal(1.2e21);
     });
 
@@ -197,31 +175,17 @@ contract("Presale", (accounts) => {
 
       // await timeTravel(currentTime);
 
-      await this.presale.presaleTokens(
-        this.erc20Custom2.address,
-        erc20TokenAmount,
-        {
-          from: accounts[0],
-        }
-      );
+      await this.presale.presaleTokens(this.erc20Custom2.address, erc20TokenAmount, {
+        from: accounts[0],
+      });
 
-      const currentPresaleRound = (
-        await this.presale.getCurrentPresaleRound()
-      ).toString();
+      const currentPresaleRound = (await this.presale.getCurrentPresaleRound()).toString();
 
       expect(
-        parseInt(
-          web3.utils.fromWei(
-            (await this.erc20Custom.balanceOf(accounts[0])).toString()
-          )
-        )
+        parseInt(web3.utils.fromWei((await this.erc20Custom.balanceOf(accounts[0])).toString()))
       ).to.equal(1200); // This is just a mock calculation 100/0.000125
       expect(
-        parseInt(
-          (
-            await this.presale.getPresaleAmountByRound(currentPresaleRound)
-          ).toString()
-        )
+        parseInt((await this.presale.getPresaleAmountByRound(currentPresaleRound)).toString())
       ).to.equal(1.2e21);
     });
 
@@ -257,16 +221,12 @@ contract("Presale", (accounts) => {
       const newEndingTime = currentTime * 10;
       await this.presale.setEndingTime(newEndingTime, { from: accounts[0] });
 
-      expect(parseInt((await this.presale.endingTime()).toString())).to.equal(
-        newEndingTime
-      );
+      expect(parseInt((await this.presale.endingTime()).toString())).to.equal(newEndingTime);
     });
 
     it("should disable access to set ending time by non-owners", async () => {
       const newEndingTime = currentTime * 10;
-      await truffleAssert.reverts(
-        this.presale.setEndingTime(newEndingTime, { from: accounts[1] })
-      );
+      await truffleAssert.reverts(this.presale.setEndingTime(newEndingTime, { from: accounts[1] }));
     });
   });
 });

@@ -8,16 +8,8 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./interfaces/IERC721Custom.sol";
 
-contract ERC721Custom is
-    ERC721,
-    ERC721URIStorage,
-    ERC721Burnable,
-    Ownable,
-    IERC721Custom
-{
-    constructor(string memory _name, string memory _symbol)
-        ERC721(_name, _symbol)
-    {}
+contract ERC721Custom is ERC721, ERC721URIStorage, ERC721Burnable, Ownable, IERC721Custom {
+    constructor(string memory _name, string memory _symbol) ERC721(_name, _symbol) {}
 
     function safeMint(
         address to,
@@ -30,10 +22,7 @@ contract ERC721Custom is
 
     // The following functions are overrides required by Solidity.
 
-    function _burn(uint256 tokenId)
-        internal
-        override(ERC721, ERC721URIStorage)
-    {
+    function _burn(uint256 tokenId) internal override(ERC721, ERC721URIStorage) {
         super._burn(tokenId);
     }
 

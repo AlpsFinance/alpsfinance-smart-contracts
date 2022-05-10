@@ -13,11 +13,7 @@ library FrequencyHelper {
         Yearly
     }
 
-    function convertFrequency(Frequency _frequency)
-        internal
-        pure
-        returns (uint256)
-    {
+    function convertFrequency(Frequency _frequency) internal pure returns (uint256) {
         if (_frequency == Frequency.Daily) {
             return 1 days;
         }

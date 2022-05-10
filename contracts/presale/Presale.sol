@@ -56,8 +56,7 @@ contract Presale is Ownable, ReentrancyGuard {
     // Mapping `presaleRound` to its data details
     mapping(uint256 => PresaleData) public presaleDetailsMapping;
     mapping(uint256 => uint256) public presaleAmountByRoundMapping;
-    mapping(address => PresalePaymentTokenData)
-        public presalePaymentTokenMapping;
+    mapping(address => PresalePaymentTokenData) public presalePaymentTokenMapping;
 
     error presaleRoundClosed();
     error presaleTokenNotAvailable();
@@ -97,11 +96,7 @@ contract Presale is Ownable, ReentrancyGuard {
      * @dev Get presale total amount By presale round
      * @param _presaleRound - The presale round chosen
      */
-    function getPresaleAmountByRound(uint256 _presaleRound)
-        public
-        view
-        returns (uint256)
-    {
+    function getPresaleAmountByRound(uint256 _presaleRound) public view returns (uint256) {
         return presaleAmountByRoundMapping[_presaleRound];
     }
 
@@ -110,11 +105,7 @@ contract Presale is Ownable, ReentrancyGuard {
      */
     function getTotalPresaleAmount() public view returns (uint256) {
         uint256 totalPresale = 0;
-        for (
-            uint256 presaleRound = 0;
-            presaleRound < totalPresaleRound.current();
-            presaleRound++
-        ) {
+        for (uint256 presaleRound = 0; presaleRound < totalPresaleRound.current(); presaleRound++) {
             totalPresale += presaleAmountByRoundMapping[presaleRound];
         }
 
@@ -130,10 +121,7 @@ contract Presale is Ownable, ReentrancyGuard {
             presaleRound > 0;
             presaleRound--
         ) {
-            if (
-                presaleDetailsMapping[presaleRound].startingTime <=
-                block.timestamp
-            ) {
+            if (presaleDetailsMapping[presaleRound].startingTime <= block.timestamp) {
                 return presaleRound;
             }
         }
@@ -185,10 +173,8 @@ contract Presale is Ownable, ReentrancyGuard {
         ) = getCurrentPresaleDetails();
 
         // Check whether the presale round is still open
-        if (
-            block.timestamp < currentPresaleStartingTime ||
-            block.timestamp >= endingTime
-        ) revert presaleRoundClosed();
+        if (block.timestamp < currentPresaleStartingTime || block.timestamp >= endingTime)
+            revert presaleRoundClosed();
 
         // Check whether token is valid
         if (!presalePaymentTokenMapping[_paymentTokenAddress].available)
@@ -201,26 +187,16 @@ contract Presale is Ownable, ReentrancyGuard {
         );
         (, int256 price, , , ) = priceFeed.latestRoundData();
         uint256 presaleUSDAmount = SafeMath.mul(
-            uint256(
-                PriceConverter.scalePrice(
-                    price,
-                    priceFeed.decimals(),
-                    token.decimals()
-                )
-            ),
+            uint256(PriceConverter.scalePrice(price, priceFeed.decimals(), token.decimals())),
             _amount
         );
 
         if (
-            uint256(
-                PriceConverter.scalePrice(int256(presaleUSDAmount), 18, 0)
-            ) < currentPresaleMinimumUSDPurchase
+            uint256(PriceConverter.scalePrice(int256(presaleUSDAmount), 18, 0)) <
+            currentPresaleMinimumUSDPurchase
         ) revert presaleUSDPurchaseNotSufficient();
 
-        uint256 presaleAmount = SafeMath.div(
-            presaleUSDAmount,
-            currentPresalePrice
-        );
+        uint256 presaleAmount = SafeMath.div(presaleUSDAmount, currentPresalePrice);
 
         if (
             presaleAmount >
@@ -248,22 +224,14 @@ contract Presale is Ownable, ReentrancyGuard {
 
         // Send ALPS token to `msg.sender`
         token.mint(msg.sender, presaleAmount);
-        emit TokenPresold(
-            msg.sender,
-            _paymentTokenAddress,
-            presaleAmount,
-            _amount
-        );
+        emit TokenPresold(msg.sender, _paymentTokenAddress, presaleAmount, _amount);
     }
 
     /**
      * @dev Set new Presale Receiver Address
      * @param _newPresaleReceiver - Address that'll receive the presale payment token
      */
-    function setPresaleReceiver(address payable _newPresaleReceiver)
-        public
-        onlyOwner
-    {
+    function setPresaleReceiver(address payable _newPresaleReceiver) public onlyOwner {
         presaleReceiver = _newPresaleReceiver;
 
         emit PresaleReceiverUpdated(_newPresaleReceiver);
@@ -294,16 +262,10 @@ contract Presale is Ownable, ReentrancyGuard {
         bool _tokenAvailability,
         address _aggregatorAddress
     ) public onlyOwner onlyNonZeroAddress(_aggregatorAddress) {
-        presalePaymentTokenMapping[_tokenAddress]
-            .available = _tokenAvailability;
-        presalePaymentTokenMapping[_tokenAddress]
-            .aggregatorAddress = _aggregatorAddress;
+        presalePaymentTokenMapping[_tokenAddress].available = _tokenAvailability;
+        presalePaymentTokenMapping[_tokenAddress].aggregatorAddress = _aggregatorAddress;
 
-        emit PresalePaymentTokenUpdated(
-            _tokenAddress,
-            _tokenAvailability,
-            _aggregatorAddress
-        );
+        emit PresalePaymentTokenUpdated(_tokenAddress, _tokenAvailability, _aggregatorAddress);
     }
 
     /**
@@ -332,14 +294,11 @@ contract Presale is Ownable, ReentrancyGuard {
         uint256 _minimumUSDPurchase,
         uint256 _maximumPresaleAmount
     ) public onlyOwner {
-        uint256 presaleStartingTime = presaleDetailsMapping[_presaleRound]
-            .startingTime;
+        uint256 presaleStartingTime = presaleDetailsMapping[_presaleRound].startingTime;
         uint256 presaleUSDPrice = presaleDetailsMapping[_presaleRound].usdPrice;
-        uint256 presaleMinimumUSDPurchase = presaleDetailsMapping[_presaleRound]
-            .minimumUSDPurchase;
-        uint256 presaleMaximumPresaleAmount = presaleDetailsMapping[
-            _presaleRound
-        ].maximumPresaleAmount;
+        uint256 presaleMinimumUSDPurchase = presaleDetailsMapping[_presaleRound].minimumUSDPurchase;
+        uint256 presaleMaximumPresaleAmount = presaleDetailsMapping[_presaleRound]
+            .maximumPresaleAmount;
 
         // Increment the total round counter when new presale is created
         if (
@@ -355,22 +314,18 @@ contract Presale is Ownable, ReentrancyGuard {
         if (
             _startingTime == 0 ||
             (_presaleRound != 0 &&
-                _startingTime <
-                presaleDetailsMapping[_presaleRound - 1].startingTime)
+                _startingTime < presaleDetailsMapping[_presaleRound - 1].startingTime)
         ) revert presaleStartingTimeInvalid();
 
         // These values given must be larger than zero
         if (_usdPrice == 0) revert presaleUSDPriceInvalid();
         if (_minimumUSDPurchase == 0) revert presaleMimumumUSDPurchaseInvalid();
-        if (_maximumPresaleAmount == 0)
-            revert presaleMaximumPresaleAmountInvalid();
+        if (_maximumPresaleAmount == 0) revert presaleMaximumPresaleAmountInvalid();
 
         presaleDetailsMapping[_presaleRound].startingTime = _startingTime;
         presaleDetailsMapping[_presaleRound].usdPrice = _usdPrice;
-        presaleDetailsMapping[_presaleRound]
-            .minimumUSDPurchase = _minimumUSDPurchase;
-        presaleDetailsMapping[_presaleRound]
-            .maximumPresaleAmount = _maximumPresaleAmount;
+        presaleDetailsMapping[_presaleRound].minimumUSDPurchase = _minimumUSDPurchase;
+        presaleDetailsMapping[_presaleRound].maximumPresaleAmount = _maximumPresaleAmount;
 
         emit PresaleRoundUpdated(
             _presaleRound,

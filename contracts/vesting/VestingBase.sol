@@ -51,12 +51,7 @@ contract VestingBase is Ownable, Pausable {
      * @param _round The round of which markleTree to be viewed.
      * @return Returns Total vested balance.
      */
-    function getMerkleRoot(uint256 _round)
-        public
-        view
-        onlyOwner
-        returns (bytes32)
-    {
+    function getMerkleRoot(uint256 _round) public view onlyOwner returns (bytes32) {
         return RootToRounds[_round];
     }
 
@@ -81,14 +76,8 @@ contract VestingBase is Ownable, Pausable {
     /**
      * @notice This action enables admin to set newMarkelRoot.
      */
-    function setMerkleRoot(bytes32 _newMerkleRoot, uint256 _round)
-        external
-        onlyOwner
-    {
-        require(
-            _newMerkleRoot != 0x00,
-            "VestingBase: Invalid new merkle root value!"
-        );
+    function setMerkleRoot(bytes32 _newMerkleRoot, uint256 _round) external onlyOwner {
+        require(_newMerkleRoot != 0x00, "VestingBase: Invalid new merkle root value!");
 
         RootToRounds[_round] = _newMerkleRoot;
     }
@@ -102,10 +91,7 @@ contract VestingBase is Ownable, Pausable {
         bytes32[] calldata _proof,
         uint256 _round
     ) external whenNotPaused returns (bool) {
-        require(
-            !vestingClaimed[_round][msg.sender],
-            "VestingBase: Vesting has been claimed!"
-        );
+        require(!vestingClaimed[_round][msg.sender], "VestingBase: Vesting has been claimed!");
         bytes32 merkleRoot = RootToRounds[_round];
         bytes32 leaf = keccak256(abi.encodePacked(msg.sender, _amount));
         bool isValidLeaf = MerkleProof.verify(_proof, merkleRoot, leaf);

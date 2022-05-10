@@ -10,14 +10,7 @@ import "@openzeppelin/contracts/token/ERC20/extensions/draft-ERC20Permit.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 
-contract ERC20Custom is
-    ERC20,
-    ERC20Burnable,
-    Pausable,
-    AccessControl,
-    ERC20Permit,
-    ERC20Votes
-{
+contract ERC20Custom is ERC20, ERC20Burnable, Pausable, AccessControl, ERC20Permit, ERC20Votes {
     using SafeMath for uint256;
 
     bytes32 public constant PAUSER_ROLE = keccak256("PAUSER_ROLE");
@@ -58,27 +51,17 @@ contract ERC20Custom is
     /**
      * @dev Increase the cap supply
      */
-    function increaseCap(uint256 _increaseCap)
-        public
-        onlyRole(DEFAULT_ADMIN_ROLE)
-    {
-        require(
-            _increaseCap > 0,
-            "ERC20Custom: Increase Cap value has non-valid 0 value!"
-        );
+    function increaseCap(uint256 _increaseCap) public onlyRole(DEFAULT_ADMIN_ROLE) {
+        require(_increaseCap > 0, "ERC20Custom: Increase Cap value has non-valid 0 value!");
         _cap = SafeMath.add(cap(), _increaseCap);
     }
 
     /**
      * @dev Decrease the cap supply
      */
-    function decreaseCap(uint256 _decreaseCap)
-        public
-        onlyRole(DEFAULT_ADMIN_ROLE)
-    {
+    function decreaseCap(uint256 _decreaseCap) public onlyRole(DEFAULT_ADMIN_ROLE) {
         require(
-            (_decreaseCap > 0) &&
-                (_decreaseCap <= SafeMath.sub(cap(), totalSupply())),
+            (_decreaseCap > 0) && (_decreaseCap <= SafeMath.sub(cap(), totalSupply())),
             "ERC20Custom: Decrease Cap value has non-valid value!"
         );
         _cap = SafeMath.sub(cap(), _decreaseCap);
@@ -114,21 +97,12 @@ contract ERC20Custom is
         super._afterTokenTransfer(from, to, amount);
     }
 
-    function _mint(address to, uint256 amount)
-        internal
-        override(ERC20, ERC20Votes)
-    {
-        require(
-            ERC20.totalSupply() + amount <= cap(),
-            "ERC20Capped: cap exceeded"
-        );
+    function _mint(address to, uint256 amount) internal override(ERC20, ERC20Votes) {
+        require(ERC20.totalSupply() + amount <= cap(), "ERC20Capped: cap exceeded");
         super._mint(to, amount);
     }
 
-    function _burn(address account, uint256 amount)
-        internal
-        override(ERC20, ERC20Votes)
-    {
+    function _burn(address account, uint256 amount) internal override(ERC20, ERC20Votes) {
         super._burn(account, amount);
     }
 }
