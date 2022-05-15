@@ -2,7 +2,7 @@
 
 pragma solidity ^0.8.11;
 
-import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
+import {AggregatorV3Interface} from '@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol';
 
 library PriceConverter {
   function getDerivedPrice(
@@ -12,7 +12,7 @@ library PriceConverter {
   ) public view returns (int256) {
     require(
       _decimals > uint8(0) && _decimals <= uint8(18),
-      "Invalid _decimals"
+      'Invalid _decimals'
     );
     int256 decimals = int256(10**uint256(_decimals));
     (, int256 basePrice, , , ) = AggregatorV3Interface(_base).latestRoundData();

@@ -2,11 +2,11 @@
 
 pragma solidity ^0.8.11;
 
-import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Burnable.sol";
-import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
-import "./interfaces/IERC1155Custom.sol";
+import '@openzeppelin/contracts/token/ERC1155/ERC1155.sol';
+import '@openzeppelin/contracts/access/Ownable.sol';
+import '@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Burnable.sol';
+import '@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol';
+import './interfaces/IERC1155Custom.sol';
 
 contract ERC1155Custom is
   ERC1155,

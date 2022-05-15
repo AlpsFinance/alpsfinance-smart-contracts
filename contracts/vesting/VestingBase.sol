@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: AGPL-3.0
 pragma solidity ^0.8.11;
 
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts/utils/math/SafeMath.sol";
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts/security/Pausable.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
+import '@openzeppelin/contracts/token/ERC20/IERC20.sol';
+import '@openzeppelin/contracts/utils/math/SafeMath.sol';
+import '@openzeppelin/contracts/token/ERC20/ERC20.sol';
+import '@openzeppelin/contracts/security/Pausable.sol';
+import '@openzeppelin/contracts/access/Ownable.sol';
+import '@openzeppelin/contracts/utils/cryptography/MerkleProof.sol';
 
 /**
  * @title Vesting
@@ -70,7 +70,7 @@ contract VestingBase is Ownable, Pausable {
   function removeFunds(uint256 _amount) external onlyOwner returns (bool) {
     uint256 balance = vestingCoin.balanceOf(address(this));
 
-    require(balance >= _amount, "amount is grater than balanace");
+    require(balance >= _amount, 'amount is grater than balanace');
 
     require(vestingCoin.transfer(msg.sender, _amount));
 
@@ -87,7 +87,7 @@ contract VestingBase is Ownable, Pausable {
   {
     require(
       _newMerkleRoot != 0x00,
-      "VestingBase: Invalid new merkle root value!"
+      'VestingBase: Invalid new merkle root value!'
     );
 
     RootToRounds[_round] = _newMerkleRoot;
@@ -104,12 +104,12 @@ contract VestingBase is Ownable, Pausable {
   ) external whenNotPaused returns (bool) {
     require(
       !vestingClaimed[_round][msg.sender],
-      "VestingBase: Vesting has been claimed!"
+      'VestingBase: Vesting has been claimed!'
     );
     bytes32 merkleRoot = RootToRounds[_round];
     bytes32 leaf = keccak256(abi.encodePacked(msg.sender, _amount));
     bool isValidLeaf = MerkleProof.verify(_proof, merkleRoot, leaf);
-    require(isValidLeaf, "VestingBase: Address has no Vesting allocation!");
+    require(isValidLeaf, 'VestingBase: Address has no Vesting allocation!');
 
     // Set address to claimed
     vestingClaimed[_round][msg.sender] = true;
