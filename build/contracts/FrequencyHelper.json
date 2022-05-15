@@ -7,23 +7,23 @@
   "immutableReferences": {},
   "generatedSources": [],
   "deployedGeneratedSources": [],
-  "sourceMap": "64:706:47:-:0;;;;;;;;;;;;;;;-1:-1:-1;;;64:706:47;;;;;;;;;;;;;;;;;",
-  "deployedSourceMap": "64:706:47:-:0;;;;;;;;",
+  "sourceMap": "64:706:51:-:0;;;;;;;;;;;;;;;-1:-1:-1;;;64:706:51;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "64:706:51:-:0;;;;;;;;",
   "source": "// SPDX-License-Identifier: AGPL-3.0\n\npragma solidity ^0.8.11;\n\nlibrary FrequencyHelper {\n  enum Frequency {\n    Daily,\n    Weekly,\n    HalfMonthly,\n    Monthly,\n    Quarterly,\n    HalfYearly,\n    Yearly\n  }\n\n  function convertFrequency(Frequency _frequency)\n    internal\n    pure\n    returns (uint256)\n  {\n    if (_frequency == Frequency.Daily) {\n      return 1 days;\n    }\n\n    if (_frequency == Frequency.Weekly) {\n      return 7 days;\n    }\n\n    if (_frequency == Frequency.HalfMonthly) {\n      return 15 days;\n    }\n\n    if (_frequency == Frequency.Monthly) {\n      return 30 days;\n    }\n\n    if (_frequency == Frequency.Quarterly) {\n      return 91 days;\n    }\n\n    if (_frequency == Frequency.HalfYearly) {\n      return 182 days;\n    }\n\n    return 365 days;\n  }\n}\n",
   "sourcePath": "/Users/yosephks/Documents/GitHub/alpsfinance-smart-contracts/contracts/libraries/FrequencyHelper.sol",
   "ast": {
     "absolutePath": "project:/contracts/libraries/FrequencyHelper.sol",
     "exportedSymbols": {
       "FrequencyHelper": [
-        7818
+        8287
       ]
     },
-    "id": 7819,
+    "id": 8288,
     "license": "AGPL-3.0",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 7750,
+        "id": 8219,
         "literals": [
           "solidity",
           "^",
@@ -31,7 +31,7 @@
           ".11"
         ],
         "nodeType": "PragmaDirective",
-        "src": "38:24:47"
+        "src": "38:24:51"
       },
       {
         "abstract": false,
@@ -40,99 +40,99 @@
         "contractDependencies": [],
         "contractKind": "library",
         "fullyImplemented": true,
-        "id": 7818,
+        "id": 8287,
         "linearizedBaseContracts": [
-          7818
+          8287
         ],
         "name": "FrequencyHelper",
-        "nameLocation": "72:15:47",
+        "nameLocation": "72:15:51",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "FrequencyHelper.Frequency",
-            "id": 7758,
+            "id": 8227,
             "members": [
               {
-                "id": 7751,
+                "id": 8220,
                 "name": "Daily",
-                "nameLocation": "113:5:47",
+                "nameLocation": "113:5:51",
                 "nodeType": "EnumValue",
-                "src": "113:5:47"
+                "src": "113:5:51"
               },
               {
-                "id": 7752,
+                "id": 8221,
                 "name": "Weekly",
-                "nameLocation": "124:6:47",
+                "nameLocation": "124:6:51",
                 "nodeType": "EnumValue",
-                "src": "124:6:47"
+                "src": "124:6:51"
               },
               {
-                "id": 7753,
+                "id": 8222,
                 "name": "HalfMonthly",
-                "nameLocation": "136:11:47",
+                "nameLocation": "136:11:51",
                 "nodeType": "EnumValue",
-                "src": "136:11:47"
+                "src": "136:11:51"
               },
               {
-                "id": 7754,
+                "id": 8223,
                 "name": "Monthly",
-                "nameLocation": "153:7:47",
+                "nameLocation": "153:7:51",
                 "nodeType": "EnumValue",
-                "src": "153:7:47"
+                "src": "153:7:51"
               },
               {
-                "id": 7755,
+                "id": 8224,
                 "name": "Quarterly",
-                "nameLocation": "166:9:47",
+                "nameLocation": "166:9:51",
                 "nodeType": "EnumValue",
-                "src": "166:9:47"
+                "src": "166:9:51"
               },
               {
-                "id": 7756,
+                "id": 8225,
                 "name": "HalfYearly",
-                "nameLocation": "181:10:47",
+                "nameLocation": "181:10:51",
                 "nodeType": "EnumValue",
-                "src": "181:10:47"
+                "src": "181:10:51"
               },
               {
-                "id": 7757,
+                "id": 8226,
                 "name": "Yearly",
-                "nameLocation": "197:6:47",
+                "nameLocation": "197:6:51",
                 "nodeType": "EnumValue",
-                "src": "197:6:47"
+                "src": "197:6:51"
               }
             ],
             "name": "Frequency",
-            "nameLocation": "97:9:47",
+            "nameLocation": "97:9:51",
             "nodeType": "EnumDefinition",
-            "src": "92:115:47"
+            "src": "92:115:51"
           },
           {
             "body": {
-              "id": 7816,
+              "id": 8285,
               "nodeType": "Block",
-              "src": "305:463:47",
+              "src": "305:463:51",
               "statements": [
                 {
                   "condition": {
                     "commonType": {
-                      "typeIdentifier": "t_enum$_Frequency_$7758",
+                      "typeIdentifier": "t_enum$_Frequency_$8227",
                       "typeString": "enum FrequencyHelper.Frequency"
                     },
-                    "id": 7769,
+                    "id": 8238,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 7766,
+                      "id": 8235,
                       "name": "_frequency",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7761,
-                      "src": "315:10:47",
+                      "referencedDeclaration": 8230,
+                      "src": "315:10:51",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_Frequency_$7758",
+                        "typeIdentifier": "t_enum$_Frequency_$8227",
                         "typeString": "enum FrequencyHelper.Frequency"
                       }
                     },
@@ -140,56 +140,56 @@
                     "operator": "==",
                     "rightExpression": {
                       "expression": {
-                        "id": 7767,
+                        "id": 8236,
                         "name": "Frequency",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7758,
-                        "src": "329:9:47",
+                        "referencedDeclaration": 8227,
+                        "src": "329:9:51",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_Frequency_$7758_$",
+                          "typeIdentifier": "t_type$_t_enum$_Frequency_$8227_$",
                           "typeString": "type(enum FrequencyHelper.Frequency)"
                         }
                       },
-                      "id": 7768,
+                      "id": 8237,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "lValueRequested": false,
                       "memberName": "Daily",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 7751,
-                      "src": "329:15:47",
+                      "referencedDeclaration": 8220,
+                      "src": "329:15:51",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_Frequency_$7758",
+                        "typeIdentifier": "t_enum$_Frequency_$8227",
                         "typeString": "enum FrequencyHelper.Frequency"
                       }
                     },
-                    "src": "315:29:47",
+                    "src": "315:29:51",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 7773,
+                  "id": 8242,
                   "nodeType": "IfStatement",
-                  "src": "311:63:47",
+                  "src": "311:63:51",
                   "trueBody": {
-                    "id": 7772,
+                    "id": 8241,
                     "nodeType": "Block",
-                    "src": "346:28:47",
+                    "src": "346:28:51",
                     "statements": [
                       {
                         "expression": {
                           "hexValue": "31",
-                          "id": 7770,
+                          "id": 8239,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
                           "kind": "number",
                           "lValueRequested": false,
                           "nodeType": "Literal",
-                          "src": "361:6:47",
+                          "src": "361:6:51",
                           "subdenomination": "days",
                           "typeDescriptions": {
                             "typeIdentifier": "t_rational_86400_by_1",
@@ -197,10 +197,10 @@
                           },
                           "value": "1"
                         },
-                        "functionReturnParameters": 7765,
-                        "id": 7771,
+                        "functionReturnParameters": 8234,
+                        "id": 8240,
                         "nodeType": "Return",
-                        "src": "354:13:47"
+                        "src": "354:13:51"
                       }
                     ]
                   }
@@ -208,23 +208,23 @@
                 {
                   "condition": {
                     "commonType": {
-                      "typeIdentifier": "t_enum$_Frequency_$7758",
+                      "typeIdentifier": "t_enum$_Frequency_$8227",
                       "typeString": "enum FrequencyHelper.Frequency"
                     },
-                    "id": 7777,
+                    "id": 8246,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 7774,
+                      "id": 8243,
                       "name": "_frequency",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7761,
-                      "src": "384:10:47",
+                      "referencedDeclaration": 8230,
+                      "src": "384:10:51",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_Frequency_$7758",
+                        "typeIdentifier": "t_enum$_Frequency_$8227",
                         "typeString": "enum FrequencyHelper.Frequency"
                       }
                     },
@@ -232,56 +232,56 @@
                     "operator": "==",
                     "rightExpression": {
                       "expression": {
-                        "id": 7775,
+                        "id": 8244,
                         "name": "Frequency",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7758,
-                        "src": "398:9:47",
+                        "referencedDeclaration": 8227,
+                        "src": "398:9:51",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_Frequency_$7758_$",
+                          "typeIdentifier": "t_type$_t_enum$_Frequency_$8227_$",
                           "typeString": "type(enum FrequencyHelper.Frequency)"
                         }
                       },
-                      "id": 7776,
+                      "id": 8245,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "lValueRequested": false,
                       "memberName": "Weekly",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 7752,
-                      "src": "398:16:47",
+                      "referencedDeclaration": 8221,
+                      "src": "398:16:51",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_Frequency_$7758",
+                        "typeIdentifier": "t_enum$_Frequency_$8227",
                         "typeString": "enum FrequencyHelper.Frequency"
                       }
                     },
-                    "src": "384:30:47",
+                    "src": "384:30:51",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 7781,
+                  "id": 8250,
                   "nodeType": "IfStatement",
-                  "src": "380:64:47",
+                  "src": "380:64:51",
                   "trueBody": {
-                    "id": 7780,
+                    "id": 8249,
                     "nodeType": "Block",
-                    "src": "416:28:47",
+                    "src": "416:28:51",
                     "statements": [
                       {
                         "expression": {
                           "hexValue": "37",
-                          "id": 7778,
+                          "id": 8247,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
                           "kind": "number",
                           "lValueRequested": false,
                           "nodeType": "Literal",
-                          "src": "431:6:47",
+                          "src": "431:6:51",
                           "subdenomination": "days",
                           "typeDescriptions": {
                             "typeIdentifier": "t_rational_604800_by_1",
@@ -289,10 +289,10 @@
                           },
                           "value": "7"
                         },
-                        "functionReturnParameters": 7765,
-                        "id": 7779,
+                        "functionReturnParameters": 8234,
+                        "id": 8248,
                         "nodeType": "Return",
-                        "src": "424:13:47"
+                        "src": "424:13:51"
                       }
                     ]
                   }
@@ -300,23 +300,23 @@
                 {
                   "condition": {
                     "commonType": {
-                      "typeIdentifier": "t_enum$_Frequency_$7758",
+                      "typeIdentifier": "t_enum$_Frequency_$8227",
                       "typeString": "enum FrequencyHelper.Frequency"
                     },
-                    "id": 7785,
+                    "id": 8254,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 7782,
+                      "id": 8251,
                       "name": "_frequency",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7761,
-                      "src": "454:10:47",
+                      "referencedDeclaration": 8230,
+                      "src": "454:10:51",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_Frequency_$7758",
+                        "typeIdentifier": "t_enum$_Frequency_$8227",
                         "typeString": "enum FrequencyHelper.Frequency"
                       }
                     },
@@ -324,56 +324,56 @@
                     "operator": "==",
                     "rightExpression": {
                       "expression": {
-                        "id": 7783,
+                        "id": 8252,
                         "name": "Frequency",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7758,
-                        "src": "468:9:47",
+                        "referencedDeclaration": 8227,
+                        "src": "468:9:51",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_Frequency_$7758_$",
+                          "typeIdentifier": "t_type$_t_enum$_Frequency_$8227_$",
                           "typeString": "type(enum FrequencyHelper.Frequency)"
                         }
                       },
-                      "id": 7784,
+                      "id": 8253,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "lValueRequested": false,
                       "memberName": "HalfMonthly",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 7753,
-                      "src": "468:21:47",
+                      "referencedDeclaration": 8222,
+                      "src": "468:21:51",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_Frequency_$7758",
+                        "typeIdentifier": "t_enum$_Frequency_$8227",
                         "typeString": "enum FrequencyHelper.Frequency"
                       }
                     },
-                    "src": "454:35:47",
+                    "src": "454:35:51",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 7789,
+                  "id": 8258,
                   "nodeType": "IfStatement",
-                  "src": "450:70:47",
+                  "src": "450:70:51",
                   "trueBody": {
-                    "id": 7788,
+                    "id": 8257,
                     "nodeType": "Block",
-                    "src": "491:29:47",
+                    "src": "491:29:51",
                     "statements": [
                       {
                         "expression": {
                           "hexValue": "3135",
-                          "id": 7786,
+                          "id": 8255,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
                           "kind": "number",
                           "lValueRequested": false,
                           "nodeType": "Literal",
-                          "src": "506:7:47",
+                          "src": "506:7:51",
                           "subdenomination": "days",
                           "typeDescriptions": {
                             "typeIdentifier": "t_rational_1296000_by_1",
@@ -381,10 +381,10 @@
                           },
                           "value": "15"
                         },
-                        "functionReturnParameters": 7765,
-                        "id": 7787,
+                        "functionReturnParameters": 8234,
+                        "id": 8256,
                         "nodeType": "Return",
-                        "src": "499:14:47"
+                        "src": "499:14:51"
                       }
                     ]
                   }
@@ -392,23 +392,23 @@
                 {
                   "condition": {
                     "commonType": {
-                      "typeIdentifier": "t_enum$_Frequency_$7758",
+                      "typeIdentifier": "t_enum$_Frequency_$8227",
                       "typeString": "enum FrequencyHelper.Frequency"
                     },
-                    "id": 7793,
+                    "id": 8262,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 7790,
+                      "id": 8259,
                       "name": "_frequency",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7761,
-                      "src": "530:10:47",
+                      "referencedDeclaration": 8230,
+                      "src": "530:10:51",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_Frequency_$7758",
+                        "typeIdentifier": "t_enum$_Frequency_$8227",
                         "typeString": "enum FrequencyHelper.Frequency"
                       }
                     },
@@ -416,56 +416,56 @@
                     "operator": "==",
                     "rightExpression": {
                       "expression": {
-                        "id": 7791,
+                        "id": 8260,
                         "name": "Frequency",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7758,
-                        "src": "544:9:47",
+                        "referencedDeclaration": 8227,
+                        "src": "544:9:51",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_Frequency_$7758_$",
+                          "typeIdentifier": "t_type$_t_enum$_Frequency_$8227_$",
                           "typeString": "type(enum FrequencyHelper.Frequency)"
                         }
                       },
-                      "id": 7792,
+                      "id": 8261,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "lValueRequested": false,
                       "memberName": "Monthly",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 7754,
-                      "src": "544:17:47",
+                      "referencedDeclaration": 8223,
+                      "src": "544:17:51",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_Frequency_$7758",
+                        "typeIdentifier": "t_enum$_Frequency_$8227",
                         "typeString": "enum FrequencyHelper.Frequency"
                       }
                     },
-                    "src": "530:31:47",
+                    "src": "530:31:51",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 7797,
+                  "id": 8266,
                   "nodeType": "IfStatement",
-                  "src": "526:66:47",
+                  "src": "526:66:51",
                   "trueBody": {
-                    "id": 7796,
+                    "id": 8265,
                     "nodeType": "Block",
-                    "src": "563:29:47",
+                    "src": "563:29:51",
                     "statements": [
                       {
                         "expression": {
                           "hexValue": "3330",
-                          "id": 7794,
+                          "id": 8263,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
                           "kind": "number",
                           "lValueRequested": false,
                           "nodeType": "Literal",
-                          "src": "578:7:47",
+                          "src": "578:7:51",
                           "subdenomination": "days",
                           "typeDescriptions": {
                             "typeIdentifier": "t_rational_2592000_by_1",
@@ -473,10 +473,10 @@
                           },
                           "value": "30"
                         },
-                        "functionReturnParameters": 7765,
-                        "id": 7795,
+                        "functionReturnParameters": 8234,
+                        "id": 8264,
                         "nodeType": "Return",
-                        "src": "571:14:47"
+                        "src": "571:14:51"
                       }
                     ]
                   }
@@ -484,23 +484,23 @@
                 {
                   "condition": {
                     "commonType": {
-                      "typeIdentifier": "t_enum$_Frequency_$7758",
+                      "typeIdentifier": "t_enum$_Frequency_$8227",
                       "typeString": "enum FrequencyHelper.Frequency"
                     },
-                    "id": 7801,
+                    "id": 8270,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 7798,
+                      "id": 8267,
                       "name": "_frequency",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7761,
-                      "src": "602:10:47",
+                      "referencedDeclaration": 8230,
+                      "src": "602:10:51",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_Frequency_$7758",
+                        "typeIdentifier": "t_enum$_Frequency_$8227",
                         "typeString": "enum FrequencyHelper.Frequency"
                       }
                     },
@@ -508,56 +508,56 @@
                     "operator": "==",
                     "rightExpression": {
                       "expression": {
-                        "id": 7799,
+                        "id": 8268,
                         "name": "Frequency",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7758,
-                        "src": "616:9:47",
+                        "referencedDeclaration": 8227,
+                        "src": "616:9:51",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_Frequency_$7758_$",
+                          "typeIdentifier": "t_type$_t_enum$_Frequency_$8227_$",
                           "typeString": "type(enum FrequencyHelper.Frequency)"
                         }
                       },
-                      "id": 7800,
+                      "id": 8269,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "lValueRequested": false,
                       "memberName": "Quarterly",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 7755,
-                      "src": "616:19:47",
+                      "referencedDeclaration": 8224,
+                      "src": "616:19:51",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_Frequency_$7758",
+                        "typeIdentifier": "t_enum$_Frequency_$8227",
                         "typeString": "enum FrequencyHelper.Frequency"
                       }
                     },
-                    "src": "602:33:47",
+                    "src": "602:33:51",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 7805,
+                  "id": 8274,
                   "nodeType": "IfStatement",
-                  "src": "598:68:47",
+                  "src": "598:68:51",
                   "trueBody": {
-                    "id": 7804,
+                    "id": 8273,
                     "nodeType": "Block",
-                    "src": "637:29:47",
+                    "src": "637:29:51",
                     "statements": [
                       {
                         "expression": {
                           "hexValue": "3931",
-                          "id": 7802,
+                          "id": 8271,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
                           "kind": "number",
                           "lValueRequested": false,
                           "nodeType": "Literal",
-                          "src": "652:7:47",
+                          "src": "652:7:51",
                           "subdenomination": "days",
                           "typeDescriptions": {
                             "typeIdentifier": "t_rational_7862400_by_1",
@@ -565,10 +565,10 @@
                           },
                           "value": "91"
                         },
-                        "functionReturnParameters": 7765,
-                        "id": 7803,
+                        "functionReturnParameters": 8234,
+                        "id": 8272,
                         "nodeType": "Return",
-                        "src": "645:14:47"
+                        "src": "645:14:51"
                       }
                     ]
                   }
@@ -576,23 +576,23 @@
                 {
                   "condition": {
                     "commonType": {
-                      "typeIdentifier": "t_enum$_Frequency_$7758",
+                      "typeIdentifier": "t_enum$_Frequency_$8227",
                       "typeString": "enum FrequencyHelper.Frequency"
                     },
-                    "id": 7809,
+                    "id": 8278,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 7806,
+                      "id": 8275,
                       "name": "_frequency",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7761,
-                      "src": "676:10:47",
+                      "referencedDeclaration": 8230,
+                      "src": "676:10:51",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_Frequency_$7758",
+                        "typeIdentifier": "t_enum$_Frequency_$8227",
                         "typeString": "enum FrequencyHelper.Frequency"
                       }
                     },
@@ -600,56 +600,56 @@
                     "operator": "==",
                     "rightExpression": {
                       "expression": {
-                        "id": 7807,
+                        "id": 8276,
                         "name": "Frequency",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7758,
-                        "src": "690:9:47",
+                        "referencedDeclaration": 8227,
+                        "src": "690:9:51",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_Frequency_$7758_$",
+                          "typeIdentifier": "t_type$_t_enum$_Frequency_$8227_$",
                           "typeString": "type(enum FrequencyHelper.Frequency)"
                         }
                       },
-                      "id": 7808,
+                      "id": 8277,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "lValueRequested": false,
                       "memberName": "HalfYearly",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 7756,
-                      "src": "690:20:47",
+                      "referencedDeclaration": 8225,
+                      "src": "690:20:51",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_Frequency_$7758",
+                        "typeIdentifier": "t_enum$_Frequency_$8227",
                         "typeString": "enum FrequencyHelper.Frequency"
                       }
                     },
-                    "src": "676:34:47",
+                    "src": "676:34:51",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 7813,
+                  "id": 8282,
                   "nodeType": "IfStatement",
-                  "src": "672:70:47",
+                  "src": "672:70:51",
                   "trueBody": {
-                    "id": 7812,
+                    "id": 8281,
                     "nodeType": "Block",
-                    "src": "712:30:47",
+                    "src": "712:30:51",
                     "statements": [
                       {
                         "expression": {
                           "hexValue": "313832",
-                          "id": 7810,
+                          "id": 8279,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
                           "kind": "number",
                           "lValueRequested": false,
                           "nodeType": "Literal",
-                          "src": "727:8:47",
+                          "src": "727:8:51",
                           "subdenomination": "days",
                           "typeDescriptions": {
                             "typeIdentifier": "t_rational_15724800_by_1",
@@ -657,10 +657,10 @@
                           },
                           "value": "182"
                         },
-                        "functionReturnParameters": 7765,
-                        "id": 7811,
+                        "functionReturnParameters": 8234,
+                        "id": 8280,
                         "nodeType": "Return",
-                        "src": "720:15:47"
+                        "src": "720:15:51"
                       }
                     ]
                   }
@@ -668,14 +668,14 @@
                 {
                   "expression": {
                     "hexValue": "333635",
-                    "id": 7814,
+                    "id": 8283,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
                     "kind": "number",
                     "lValueRequested": false,
                     "nodeType": "Literal",
-                    "src": "755:8:47",
+                    "src": "755:8:51",
                     "subdenomination": "days",
                     "typeDescriptions": {
                       "typeIdentifier": "t_rational_31536000_by_1",
@@ -683,74 +683,74 @@
                     },
                     "value": "365"
                   },
-                  "functionReturnParameters": 7765,
-                  "id": 7815,
+                  "functionReturnParameters": 8234,
+                  "id": 8284,
                   "nodeType": "Return",
-                  "src": "748:15:47"
+                  "src": "748:15:51"
                 }
               ]
             },
-            "id": 7817,
+            "id": 8286,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "convertFrequency",
-            "nameLocation": "220:16:47",
+            "nameLocation": "220:16:51",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7762,
+              "id": 8231,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7761,
+                  "id": 8230,
                   "mutability": "mutable",
                   "name": "_frequency",
-                  "nameLocation": "247:10:47",
+                  "nameLocation": "247:10:51",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7817,
-                  "src": "237:20:47",
+                  "scope": 8286,
+                  "src": "237:20:51",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_enum$_Frequency_$7758",
+                    "typeIdentifier": "t_enum$_Frequency_$8227",
                     "typeString": "enum FrequencyHelper.Frequency"
                   },
                   "typeName": {
-                    "id": 7760,
+                    "id": 8229,
                     "nodeType": "UserDefinedTypeName",
                     "pathNode": {
-                      "id": 7759,
+                      "id": 8228,
                       "name": "Frequency",
                       "nodeType": "IdentifierPath",
-                      "referencedDeclaration": 7758,
-                      "src": "237:9:47"
+                      "referencedDeclaration": 8227,
+                      "src": "237:9:51"
                     },
-                    "referencedDeclaration": 7758,
-                    "src": "237:9:47",
+                    "referencedDeclaration": 8227,
+                    "src": "237:9:51",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_enum$_Frequency_$7758",
+                      "typeIdentifier": "t_enum$_Frequency_$8227",
                       "typeString": "enum FrequencyHelper.Frequency"
                     }
                   },
                   "visibility": "internal"
                 }
               ],
-              "src": "236:22:47"
+              "src": "236:22:51"
             },
             "returnParameters": {
-              "id": 7765,
+              "id": 8234,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7764,
+                  "id": 8233,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7817,
-                  "src": "294:7:47",
+                  "scope": 8286,
+                  "src": "294:7:51",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -758,10 +758,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7763,
+                    "id": 8232,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "294:7:47",
+                    "src": "294:7:51",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -770,35 +770,35 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "293:9:47"
+              "src": "293:9:51"
             },
-            "scope": 7818,
-            "src": "211:557:47",
+            "scope": 8287,
+            "src": "211:557:51",
             "stateMutability": "pure",
             "virtual": false,
             "visibility": "internal"
           }
         ],
-        "scope": 7819,
-        "src": "64:706:47",
+        "scope": 8288,
+        "src": "64:706:51",
         "usedErrors": []
       }
     ],
-    "src": "38:733:47"
+    "src": "38:733:51"
   },
   "legacyAST": {
     "absolutePath": "project:/contracts/libraries/FrequencyHelper.sol",
     "exportedSymbols": {
       "FrequencyHelper": [
-        7818
+        8287
       ]
     },
-    "id": 7819,
+    "id": 8288,
     "license": "AGPL-3.0",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 7750,
+        "id": 8219,
         "literals": [
           "solidity",
           "^",
@@ -806,7 +806,7 @@
           ".11"
         ],
         "nodeType": "PragmaDirective",
-        "src": "38:24:47"
+        "src": "38:24:51"
       },
       {
         "abstract": false,
@@ -815,99 +815,99 @@
         "contractDependencies": [],
         "contractKind": "library",
         "fullyImplemented": true,
-        "id": 7818,
+        "id": 8287,
         "linearizedBaseContracts": [
-          7818
+          8287
         ],
         "name": "FrequencyHelper",
-        "nameLocation": "72:15:47",
+        "nameLocation": "72:15:51",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "FrequencyHelper.Frequency",
-            "id": 7758,
+            "id": 8227,
             "members": [
               {
-                "id": 7751,
+                "id": 8220,
                 "name": "Daily",
-                "nameLocation": "113:5:47",
+                "nameLocation": "113:5:51",
                 "nodeType": "EnumValue",
-                "src": "113:5:47"
+                "src": "113:5:51"
               },
               {
-                "id": 7752,
+                "id": 8221,
                 "name": "Weekly",
-                "nameLocation": "124:6:47",
+                "nameLocation": "124:6:51",
                 "nodeType": "EnumValue",
-                "src": "124:6:47"
+                "src": "124:6:51"
               },
               {
-                "id": 7753,
+                "id": 8222,
                 "name": "HalfMonthly",
-                "nameLocation": "136:11:47",
+                "nameLocation": "136:11:51",
                 "nodeType": "EnumValue",
-                "src": "136:11:47"
+                "src": "136:11:51"
               },
               {
-                "id": 7754,
+                "id": 8223,
                 "name": "Monthly",
-                "nameLocation": "153:7:47",
+                "nameLocation": "153:7:51",
                 "nodeType": "EnumValue",
-                "src": "153:7:47"
+                "src": "153:7:51"
               },
               {
-                "id": 7755,
+                "id": 8224,
                 "name": "Quarterly",
-                "nameLocation": "166:9:47",
+                "nameLocation": "166:9:51",
                 "nodeType": "EnumValue",
-                "src": "166:9:47"
+                "src": "166:9:51"
               },
               {
-                "id": 7756,
+                "id": 8225,
                 "name": "HalfYearly",
-                "nameLocation": "181:10:47",
+                "nameLocation": "181:10:51",
                 "nodeType": "EnumValue",
-                "src": "181:10:47"
+                "src": "181:10:51"
               },
               {
-                "id": 7757,
+                "id": 8226,
                 "name": "Yearly",
-                "nameLocation": "197:6:47",
+                "nameLocation": "197:6:51",
                 "nodeType": "EnumValue",
-                "src": "197:6:47"
+                "src": "197:6:51"
               }
             ],
             "name": "Frequency",
-            "nameLocation": "97:9:47",
+            "nameLocation": "97:9:51",
             "nodeType": "EnumDefinition",
-            "src": "92:115:47"
+            "src": "92:115:51"
           },
           {
             "body": {
-              "id": 7816,
+              "id": 8285,
               "nodeType": "Block",
-              "src": "305:463:47",
+              "src": "305:463:51",
               "statements": [
                 {
                   "condition": {
                     "commonType": {
-                      "typeIdentifier": "t_enum$_Frequency_$7758",
+                      "typeIdentifier": "t_enum$_Frequency_$8227",
                       "typeString": "enum FrequencyHelper.Frequency"
                     },
-                    "id": 7769,
+                    "id": 8238,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 7766,
+                      "id": 8235,
                       "name": "_frequency",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7761,
-                      "src": "315:10:47",
+                      "referencedDeclaration": 8230,
+                      "src": "315:10:51",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_Frequency_$7758",
+                        "typeIdentifier": "t_enum$_Frequency_$8227",
                         "typeString": "enum FrequencyHelper.Frequency"
                       }
                     },
@@ -915,56 +915,56 @@
                     "operator": "==",
                     "rightExpression": {
                       "expression": {
-                        "id": 7767,
+                        "id": 8236,
                         "name": "Frequency",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7758,
-                        "src": "329:9:47",
+                        "referencedDeclaration": 8227,
+                        "src": "329:9:51",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_Frequency_$7758_$",
+                          "typeIdentifier": "t_type$_t_enum$_Frequency_$8227_$",
                           "typeString": "type(enum FrequencyHelper.Frequency)"
                         }
                       },
-                      "id": 7768,
+                      "id": 8237,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "lValueRequested": false,
                       "memberName": "Daily",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 7751,
-                      "src": "329:15:47",
+                      "referencedDeclaration": 8220,
+                      "src": "329:15:51",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_Frequency_$7758",
+                        "typeIdentifier": "t_enum$_Frequency_$8227",
                         "typeString": "enum FrequencyHelper.Frequency"
                       }
                     },
-                    "src": "315:29:47",
+                    "src": "315:29:51",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 7773,
+                  "id": 8242,
                   "nodeType": "IfStatement",
-                  "src": "311:63:47",
+                  "src": "311:63:51",
                   "trueBody": {
-                    "id": 7772,
+                    "id": 8241,
                     "nodeType": "Block",
-                    "src": "346:28:47",
+                    "src": "346:28:51",
                     "statements": [
                       {
                         "expression": {
                           "hexValue": "31",
-                          "id": 7770,
+                          "id": 8239,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
                           "kind": "number",
                           "lValueRequested": false,
                           "nodeType": "Literal",
-                          "src": "361:6:47",
+                          "src": "361:6:51",
                           "subdenomination": "days",
                           "typeDescriptions": {
                             "typeIdentifier": "t_rational_86400_by_1",
@@ -972,10 +972,10 @@
                           },
                           "value": "1"
                         },
-                        "functionReturnParameters": 7765,
-                        "id": 7771,
+                        "functionReturnParameters": 8234,
+                        "id": 8240,
                         "nodeType": "Return",
-                        "src": "354:13:47"
+                        "src": "354:13:51"
                       }
                     ]
                   }
@@ -983,23 +983,23 @@
                 {
                   "condition": {
                     "commonType": {
-                      "typeIdentifier": "t_enum$_Frequency_$7758",
+                      "typeIdentifier": "t_enum$_Frequency_$8227",
                       "typeString": "enum FrequencyHelper.Frequency"
                     },
-                    "id": 7777,
+                    "id": 8246,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 7774,
+                      "id": 8243,
                       "name": "_frequency",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7761,
-                      "src": "384:10:47",
+                      "referencedDeclaration": 8230,
+                      "src": "384:10:51",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_Frequency_$7758",
+                        "typeIdentifier": "t_enum$_Frequency_$8227",
                         "typeString": "enum FrequencyHelper.Frequency"
                       }
                     },
@@ -1007,56 +1007,56 @@
                     "operator": "==",
                     "rightExpression": {
                       "expression": {
-                        "id": 7775,
+                        "id": 8244,
                         "name": "Frequency",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7758,
-                        "src": "398:9:47",
+                        "referencedDeclaration": 8227,
+                        "src": "398:9:51",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_Frequency_$7758_$",
+                          "typeIdentifier": "t_type$_t_enum$_Frequency_$8227_$",
                           "typeString": "type(enum FrequencyHelper.Frequency)"
                         }
                       },
-                      "id": 7776,
+                      "id": 8245,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "lValueRequested": false,
                       "memberName": "Weekly",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 7752,
-                      "src": "398:16:47",
+                      "referencedDeclaration": 8221,
+                      "src": "398:16:51",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_Frequency_$7758",
+                        "typeIdentifier": "t_enum$_Frequency_$8227",
                         "typeString": "enum FrequencyHelper.Frequency"
                       }
                     },
-                    "src": "384:30:47",
+                    "src": "384:30:51",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 7781,
+                  "id": 8250,
                   "nodeType": "IfStatement",
-                  "src": "380:64:47",
+                  "src": "380:64:51",
                   "trueBody": {
-                    "id": 7780,
+                    "id": 8249,
                     "nodeType": "Block",
-                    "src": "416:28:47",
+                    "src": "416:28:51",
                     "statements": [
                       {
                         "expression": {
                           "hexValue": "37",
-                          "id": 7778,
+                          "id": 8247,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
                           "kind": "number",
                           "lValueRequested": false,
                           "nodeType": "Literal",
-                          "src": "431:6:47",
+                          "src": "431:6:51",
                           "subdenomination": "days",
                           "typeDescriptions": {
                             "typeIdentifier": "t_rational_604800_by_1",
@@ -1064,10 +1064,10 @@
                           },
                           "value": "7"
                         },
-                        "functionReturnParameters": 7765,
-                        "id": 7779,
+                        "functionReturnParameters": 8234,
+                        "id": 8248,
                         "nodeType": "Return",
-                        "src": "424:13:47"
+                        "src": "424:13:51"
                       }
                     ]
                   }
@@ -1075,23 +1075,23 @@
                 {
                   "condition": {
                     "commonType": {
-                      "typeIdentifier": "t_enum$_Frequency_$7758",
+                      "typeIdentifier": "t_enum$_Frequency_$8227",
                       "typeString": "enum FrequencyHelper.Frequency"
                     },
-                    "id": 7785,
+                    "id": 8254,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 7782,
+                      "id": 8251,
                       "name": "_frequency",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7761,
-                      "src": "454:10:47",
+                      "referencedDeclaration": 8230,
+                      "src": "454:10:51",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_Frequency_$7758",
+                        "typeIdentifier": "t_enum$_Frequency_$8227",
                         "typeString": "enum FrequencyHelper.Frequency"
                       }
                     },
@@ -1099,56 +1099,56 @@
                     "operator": "==",
                     "rightExpression": {
                       "expression": {
-                        "id": 7783,
+                        "id": 8252,
                         "name": "Frequency",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7758,
-                        "src": "468:9:47",
+                        "referencedDeclaration": 8227,
+                        "src": "468:9:51",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_Frequency_$7758_$",
+                          "typeIdentifier": "t_type$_t_enum$_Frequency_$8227_$",
                           "typeString": "type(enum FrequencyHelper.Frequency)"
                         }
                       },
-                      "id": 7784,
+                      "id": 8253,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "lValueRequested": false,
                       "memberName": "HalfMonthly",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 7753,
-                      "src": "468:21:47",
+                      "referencedDeclaration": 8222,
+                      "src": "468:21:51",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_Frequency_$7758",
+                        "typeIdentifier": "t_enum$_Frequency_$8227",
                         "typeString": "enum FrequencyHelper.Frequency"
                       }
                     },
-                    "src": "454:35:47",
+                    "src": "454:35:51",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 7789,
+                  "id": 8258,
                   "nodeType": "IfStatement",
-                  "src": "450:70:47",
+                  "src": "450:70:51",
                   "trueBody": {
-                    "id": 7788,
+                    "id": 8257,
                     "nodeType": "Block",
-                    "src": "491:29:47",
+                    "src": "491:29:51",
                     "statements": [
                       {
                         "expression": {
                           "hexValue": "3135",
-                          "id": 7786,
+                          "id": 8255,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
                           "kind": "number",
                           "lValueRequested": false,
                           "nodeType": "Literal",
-                          "src": "506:7:47",
+                          "src": "506:7:51",
                           "subdenomination": "days",
                           "typeDescriptions": {
                             "typeIdentifier": "t_rational_1296000_by_1",
@@ -1156,10 +1156,10 @@
                           },
                           "value": "15"
                         },
-                        "functionReturnParameters": 7765,
-                        "id": 7787,
+                        "functionReturnParameters": 8234,
+                        "id": 8256,
                         "nodeType": "Return",
-                        "src": "499:14:47"
+                        "src": "499:14:51"
                       }
                     ]
                   }
@@ -1167,23 +1167,23 @@
                 {
                   "condition": {
                     "commonType": {
-                      "typeIdentifier": "t_enum$_Frequency_$7758",
+                      "typeIdentifier": "t_enum$_Frequency_$8227",
                       "typeString": "enum FrequencyHelper.Frequency"
                     },
-                    "id": 7793,
+                    "id": 8262,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 7790,
+                      "id": 8259,
                       "name": "_frequency",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7761,
-                      "src": "530:10:47",
+                      "referencedDeclaration": 8230,
+                      "src": "530:10:51",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_Frequency_$7758",
+                        "typeIdentifier": "t_enum$_Frequency_$8227",
                         "typeString": "enum FrequencyHelper.Frequency"
                       }
                     },
@@ -1191,56 +1191,56 @@
                     "operator": "==",
                     "rightExpression": {
                       "expression": {
-                        "id": 7791,
+                        "id": 8260,
                         "name": "Frequency",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7758,
-                        "src": "544:9:47",
+                        "referencedDeclaration": 8227,
+                        "src": "544:9:51",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_Frequency_$7758_$",
+                          "typeIdentifier": "t_type$_t_enum$_Frequency_$8227_$",
                           "typeString": "type(enum FrequencyHelper.Frequency)"
                         }
                       },
-                      "id": 7792,
+                      "id": 8261,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "lValueRequested": false,
                       "memberName": "Monthly",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 7754,
-                      "src": "544:17:47",
+                      "referencedDeclaration": 8223,
+                      "src": "544:17:51",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_Frequency_$7758",
+                        "typeIdentifier": "t_enum$_Frequency_$8227",
                         "typeString": "enum FrequencyHelper.Frequency"
                       }
                     },
-                    "src": "530:31:47",
+                    "src": "530:31:51",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 7797,
+                  "id": 8266,
                   "nodeType": "IfStatement",
-                  "src": "526:66:47",
+                  "src": "526:66:51",
                   "trueBody": {
-                    "id": 7796,
+                    "id": 8265,
                     "nodeType": "Block",
-                    "src": "563:29:47",
+                    "src": "563:29:51",
                     "statements": [
                       {
                         "expression": {
                           "hexValue": "3330",
-                          "id": 7794,
+                          "id": 8263,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
                           "kind": "number",
                           "lValueRequested": false,
                           "nodeType": "Literal",
-                          "src": "578:7:47",
+                          "src": "578:7:51",
                           "subdenomination": "days",
                           "typeDescriptions": {
                             "typeIdentifier": "t_rational_2592000_by_1",
@@ -1248,10 +1248,10 @@
                           },
                           "value": "30"
                         },
-                        "functionReturnParameters": 7765,
-                        "id": 7795,
+                        "functionReturnParameters": 8234,
+                        "id": 8264,
                         "nodeType": "Return",
-                        "src": "571:14:47"
+                        "src": "571:14:51"
                       }
                     ]
                   }
@@ -1259,23 +1259,23 @@
                 {
                   "condition": {
                     "commonType": {
-                      "typeIdentifier": "t_enum$_Frequency_$7758",
+                      "typeIdentifier": "t_enum$_Frequency_$8227",
                       "typeString": "enum FrequencyHelper.Frequency"
                     },
-                    "id": 7801,
+                    "id": 8270,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 7798,
+                      "id": 8267,
                       "name": "_frequency",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7761,
-                      "src": "602:10:47",
+                      "referencedDeclaration": 8230,
+                      "src": "602:10:51",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_Frequency_$7758",
+                        "typeIdentifier": "t_enum$_Frequency_$8227",
                         "typeString": "enum FrequencyHelper.Frequency"
                       }
                     },
@@ -1283,56 +1283,56 @@
                     "operator": "==",
                     "rightExpression": {
                       "expression": {
-                        "id": 7799,
+                        "id": 8268,
                         "name": "Frequency",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7758,
-                        "src": "616:9:47",
+                        "referencedDeclaration": 8227,
+                        "src": "616:9:51",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_Frequency_$7758_$",
+                          "typeIdentifier": "t_type$_t_enum$_Frequency_$8227_$",
                           "typeString": "type(enum FrequencyHelper.Frequency)"
                         }
                       },
-                      "id": 7800,
+                      "id": 8269,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "lValueRequested": false,
                       "memberName": "Quarterly",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 7755,
-                      "src": "616:19:47",
+                      "referencedDeclaration": 8224,
+                      "src": "616:19:51",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_Frequency_$7758",
+                        "typeIdentifier": "t_enum$_Frequency_$8227",
                         "typeString": "enum FrequencyHelper.Frequency"
                       }
                     },
-                    "src": "602:33:47",
+                    "src": "602:33:51",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 7805,
+                  "id": 8274,
                   "nodeType": "IfStatement",
-                  "src": "598:68:47",
+                  "src": "598:68:51",
                   "trueBody": {
-                    "id": 7804,
+                    "id": 8273,
                     "nodeType": "Block",
-                    "src": "637:29:47",
+                    "src": "637:29:51",
                     "statements": [
                       {
                         "expression": {
                           "hexValue": "3931",
-                          "id": 7802,
+                          "id": 8271,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
                           "kind": "number",
                           "lValueRequested": false,
                           "nodeType": "Literal",
-                          "src": "652:7:47",
+                          "src": "652:7:51",
                           "subdenomination": "days",
                           "typeDescriptions": {
                             "typeIdentifier": "t_rational_7862400_by_1",
@@ -1340,10 +1340,10 @@
                           },
                           "value": "91"
                         },
-                        "functionReturnParameters": 7765,
-                        "id": 7803,
+                        "functionReturnParameters": 8234,
+                        "id": 8272,
                         "nodeType": "Return",
-                        "src": "645:14:47"
+                        "src": "645:14:51"
                       }
                     ]
                   }
@@ -1351,23 +1351,23 @@
                 {
                   "condition": {
                     "commonType": {
-                      "typeIdentifier": "t_enum$_Frequency_$7758",
+                      "typeIdentifier": "t_enum$_Frequency_$8227",
                       "typeString": "enum FrequencyHelper.Frequency"
                     },
-                    "id": 7809,
+                    "id": 8278,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 7806,
+                      "id": 8275,
                       "name": "_frequency",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7761,
-                      "src": "676:10:47",
+                      "referencedDeclaration": 8230,
+                      "src": "676:10:51",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_Frequency_$7758",
+                        "typeIdentifier": "t_enum$_Frequency_$8227",
                         "typeString": "enum FrequencyHelper.Frequency"
                       }
                     },
@@ -1375,56 +1375,56 @@
                     "operator": "==",
                     "rightExpression": {
                       "expression": {
-                        "id": 7807,
+                        "id": 8276,
                         "name": "Frequency",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7758,
-                        "src": "690:9:47",
+                        "referencedDeclaration": 8227,
+                        "src": "690:9:51",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_Frequency_$7758_$",
+                          "typeIdentifier": "t_type$_t_enum$_Frequency_$8227_$",
                           "typeString": "type(enum FrequencyHelper.Frequency)"
                         }
                       },
-                      "id": 7808,
+                      "id": 8277,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "lValueRequested": false,
                       "memberName": "HalfYearly",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 7756,
-                      "src": "690:20:47",
+                      "referencedDeclaration": 8225,
+                      "src": "690:20:51",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_Frequency_$7758",
+                        "typeIdentifier": "t_enum$_Frequency_$8227",
                         "typeString": "enum FrequencyHelper.Frequency"
                       }
                     },
-                    "src": "676:34:47",
+                    "src": "676:34:51",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 7813,
+                  "id": 8282,
                   "nodeType": "IfStatement",
-                  "src": "672:70:47",
+                  "src": "672:70:51",
                   "trueBody": {
-                    "id": 7812,
+                    "id": 8281,
                     "nodeType": "Block",
-                    "src": "712:30:47",
+                    "src": "712:30:51",
                     "statements": [
                       {
                         "expression": {
                           "hexValue": "313832",
-                          "id": 7810,
+                          "id": 8279,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
                           "kind": "number",
                           "lValueRequested": false,
                           "nodeType": "Literal",
-                          "src": "727:8:47",
+                          "src": "727:8:51",
                           "subdenomination": "days",
                           "typeDescriptions": {
                             "typeIdentifier": "t_rational_15724800_by_1",
@@ -1432,10 +1432,10 @@
                           },
                           "value": "182"
                         },
-                        "functionReturnParameters": 7765,
-                        "id": 7811,
+                        "functionReturnParameters": 8234,
+                        "id": 8280,
                         "nodeType": "Return",
-                        "src": "720:15:47"
+                        "src": "720:15:51"
                       }
                     ]
                   }
@@ -1443,14 +1443,14 @@
                 {
                   "expression": {
                     "hexValue": "333635",
-                    "id": 7814,
+                    "id": 8283,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
                     "kind": "number",
                     "lValueRequested": false,
                     "nodeType": "Literal",
-                    "src": "755:8:47",
+                    "src": "755:8:51",
                     "subdenomination": "days",
                     "typeDescriptions": {
                       "typeIdentifier": "t_rational_31536000_by_1",
@@ -1458,74 +1458,74 @@
                     },
                     "value": "365"
                   },
-                  "functionReturnParameters": 7765,
-                  "id": 7815,
+                  "functionReturnParameters": 8234,
+                  "id": 8284,
                   "nodeType": "Return",
-                  "src": "748:15:47"
+                  "src": "748:15:51"
                 }
               ]
             },
-            "id": 7817,
+            "id": 8286,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "convertFrequency",
-            "nameLocation": "220:16:47",
+            "nameLocation": "220:16:51",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7762,
+              "id": 8231,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7761,
+                  "id": 8230,
                   "mutability": "mutable",
                   "name": "_frequency",
-                  "nameLocation": "247:10:47",
+                  "nameLocation": "247:10:51",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7817,
-                  "src": "237:20:47",
+                  "scope": 8286,
+                  "src": "237:20:51",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_enum$_Frequency_$7758",
+                    "typeIdentifier": "t_enum$_Frequency_$8227",
                     "typeString": "enum FrequencyHelper.Frequency"
                   },
                   "typeName": {
-                    "id": 7760,
+                    "id": 8229,
                     "nodeType": "UserDefinedTypeName",
                     "pathNode": {
-                      "id": 7759,
+                      "id": 8228,
                       "name": "Frequency",
                       "nodeType": "IdentifierPath",
-                      "referencedDeclaration": 7758,
-                      "src": "237:9:47"
+                      "referencedDeclaration": 8227,
+                      "src": "237:9:51"
                     },
-                    "referencedDeclaration": 7758,
-                    "src": "237:9:47",
+                    "referencedDeclaration": 8227,
+                    "src": "237:9:51",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_enum$_Frequency_$7758",
+                      "typeIdentifier": "t_enum$_Frequency_$8227",
                       "typeString": "enum FrequencyHelper.Frequency"
                     }
                   },
                   "visibility": "internal"
                 }
               ],
-              "src": "236:22:47"
+              "src": "236:22:51"
             },
             "returnParameters": {
-              "id": 7765,
+              "id": 8234,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7764,
+                  "id": 8233,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7817,
-                  "src": "294:7:47",
+                  "scope": 8286,
+                  "src": "294:7:51",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1533,10 +1533,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7763,
+                    "id": 8232,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "294:7:47",
+                    "src": "294:7:51",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1545,21 +1545,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "293:9:47"
+              "src": "293:9:51"
             },
-            "scope": 7818,
-            "src": "211:557:47",
+            "scope": 8287,
+            "src": "211:557:51",
             "stateMutability": "pure",
             "virtual": false,
             "visibility": "internal"
           }
         ],
-        "scope": 7819,
-        "src": "64:706:47",
+        "scope": 8288,
+        "src": "64:706:51",
         "usedErrors": []
       }
     ],
-    "src": "38:733:47"
+    "src": "38:733:51"
   },
   "compiler": {
     "name": "solc",
@@ -1567,7 +1567,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.6",
-  "updatedAt": "2022-05-15T10:04:47.196Z",
+  "updatedAt": "2022-05-15T17:40:25.536Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
