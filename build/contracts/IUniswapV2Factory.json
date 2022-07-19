@@ -1,0 +1,372 @@
+{
+  "contractName": "IUniswapV2Factory",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "tokenA",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "tokenB",
+          "type": "address"
+        }
+      ],
+      "name": "getPair",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "pair",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.11+commit.d7f03943\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenA\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"tokenB\",\"type\":\"address\"}],\"name\":\"getPair\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"pair\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/defi/uniswap/interfaces/IUniswapV2Factory.sol\":\"IUniswapV2Factory\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/defi/uniswap/interfaces/IUniswapV2Factory.sol\":{\"keccak256\":\"0xc93640e4fcc55e9743e83629bb80742d8a54f3b740c7b97396f72cb077eed4c8\",\"license\":\"AGPL-3.0\",\"urls\":[\"bzz-raw://9591e75a07b4f526618eda5bd86e08492f446dbb80b9105eafe5414fa581049a\",\"dweb:/ipfs/QmTtgrQToKZMDVvYarsYiwUE7h3Ss7hiHZXZZyaSWGgq5c\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: AGPL-3.0\n\npragma solidity ^0.8.11;\n\ninterface IUniswapV2Factory {\n  function getPair(address tokenA, address tokenB)\n    external\n    view\n    returns (address pair);\n}\n",
+  "sourcePath": "/Users/yosephks/Documents/GitHub/alpsfinance-smart-contracts/contracts/defi/uniswap/interfaces/IUniswapV2Factory.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/defi/uniswap/interfaces/IUniswapV2Factory.sol",
+    "exportedSymbols": {
+      "IUniswapV2Factory": [
+        8071
+      ]
+    },
+    "id": 8072,
+    "license": "AGPL-3.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 8061,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".11"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "38:24:50"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IUniswapV2Factory",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 8071,
+        "linearizedBaseContracts": [
+          8071
+        ],
+        "name": "IUniswapV2Factory",
+        "nameLocation": "74:17:50",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "e6a43905",
+            "id": 8070,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getPair",
+            "nameLocation": "105:7:50",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 8066,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8063,
+                  "mutability": "mutable",
+                  "name": "tokenA",
+                  "nameLocation": "121:6:50",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8070,
+                  "src": "113:14:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 8062,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "113:7:50",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 8065,
+                  "mutability": "mutable",
+                  "name": "tokenB",
+                  "nameLocation": "137:6:50",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8070,
+                  "src": "129:14:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 8064,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "129:7:50",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "112:32:50"
+            },
+            "returnParameters": {
+              "id": 8069,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8068,
+                  "mutability": "mutable",
+                  "name": "pair",
+                  "nameLocation": "188:4:50",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8070,
+                  "src": "180:12:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 8067,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "180:7:50",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "179:14:50"
+            },
+            "scope": 8071,
+            "src": "96:98:50",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 8072,
+        "src": "64:132:50",
+        "usedErrors": []
+      }
+    ],
+    "src": "38:159:50"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/defi/uniswap/interfaces/IUniswapV2Factory.sol",
+    "exportedSymbols": {
+      "IUniswapV2Factory": [
+        8071
+      ]
+    },
+    "id": 8072,
+    "license": "AGPL-3.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 8061,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".11"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "38:24:50"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IUniswapV2Factory",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 8071,
+        "linearizedBaseContracts": [
+          8071
+        ],
+        "name": "IUniswapV2Factory",
+        "nameLocation": "74:17:50",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "e6a43905",
+            "id": 8070,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getPair",
+            "nameLocation": "105:7:50",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 8066,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8063,
+                  "mutability": "mutable",
+                  "name": "tokenA",
+                  "nameLocation": "121:6:50",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8070,
+                  "src": "113:14:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 8062,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "113:7:50",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 8065,
+                  "mutability": "mutable",
+                  "name": "tokenB",
+                  "nameLocation": "137:6:50",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8070,
+                  "src": "129:14:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 8064,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "129:7:50",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "112:32:50"
+            },
+            "returnParameters": {
+              "id": 8069,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8068,
+                  "mutability": "mutable",
+                  "name": "pair",
+                  "nameLocation": "188:4:50",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8070,
+                  "src": "180:12:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 8067,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "180:7:50",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "179:14:50"
+            },
+            "scope": 8071,
+            "src": "96:98:50",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 8072,
+        "src": "64:132:50",
+        "usedErrors": []
+      }
+    ],
+    "src": "38:159:50"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.11+commit.d7f03943.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.6",
+  "updatedAt": "2022-07-19T13:41:57.398Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

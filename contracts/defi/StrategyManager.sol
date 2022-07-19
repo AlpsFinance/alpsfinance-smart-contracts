@@ -3,12 +3,58 @@
 pragma solidity ^0.8.11;
 
 import {AccessControl} from '@openzeppelin/contracts/access/AccessControl.sol';
+import {ReentrancyGuard} from '@openzeppelin/contracts/security/ReentrancyGuard.sol';
 import {FeeManager} from '../libraries/FeeManager.sol';
 
-contract StrategyManager is AccessControl {
-  function setStrategyFee() public {}
+contract StrategyManager is AccessControl, ReentrancyGuard {
+  struct Strategy {
+    string topic;
+    uint256 fee; // 3 decimal place
+  }
 
-  function registerStrategy(bytes32 strategyId, uint256 fee) public {}
+  mapping(bytes32 => Strategy) public strategyMappingRegistry;
 
-  function executeStrategy() public {}
+  // ============== ERROR ==============
+  error FailedStrategyExecution();
+  error InvalidFeeValue();
+
+  // ============== MODIFIER ==============
+  modifier onlyValidFee(uint256 amount) {
+    // If fee exceeds 100%
+    if (amount > 100000) revert InvalidFeeValue();
+    _;
+  }
+
+  function setStrategyFee(bytes32 strategyId, uint256 fee)
+    public
+    onlyRole(DEFAULT_ADMIN_ROLE)
+    onlyValidFee(fee)
+  {
+    strategyMappingRegistry[strategyId].fee = fee;
+  }
+
+  function registerStrategy(
+    bytes32 strategyId,
+    string calldata topic,
+    uint256 fee
+  ) public onlyRole(DEFAULT_ADMIN_ROLE) onlyValidFee(fee) {
+    strategyMappingRegistry[strategyId].topic = topic;
+    strategyMappingRegistry[strategyId].fee = fee;
+  }
+
+  function executeStrategy(
+    address[] calldata contractAddresses,
+    bytes32[] calldata strategyIds,
+    uint256[] calldata params
+  ) public nonReentrant {
+    for (uint8 i = 0; i < contractAddresses.length; i++) {
+      (bool success, ) = contractAddresses[i].call(
+        abi.encodeWithSignature(
+          strategyMappingRegistry[strategyIds[i]].topic,
+          params[i]
+        )
+      );
+      if (success) revert FailedStrategyExecution();
+    }
+  }
 }
