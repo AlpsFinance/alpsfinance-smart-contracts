@@ -2,11 +2,11 @@
 
 pragma solidity ^0.8.11;
 
-import {Ownable} from '@openzeppelin/contracts/access/Ownable.sol';
+import {AccessControl} from '@openzeppelin/contracts/access/AccessControl.sol';
 import {FeeManager} from '../libraries/FeeManager.sol';
 
-contract StrategyManager is Ownable {
-  function setStrategyFee() public onlyOwner {}
+contract StrategyManager is AccessControl {
+  function setStrategyFee() public {}
 
   function registerStrategy(bytes32 strategyId, uint256 fee) public {}
 
