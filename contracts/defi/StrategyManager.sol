@@ -26,7 +26,7 @@ contract StrategyManager is AccessControl, ReentrancyGuard {
   }
 
   function setStrategyFee(bytes32 strategyId, uint256 fee)
-    public
+    external
     onlyRole(DEFAULT_ADMIN_ROLE)
     onlyValidFee(fee)
   {
@@ -37,24 +37,24 @@ contract StrategyManager is AccessControl, ReentrancyGuard {
     bytes32 strategyId,
     string calldata topic,
     uint256 fee
-  ) public onlyRole(DEFAULT_ADMIN_ROLE) onlyValidFee(fee) {
+  ) external onlyRole(DEFAULT_ADMIN_ROLE) onlyValidFee(fee) {
     strategyMappingRegistry[strategyId].topic = topic;
     strategyMappingRegistry[strategyId].fee = fee;
   }
 
   function executeStrategy(
-    address[] calldata contractAddresses,
+    address[] calldata targets,
     bytes32[] calldata strategyIds,
     uint256[] calldata params
-  ) public nonReentrant {
-    for (uint8 i = 0; i < contractAddresses.length; i++) {
-      (bool success, ) = contractAddresses[i].call(
+  ) external nonReentrant {
+    for (uint8 i = 0; i < targets.length; i++) {
+      (bool success, ) = targets[i].call(
         abi.encodeWithSignature(
           strategyMappingRegistry[strategyIds[i]].topic,
           params[i]
         )
       );
-      if (success) revert FailedStrategyExecution();
+      if (!success) revert FailedStrategyExecution();
     }
   }
 }
